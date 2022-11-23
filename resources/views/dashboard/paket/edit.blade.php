@@ -1,0 +1,28 @@
+@extends('dashboard.layouts.main')
+
+@section('content')
+    <div class="col-lg-18">
+        <form action="/dashboard/paket/{{ $paket->id }}" method="POST" class="card shadow mb-4">
+            @method('put')
+            @csrf
+            <div class="card-header d-flex w-100 py-3">
+                <h3 class="m-0 font-weight-bold text-primary">Edit Data Kategori</h3>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">nama paket</label>
+                    <input value="{{ $paket->nama_paket }}" class="form-control" type="text" name="nama_paket"
+                        aria-label=".form-control-lg example">
+                </div>
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">harga paket</label>
+                    <input value="{{ $paket->harga }}" class="form-control" type="number" name="harga"
+                        aria-label=".form-control-lg example">
+                </div>
+
+            </div>
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary ml-auto">ubah</button>
+            </div>
+        </form>
+@endsection
