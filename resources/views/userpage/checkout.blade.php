@@ -41,7 +41,7 @@
                     {{-- detail pesanan --}}
                 </div>
                 <div class="col-lg-5 col-md-12">
-                    <form id="reservation-form" name="gs" method="submit" role="search" class="p-2">
+                    <div id="reservation-form" name="gs" method="submit" role="search" class="p-2">
                         <div class="row">
                             <div class="col-lg-12">
                                 <h4>Detail Pesanan</em></h4>
@@ -66,7 +66,7 @@
                             </div>
                             <button id="bayar">Bayar Sekarang</button>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>

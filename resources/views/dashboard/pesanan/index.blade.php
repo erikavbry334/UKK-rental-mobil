@@ -37,7 +37,6 @@
                                             <th>No</th>
                                             <th>nama pemesan</th>
                                             <th>tanggal</th>
-                                            <th>lama sewa</th>
                                             <th>no telp</th>
                                             <th>alamat</th>
                                             <th>armada</th>
@@ -45,6 +44,7 @@
                                             <th>total harga</th>
                                             <th>catatan</th>
                                             <th>Status</th>
+                                            <th>aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -52,8 +52,7 @@
                                             <tr>
                                                 <td>{{ $i + 1 }}</td>
                                                 <td>{{ $pesanan->nama_pemesan }}</td>
-                                                <td>{{ $pesanan->tgl_pesan }}</td>
-                                                <td>{{ $pesanan->lama_sewa }}</td>
+                                                <td>{{ $pesanan->tgl_pesan }} s.d {{ $pesanan->tgl_akhir }}</td>
                                                 <td>{{ $pesanan->no_hp }}</td>
                                                 <td>{{ $pesanan->alamat }}</td>
                                                 <td>{{ $pesanan->armada->nama_armada }}</td>
@@ -62,25 +61,32 @@
                                                 <td>{{ $pesanan->catatan }}</td>
                                                 @if ($pesanan->status == 1)
                                                     <td>
-                                                        <span class="badge badge-warning">{{ $pesanan->status_text }}</span>
+                                                        <span
+                                                            class="badge badge-warning">{{ $pesanan->status_text }}</span>
                                                     </td>
                                                 @elseif ($pesanan->status == 2)
                                                     <td>
-                                                        <span class="badge badge-primary">{{ $pesanan->status_text }}</span>
+                                                        <span
+                                                            class="badge badge-primary">{{ $pesanan->status_text }}</span>
                                                     </td>
                                                 @elseif ($pesanan->status == 3)
                                                     <td>
-                                                        <span class="badge badge-primary">{{ $pesanan->status_text }}</span>
+                                                        <span
+                                                            class="badge badge-primary">{{ $pesanan->status_text }}</span>
                                                     </td>
                                                 @elseif ($pesanan->status == 4)
                                                     <td>
-                                                        <span class="badge badge-success">{{ $pesanan->status_text }}</span>
+                                                        <span
+                                                            class="badge badge-success">{{ $pesanan->status_text }}</span>
                                                     </td>
                                                 @elseif ($pesanan->status == 5)
                                                     <td>
                                                         <span class="badge badge-danger">{{ $pesanan->status_text }}</span>
                                                     </td>
                                                 @endif
+                                                <td>
+                                                    <button type="button" class="btn btn-dark">edit</button>
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>

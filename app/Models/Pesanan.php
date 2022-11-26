@@ -45,7 +45,7 @@ class Pesanan extends Model
         if ($this->status == 1) {
             return 'Menunggu Pembayaran';
         } else if ($this->status == 2) {
-            return 'sedang disewa';
+            return 'sudah dibayar';
         } else if ($this->status == 3) {
             return 'telah dikembalikan';
         } else if ($this->status == 4) {
