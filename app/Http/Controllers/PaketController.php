@@ -41,11 +41,13 @@ class PaketController extends Controller
      */
     public function store(Request $request)
     {
-
         $data= $request->validate([
             'nama_paket' => 'required',
-            'harga'=> 'required'
+            'harga'=> 'required',
+            'gambar'=> 'required'
         ]);
+
+        $data['gambar'] = 'storage/' . $request->file('gambar')->store('paket', 'public');
 
         Paket::create($data);
         return redirect('/dashboard/paket');
@@ -87,8 +89,16 @@ class PaketController extends Controller
         $paket = Paket::find($id);
         $data= $request->validate([
             'nama_paket' => 'required',
-            'harga'=> 'required'
+            'harga'=> 'required',
+            'gambar'=> 'image'
         ]);
+
+        if (isset($request->gambar)) {
+            if (is_file(storage_path('app/'.str_replace('storage', 'public', $paket->gambar)))) {
+                unlink(storage_path('app/'.str_replace('storage', 'public', $paket->gambar)));
+            }
+            $data['gambar'] = 'storage/' . $request->file('gambar')->store('paket', 'public');
+        }
 
         $paket->update($data);
         return redirect('/dashboard/paket');

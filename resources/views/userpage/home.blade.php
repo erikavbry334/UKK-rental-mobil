@@ -21,7 +21,7 @@
                         @foreach ($pakets as $paket)
                             <div class="item">
                                 <div class="thumb">
-                                    <img src="assets/images/offers-01.jpg" alt="">
+                                    <img src="{{ $paket->gambar }}" style="object-fit: cover; height: 100%">
                                     <div class="text">
                                         <h4>{{$paket->nama_paket}}</h4>
                                         <br>

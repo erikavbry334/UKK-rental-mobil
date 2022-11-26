@@ -1,7 +1,7 @@
 @extends('userpage.layouts.main', ['title' => 'detail pesanan'])
 
 @section('content')
-   <div class="reservation-form">
+    <div class="reservation-form">
         <div class="container">
             <div class="row">
                 {{-- data penyewa --}}
@@ -23,22 +23,42 @@
                             </div>
                             <label for="" class="col-sm-3 form-label">Tanggal pesan</label>
                             <div class="col-lg-9">
-                                <input type="text" readonly value="{{ $pesanan['tgl_pesan'] }}">
-                            </div>
-                            <label for="" class="col-sm-3 form-label">Lama sewa</label>
-                            <div class="col-lg-9">
-                                <input type="text" readonly value="{{ $pesanan['lama_sewa'] }}">
+                                <input type="text" readonly
+                                    value="{{ $pesanan['tgl_pesan'] }} s.d {{ $pesanan['tgl_akhir'] }}">
                             </div>
                             <label for="" class="col-sm-3 form-label">catatan tambahan</label>
                             <div class="col-lg-9">
                                 <input type="text_area" readonly value="{{ $pesanan['catatan'] }}">
                             </div>
+                            <label for="" class="col-sm-3 form-label">Status</label>
+                            <div class="col-lg-9">
+                                @if ($pesanan->status == 1)
+                                    <td>
+                                        <span class="badge bg-warning">{{ $pesanan->status_text }}</span>
+                                    </td>
+                                @elseif ($pesanan->status == 2)
+                                    <td>
+                                        <span class="badge bg-primary">{{ $pesanan->status_text }}</span>
+                                    </td>
+                                @elseif ($pesanan->status == 3)
+                                    <td>
+                                        <span class="badge bg-primary">{{ $pesanan->status_text }}</span>
+                                    </td>
+                                @elseif ($pesanan->status == 4)
+                                    <td>
+                                        <span class="badge bg-success">{{ $pesanan->status_text }}</span>
+                                    </td>
+                                @elseif ($pesanan->status == 5)
+                                    <td>
+                                        <span class="badge bg-danger">{{ $pesanan->status_text }}</span>
+                                    </td>
+                                @endif
+                            </div>
                         </div>
                         </form>
                     </div>
-
-                    {{-- detail pesanan --}}
                 </div>
+                {{-- detail pesanan --}}
                 <div class="col-lg-5 col-md-12">
                     <form id="reservation-form" name="gs" method="submit" role="search" class="p-2">
                         <div class="row">
@@ -46,25 +66,23 @@
                                 <h4>Detail Pesanan</em></h4>
                             </div>
                             <div class="col-lg-5">
-                                <img src="{{ asset($pesanan->$armada->gambar) }}" class="img-fluid" alt="">
+                                <img src="{{ asset($pesanan->armada->gambar) }}" class="img-fluid" alt="">
                             </div>
                             <div class="col-lg-3">
-                                <h4 class="text-start mb-1">{{ $pesanan->$armada->nama_armada }}</h4>
-                                <h6>{{ $paket->nama_paket }}</h6>
+                                <h4 class="text-start mb-1">{{ $pesanan->armada->nama_armada }}</h4>
+                                <h6>{{ $pesanan->paket->nama_paket }}</h6>
                                 <div class="line-dec">
                                     <h5 class="text-primary">Rp
-                                        {{ number_format($pesanan->$paket->harga + $pesanan->$armada->harga, 0, 0, '.') }}</h5>
+                                        {{ number_format($pesanan->paket->harga + $pesanan->armada->harga, 0, 0, '.') }}
+                                    </h5>
                                 </div>
                             </div>
                             <div class="col-lg-4">
                                 <ul>
-                                    @foreach ($pesanan->$paket->detail_pakets as $detail)
+                                    @foreach ($pesanan->paket->detail_pakets as $detail)
                                         <li>{{ $detail->nama }}</li>
                                     @endforeach
                                 </ul>
-                            </div>
-                            <button id="bayar">Bayar Sekarang</button>
-                        </div>
                     </form>
                 </div>
             </div>
@@ -74,7 +92,8 @@
 
 @section('script')
     @if ($pesanan->status == 1)
-        <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.client_key') }}"></script>
+        <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.client_key') }}">
+        </script>
         <script>
             snap.pay('{{ $pesanan->pembayaran->snap_token }}');
         </script>

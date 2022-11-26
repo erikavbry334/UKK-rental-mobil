@@ -40,6 +40,7 @@
                                             <th>No</th>
                                             <th>Name</th>
                                             <th>Harga</th>
+                                            <th>gambar</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -49,6 +50,9 @@
                                                 <td>{{ $i + 1 }}</td>
                                                 <td>{{ $paket->nama_paket }}</td>
                                                 <td>{{ $paket->harga }}</td>
+                                                <td>
+                                                    <img src="{{ asset($paket->gambar) }}" class="img-fluid" width="200">
+                                                </td>
                                                 <td>
                                                     <a href="/dashboard/paket/{{ $paket->id }}/dtpaket"
                                                         class="btn btn-info ml-auto">detail paket</a>

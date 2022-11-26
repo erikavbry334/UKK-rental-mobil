@@ -22,6 +22,8 @@
                                         </select> entries</label></div>
                             </div>
                             <div class="col-sm-12 col-md-6">
+                                <form action="/dashboard/syarat-ketentuan" method="GET" id="dataTable_filter" class="dataTables_filter d-flex justify-content-end">
+                                    <label>
                                         Search:
                                         <input type="search" name="search" value="{{ $request->search }}" class="form-control form-control-sm" placeholder=""
                                             aria-controls="dataTable">

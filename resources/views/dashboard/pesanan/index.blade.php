@@ -21,10 +21,12 @@
                                         </select> entries</label></div>
                             </div>
                             <div class="col-sm-12 col-md-6">
-                                Search:
-                                <input type="search" name="search" value="{{ $request->search }}"
-                                    class="form-control form-control-sm" placeholder="" aria-controls="dataTable">
-                                </label>
+                                <form action="/dashboard/pesanan" method="GET" id="dataTable_filter" class="dataTables_filter d-flex justify-content-end">
+                                    <label>
+                                        Search:
+                                        <input type="search" name="search" value="{{ $request->search }}" class="form-control form-control-sm" placeholder=""
+                                            aria-controls="dataTable">
+                                    </label>
                                 </form>
                             </div>
                         </div>
@@ -61,23 +63,19 @@
                                                 <td>{{ $pesanan->catatan }}</td>
                                                 @if ($pesanan->status == 1)
                                                     <td>
-                                                        <span
-                                                            class="badge badge-warning">{{ $pesanan->status_text }}</span>
+                                                        <span class="badge badge-warning">{{ $pesanan->status_text }}</span>
                                                     </td>
                                                 @elseif ($pesanan->status == 2)
                                                     <td>
-                                                        <span
-                                                            class="badge badge-primary">{{ $pesanan->status_text }}</span>
+                                                        <span class="badge badge-primary">{{ $pesanan->status_text }}</span>
                                                     </td>
                                                 @elseif ($pesanan->status == 3)
                                                     <td>
-                                                        <span
-                                                            class="badge badge-primary">{{ $pesanan->status_text }}</span>
+                                                        <span class="badge badge-primary">{{ $pesanan->status_text }}</span>
                                                     </td>
                                                 @elseif ($pesanan->status == 4)
                                                     <td>
-                                                        <span
-                                                            class="badge badge-success">{{ $pesanan->status_text }}</span>
+                                                        <span class="badge badge-success">{{ $pesanan->status_text }}</span>
                                                     </td>
                                                 @elseif ($pesanan->status == 5)
                                                     <td>
@@ -85,7 +83,8 @@
                                                     </td>
                                                 @endif
                                                 <td>
-                                                    <button type="button" class="btn btn-dark">edit</button>
+                                                    <button type="button" class="btn btn-info">edit</button>
+                                                    <button type="button" class="btn btn-dark">hapus</button>
                                                 </td>
                                             </tr>
                                         @endforeach
