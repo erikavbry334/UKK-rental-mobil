@@ -1,0 +1,7 @@
+-- GIT --
+git add .
+git commit -m "pesan commit"
+git push
+
+-- NGROK --
+./ngrok http 8000

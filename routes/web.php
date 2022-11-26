@@ -10,6 +10,8 @@ use App\Http\Controllers\ArmadaController;
 use App\Http\Controllers\SyaratKetentuanController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PesananController;
+use App\Http\Controllers\PaymentCallbackController;
 
 
 
@@ -35,7 +37,8 @@ use App\Http\Controllers\UserController;
 Route::get('/', [PageController::class, 'home']);
 Route::get('/catalog', [PageController::class, 'catalog']);
 Route::get('/catalog/{id}', [PageController::class, 'catalogDetail']);
-Route::post('/checkout', [PageController::class, 'checkout']);
+Route::post('/checkout', [PageController::class, 'checkout'])->middleware('auth');
+Route::post('/checkout/charge', [PesananController::class, 'charge'])->middleware('auth');
 
 Route::get('/about', function () {
     return view('userpage.about');
@@ -49,9 +52,10 @@ Route::get('/reservation', function () {
     return view('userpage.reservation');
 });
 
-Route::get('/profile', function () {
-    return view('userpage.profile');
-})->middleware('auth');
+Route::get('/profile', [PageController::class, 'profile'])->middleware('auth');
+Route::get('/pesanan/{id}', [PesananController::class, 'detail'])->middleware('auth');
+Route::get('/pesanan/{id}/batal', [PesananController::class, 'batal'])->middleware('auth');
+
 Route::post('/user', [UserController::class, 'update'])->middleware('auth');
  
 Route::group(['middleware' => ['guest']], function () {
@@ -74,4 +78,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'level:admin']],
     });
     Route::resource('armada', ArmadaController::class);
     Route::resource('syarat-ketentuan', SyaratKetentuanController::class);
+    Route::resource('pesanan', PesananController::class);
 });
+
+Route::post('payments/midtrans-notification', [PaymentCallbackController::class, 'receive']);

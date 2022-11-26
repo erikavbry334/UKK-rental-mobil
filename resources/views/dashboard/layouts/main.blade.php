@@ -66,6 +66,11 @@
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Syarat & ketentuan </span></a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/dashboard/pesanan">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Pesanan </span></a>
+            </li>
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
@@ -286,7 +291,6 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid">
 
                 <div class="container-fluid">
                     @yield('content')

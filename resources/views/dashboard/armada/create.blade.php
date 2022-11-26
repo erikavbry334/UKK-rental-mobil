@@ -1,7 +1,7 @@
 @extends('dashboard.layouts.main')
 
 @section('content')
-    <div class="col-lg-18">
+    <div class="col-lg-12">
         <form action="/dashboard/armada" method="POST" enctype="multipart/form-data" class="card shadow mb-4">
             @csrf
             <div class="card-header d-flex w-100 py-3">

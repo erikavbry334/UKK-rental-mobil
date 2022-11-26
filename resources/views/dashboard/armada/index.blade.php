@@ -40,9 +40,9 @@
                                         <tr role="row">
                                             <th>No</th>
                                             <th>Name</th>
-                                            <th>no_plat</th>
+                                            <th>no plat</th>
                                             <th>Harga</th>
-                                            <th>jumlah_unit</th>
+                                            <th>jumlah unit</th>
                                             <th>Gambar</th>
                                             <th>Aksi</th>
                                         </tr>

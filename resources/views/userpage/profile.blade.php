@@ -55,7 +55,69 @@
                     </div>
                     <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab"
                         tabindex="0">
-                        <h1>Riwayat Pesanan</h1>
+                        <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table class="table table-bordered dataTable" id="dataTable" width="100%"
+                                    style="width: 100%;">
+                                    <thead>
+                                        <tr role="row">
+                                            <th>No</th>
+                                            <th>Nama</th>
+                                            <th>armada</th>
+                                            <th>paket</th>
+                                            <th>total harga</th>
+                                            <th>status</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($pesanans as $i => $pesanan)
+                                            <tr>
+                                                <td>{{ $i + 1 }}</td>
+                                                <td>{{ $pesanan->nama_pemesan  }}</td>
+                                                <td>{{ $pesanan->armada->nama_armada}}</td>
+                                                <td>{{ $pesanan->paket->nama_paket }}</td>
+                                                <td>{{ $pesanan->total_harga }}</td>
+                                                 @if ($pesanan->status == 1)
+                                                    <td>
+                                                        <span class="badge bg-warning">{{ $pesanan->status_text }}</span>
+                                                    </td>
+                                                @elseif ($pesanan->status == 2)
+                                                    <td>
+                                                        <span class="badge bg-primary">{{ $pesanan->status_text }}</span>
+                                                    </td>
+                                                @elseif ($pesanan->status == 3)
+                                                    <td>
+                                                        <span class="badge bg-primary">{{ $pesanan->status_text }}</span>
+                                                    </td>
+                                                @elseif ($pesanan->status == 4)
+                                                    <td>
+                                                        <span class="badge bg-success">{{ $pesanan->status_text }}</span>
+                                                    </td>
+                                                @elseif ($pesanan->status == 5)
+                                                    <td>
+                                                        <span class="badge bg-danger">{{ $pesanan->status_text }}</span>
+                                                    </td>
+                                                @endif
+                                                <td>
+                                                    @if ($pesanan->status == 1)
+                                                        <a href="/pesanan/{{ $pesanan->id }}/batal"
+                                                        class="btn btn-success ml-auto">batalkan</a>
+                                                    @endif
+                                                        <a href="/pesanan/{{ $pesanan->id }}"
+                                                        class="btn btn-primary ml-auto">detail</a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
                     </div>
                 </div>
             </div>

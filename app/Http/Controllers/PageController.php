@@ -25,7 +25,6 @@ class PageController extends Controller
     public function catalog(Request $request) {
         $request->validate([
             'tgl_pesan' => 'required',
-            'jumlah_unit' => 'required'
         ]);
 
         $armadas = Armada::when(isset(request()->armada_id) ?? false, function ($q) {
@@ -43,11 +42,6 @@ class PageController extends Controller
             }
 
             if (!$is_available) return false;
-
-            $jumlah_yang_dipesan = Pesanan::where('armada_id', $armada->id)->whereIn('status', [4,5])->sum('jumlah_unit');
-            if ($armada->jumlah_unit <= $jumlah_yang_dipesan) return false;
-
-            if ($armada->jumlah_unit < request()->jumlah_unit) return false;
 
             return true;
         });
@@ -86,7 +80,6 @@ class PageController extends Controller
             'paket_id' => 'required',
             'nama_pemesan' => 'required',
             'no_hp' => 'required',
-            'jumlah_unit' => 'required',
             'lama_sewa' => 'required',
             'alamat' =>'required',
             'tgl_pesan' => 'required',
@@ -102,5 +95,10 @@ class PageController extends Controller
             'paket' => $paket,
             'data' => $data
         ]);
+    }
+
+    public function profile() {
+        $pesanans = Pesanan::where('user_id', auth()->user()->id)->get();
+        return view('userpage.profile', compact('pesanans'));
     }
 }

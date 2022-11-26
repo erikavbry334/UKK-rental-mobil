@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('pembayarans', function (Blueprint $table) {
             $table->id();
-            $table->string('status_pembayaran');
+            $table->enum('status', [1,2,3])->comment('1: menunggu, 2: berhasil, 3: gagal');
             $table->foreignId('pesanan_id')->constrained('pesanans');
             $table->timestamps();
         });

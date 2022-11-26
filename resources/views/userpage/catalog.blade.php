@@ -29,7 +29,9 @@
                                                 </h5>
                                             </div>
                                         </div>
-                                        <p>Lorem ipsum dolor sit amet dire consectetur adipiscing elit.</p>
+                                        <i class="fas fa-fw fa-chart-area"></i>
+                                        <i class="fas fa-fw fa-chart-area"></i>
+                                        <i class="fas fa-fw fa-chart-area"></i>
                                         <div class="main-button">
                                             <a href="{{ url("/catalog/$armada->id?paket_id=" . $armada->paket->id . "&tgl_pesan=" . request()->tgl_pesan . "&jumlah_unit=" . request()->jumlah_unit) }}">Pesan</a>
                                         </div>
