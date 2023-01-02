@@ -18,7 +18,8 @@ class DetailPaketController extends Controller
         $detail_pakets = DetailPaket::with(['paket'])->where(function ($q) use ($request) {
             $q->where('nama', 'LIKE', '%' . $request->search . '%');
         })->where('paket_id', $paket_id)->get();
-        return view('dashboard.dtpaket.index', compact('detail_pakets', 'request', 'paket_id'));
+        $paket = Paket::find($paket_id);
+        return view('dashboard.dtpaket.index', compact('detail_pakets', 'request', 'paket_id', 'paket'));
     }
 
     /**

@@ -21,10 +21,6 @@
                     <input class="form-control" type="number" name="harga" aria-label=".form-control-lg example">
                 </div>
                 <div class="mb-3">
-                    <label for="formFile" class="form-label">jumlah unit</label>
-                    <input class="form-control" type="number" name="jumlah_unit" aria-label=".form-control-lg example">
-                </div>
-                <div class="mb-3">
                     <label for="formFile" class="form-label">gambar</label>
                     <input class="form-control" type="file" id="gambar" name="gambar" aria-label=".form-control-lg example">
                 </div>

@@ -19,8 +19,7 @@ class ArmadaSeeder extends Seeder
             'nama_armada' => 'Avanza',
             'no_plat' => 'L 2412 XL',
             'harga' => 200000,
-            'gambar' => 'storage/armada/avanza.jpg',
-            'jumlah_unit' => 10
+            'gambar' => 'storage/armada/DAoxekNj9GysCJ0kPK8obeEiFNMuAgsbxMzArO5q.jpg',
         ]);
     }
 }

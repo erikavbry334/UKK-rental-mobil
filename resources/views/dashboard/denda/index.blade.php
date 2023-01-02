@@ -4,8 +4,7 @@
     <div class="container-fluid">
         <div class="card shadow mb-4">
             <div class="card-header d-flex w-100 py-3">
-                <h3 class="m-0 font-weight-bold text-primary">Data</h3>
-                <a href="/dashboard/denda/create" class="btn btn-primary ml-auto">+ Tambah</a>
+                <h3 class="m-0 font-weight-bold " style="color:  #22b3c1">Denda</h3></h3>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -22,9 +21,12 @@
                                         </select> entries</label></div>
                             </div>
                             <div class="col-sm-12 col-md-6">
+                                <form action="/dashboard/denda" method="GET" id="dataTable_filter"
+                                    class="dataTables_filter d-flex justify-content-end">
+                                    <label>
                                         Search:
-                                        <input type="search" name="search" value="{{ $request->search }}" class="form-control form-control-sm" placeholder=""
-                                            aria-controls="dataTable">
+                                        <input type="search" name="search" value="{{ $request->search }}"
+                                            class="form-control form-control-sm" placeholder="" aria-controls="dataTable">
                                     </label>
                                 </form>
                             </div>
@@ -37,7 +39,6 @@
                                         <tr role="row">
                                             <th>No</th>
                                             <th>nama pemesan</th>
-                                            <th>Ahkir sewa</th>
                                             <th>Telat berapa hari</th>
                                             <th>total denda</th>
                                             <th>Aksi</th>
@@ -48,14 +49,13 @@
                                             <tr>
                                                 <td>{{ $i + 1 }}</td>
                                                 <td>{{ $denda->pesanan->nama_pemesan }}</td>
-                                                <td>{{ $denda->pesanan->tgl_akhir }}</td>
                                                 <td>{{ $denda->telat_berapa_hari }}</td>
                                                 <td>{{ $denda->total_denda }}</td>
                                                 <td>
-                                                    <a href="/dashboard/syarat-ketentuan/{{ $syarat->id }}/edit"
+                                                    <a href="/dashboard/denda/{{ $denda->id }}/edit"
                                                         class="btn btn-success ml-auto">edit</a>
 
-                                                    <form action="/dashboard/syarat-ketentuan/{{ $syarat->id }}" method="POST">
+                                                    <form action="/dashboard/denda/{{ $denda->id }}" method="POST">
                                                         @method('delete')
                                                         @csrf
                                                         <button class="btn btn-danger" type="submit">hapus</button>

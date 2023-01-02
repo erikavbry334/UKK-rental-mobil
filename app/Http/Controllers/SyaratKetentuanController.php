@@ -15,7 +15,7 @@ class SyaratKetentuanController extends Controller
     public function index(Request $request)
     {
         $syarats = SyaratKetentuan::where(function ($q) use ($request) {
-            $q->where('keterangan', 'LIKE', '%' . $request->search . '%');
+            $q->where('syarat', 'LIKE', '%' . $request->search . '%');
         })->get();
         return view('dashboard.syarat-ketentuan.index', [
             'syarats' =>  $syarats,
@@ -42,7 +42,8 @@ class SyaratKetentuanController extends Controller
     public function store(Request $request)
     {
         $data= $request->validate([
-            'keterangan' => 'required',
+            'syarat' => 'required',
+            'ketentuan' => 'required',
         ]);
 
         SyaratKetentuan::create($data);
@@ -84,7 +85,8 @@ class SyaratKetentuanController extends Controller
     {
         $syarat = SyaratKetentuan::find($id);
         $data= $request->validate([
-            'keterangan' => 'required',
+            'syarat' => 'required',
+            'ketentuan' => 'required',
         ]);
 
         $syarat->update($data);

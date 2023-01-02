@@ -7,11 +7,13 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PaketController;
 use App\Http\Controllers\DetailPaketController;
 use App\Http\Controllers\ArmadaController;
+use App\Http\Controllers\DendaController;
 use App\Http\Controllers\SyaratKetentuanController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PesananController;
 use App\Http\Controllers\PaymentCallbackController;
+use App\Http\Controllers\LaporanController;
 
 
 
@@ -44,13 +46,11 @@ Route::get('/about', function () {
     return view('userpage.about');
 });
 
-Route::get('/deals', function () {
-    return view('userpage.deals');
+Route::get('/kontakkami', function () {
+    return view('userpage.kontakkami');
 });
 
-Route::get('/reservation', function () {
-    return view('userpage.reservation');
-});
+Route::get("/syarat-ketentuan", [PageController::class, "SyaratKetentuan"]);
 
 Route::get('/profile', [PageController::class, 'profile'])->middleware('auth');
 Route::get('/pesanan/{id}', [PesananController::class, 'detail'])->middleware('auth');
@@ -77,8 +77,15 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'level:admin']],
         Route::resource('dtpaket', DetailPaketController::class);
     });
     Route::resource('armada', ArmadaController::class);
+    Route::resource('denda', DendaController::class);
     Route::resource('syarat-ketentuan', SyaratKetentuanController::class);
-    Route::resource('pesanan', PesananController::class);
+    Route::resource('pesanan', PesananController::class)->except(['show']);
+    Route::get('pesanan/{status}', [PesananController::class, 'index']);
+    Route::get('pesanan/{id}/detail', [PesananController::class, 'dashboardDetail']);
+    Route::post('pesanan/{id}/update-status', [PesananController::class, 'updateStatus']);
+    Route::get('laporan', [LaporanController::class, 'index']);
+    Route::post('laporan', [LaporanController::class, 'cetak']);
+
 });
 
 Route::post('payments/midtrans-notification', [PaymentCallbackController::class, 'receive']);

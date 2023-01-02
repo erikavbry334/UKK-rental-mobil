@@ -22,7 +22,7 @@ return new class extends Migration
             $table->foreignId('paket_id')->constrained('pakets')->restrictOnDelete();
             $table->foreignId('armada_id')->constrained('armadas')->restrictOnDelete();
             $table->foreignId('user_id')->constrained('users')->restrictOnDelete();
-            $table->enum('status', [1,2,3,4,5])->default(1)->comment('1: menunggu pembayaran, 2:sedang disewa, 3:telah dikembalikan, 4:selesai, 5:dibatalkan');
+            $table->enum('status', [1,2,3,4,5,6])->default(1)->comment('1: menunggu pembayaran, 2: sudah dibayar, 3:sedang disewa, 4:telah dikembalikan, 5:selesai, 6:dibatalkan');
             $table->timestamps();
         });
     }

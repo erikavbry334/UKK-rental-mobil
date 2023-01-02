@@ -5,7 +5,7 @@
         <div class="container">
             <div class="row">
                 {{--form pemesanan  --}}
-                <div class="col-lg-8 col-md-12 " >
+                <div class="col-lg-8 col-md-12 mt-3 " >
                     <h4 style="background: #22b3c1;" class="text-white py-2 text-center">Data Pemesan</h4>
                     <form id="reservation-form" method="POST" action="/checkout">
                         @csrf
@@ -51,27 +51,31 @@
                     </form>
                 </div>
                 {{-- pesanan --}}
-                <div class=" col-lg-4 col-md-12 ">
-                    <h4 style="background: #dfdfdf;" class="text-info py-2 text-center"> Pesanan</em></h4>
-                    <form id="reservation-form" name="gs" method="submit" role="search" action="#">
+                <div class=" col-lg-4 col-md-12 mt-3">
+                    <h4 style="background: #22b3c1;" class="text-white py-2 text-center"> Pesanan</em></h4>
+                    <form id="reservation-form" name="gs" method="submit" role="search" style="padding: 20px 20px">
                         <div class="row">
                             <div class="col-lg-12">
-                                <img src="{{ asset($armada->gambar) }}" style="font-size: 100px">
+                                <img src="{{ asset($armada->gambar) }}" style="width: 100%; height: 250px; object-fit: cover">
                             </div>
                             <div class="col-lg-12">
                                 <h4 class="text-start mb-2">{{ $armada->nama_armada }}</h4>
                                 <div>{{ $paket->nama_paket }}</div>
                                 <h6>Rp {{ number_format($paket->harga + $armada->harga, 0, 0, '.') }}</h6>
                                 <div class="line-dec m-3"></div>
-                                <ul>
+                                <ul style="list-style: disc;">
                                     <li>Detail Paket:</li>
                                     @foreach ($paket->detail_pakets as $detail)
-                                        <li>{{ $detail->nama }}</li>
+                                        <li style="list-style: disc; margin-left: 1rem">{{ $detail->nama }}</li>
                                     @endforeach
                                 </ul>
                             </div>
                         </div>
                     </form>
+                    <label for="check">
+                        <input type="checkbox" id="check" name="check">
+                        Saya telah setuju dengan <a href="{{ url('syarat-ketentuan') }}">Syarat & Ketentuan</a>
+                    </label>
                 </div>
             </div>
         </div>

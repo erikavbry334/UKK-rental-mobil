@@ -54,8 +54,13 @@
                                     </td>
                                 @endif
                             </div>
+                            @if ($pesanan->is_denda)
+                                <label for="" class="col-sm-3 form-label">Denda</label>
+                                <div class="col-lg-9">
+                                    <input type="text_area" readonly value="{{ $pesanan['total_denda'] }}">
+                                </div>
+                            @endif
                         </div>
-                        </form>
                     </div>
                 </div>
                 {{-- detail pesanan --}}

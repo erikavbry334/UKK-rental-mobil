@@ -17,7 +17,8 @@ class PaketSeeder extends Seeder
     {
         Paket::create([
             'nama_paket' => 'Paket Keluarga',
-            'harga' => 100000
+            'harga' => 100000,
+            'gambar' => 'storage/paket/0dgdjn4WKlPj7CwQXJyQxhSYbrWDZ2a4nhLgCjXF.png'
         ]);
     }
 }

@@ -4,17 +4,28 @@
     align-items: center;
 ">
     <div class="">
+        <section id="image-carousel" class="splide" aria-label="Beautiful Images">
+            <div class="splide__track">
+                <ul class="splide__list">
+                    <li class="splide__slide">
+                        <img src="{{ asset('assets/images/banner-01.jpg') }}" alt="">
+                    </li>
+                    <li class="splide__slide">
+                        <img src="{{ asset('assets/images/banner-01.jpg') }}" alt="">
+                    </li>
+                    <li class="splide__slide">
+                        <img src="{{ asset('assets/images/banner-01.jpg') }}" alt="">
+                    </li>
+                </ul>
+            </div>
+        </section>
         <div class="slider">
             <div id="top-banner-1" class="banner">
                 <div class="banner-inner-wrapper header-text">
-                    <div class="main-caption text-center">
-                        <h2 class="text-white">Take a Glimpse Into The Beautiful Country Of:</h2>
-                        <h1 class="text-white mb-4">Caribbean</h1>
-                    </div>
                     <div class="container">
                         <div class="more-info">
                             <form action="/catalog" method="GET" class="row">
-                                <div class="col-lg-4 col-sm-6 col-6 d-flex">
+                                <div class="col-lg-4 col-sm-6 col-12 d-flex">
                                     <i class="fa fa-user"></i>
                                     <h4 class="flex-fill">
                                         <span>Armada:</span><br>
@@ -28,7 +39,7 @@
                                         </select>
                                     </h4>
                                 </div>
-                                <div class="col-lg-3 col-sm-6 col-6 d-flex">
+                                <div class="col-lg-3 col-sm-6 col-12 d-flex">
                                     <i class="fa fa-globe"></i>
                                     <h4 class="flex-fill">
                                         <span>tanggal:</span><br>
@@ -37,9 +48,9 @@
                                             value="{{ request()->tgl_pesan }}" required>
                                     </h4>
                                 </div>
-                                <div class="col-lg-3 col-sm-6 col-6 d-flex">
+                                <div class="col-lg-3 col-sm-6 col-12 d-flex">
                                     <i class="fa fa-globe"></i>
-                                    <h4>
+                                    <h4 class="flex-fill">
                                         <span>paket:</span><br>
                                         <select class="form-control" name="paket_id" placeholder="Pilih Paket">
                                             <option value="">Semua Paket</option>

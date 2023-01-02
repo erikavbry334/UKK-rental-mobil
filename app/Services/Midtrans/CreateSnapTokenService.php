@@ -26,7 +26,7 @@ class CreateSnapTokenService extends Midtrans
                 [
                     'id' => $this->pesanan->armada->id,
                     'price' => $this->pesanan->armada->harga,
-                    'quantity' => 1,
+                    'quantity' => $this->pesanan->lama_sewa,
                     'name' => $this->pesanan->armada->nama_armada,
                 ],
                 [

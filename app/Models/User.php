@@ -47,7 +47,7 @@ class User extends Authenticatable
     protected $appends = ['avatar_url'];
 
     public function getAvatarUrlAttribute() {
-        if (!isset($this->avatar) || !storage_path('app/'.str_replace('storage', 'public', $this->avatar))) {
+        if (!isset($this->avatar) || $this->avatar == '' || !storage_path('app/'.str_replace('storage', 'public', $this->avatar))) {
             return asset('assets/images/user.png');
         }
 

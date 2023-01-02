@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('no_plat');
             $table->double('harga');
             $table->string('gambar');
-            $table->integer('jumlah_unit');
             $table->timestamps();
         });
     }

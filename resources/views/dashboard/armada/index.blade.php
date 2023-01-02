@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="card shadow mb-4">
             <div class="card-header d-flex w-100 py-3">
-                <h3 class="m-0 font-weight-bold text-primary">Data Armada</h3>
+                <h3 class="m-0 font-weight-bold" style="color:  #22b3c1">Data Armada</h3>
                 <a href="/dashboard/armada/create" class="btn btn-primary ml-auto"> + Tambah </a>
             </div>
             <div class="card-body">
@@ -42,7 +42,6 @@
                                             <th>Name</th>
                                             <th>no plat</th>
                                             <th>Harga</th>
-                                            <th>jumlah unit</th>
                                             <th>Gambar</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -54,7 +53,6 @@
                                                 <td>{{ $armada->nama_armada }}</td>
                                                 <td>{{ $armada->no_plat }}</td>
                                                 <td>{{ $armada->harga }}</td>
-                                                <td>{{ $armada->jumlah_unit }}</td>
                                                 <td>
                                                     <img src="{{ asset($armada->gambar) }}" class="img-fluid" width="200">
                                                 </td>

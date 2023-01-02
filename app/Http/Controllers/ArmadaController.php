@@ -45,7 +45,6 @@ class ArmadaController extends Controller
             'nama_armada' => 'required',
             'no_plat'=> 'required',
             'harga'=> 'required',
-            'jumlah_unit' => 'required',
             'gambar'=> 'required'
         ]);
 
@@ -93,7 +92,6 @@ class ArmadaController extends Controller
             'nama_armada' => 'required',
             'no_plat'=> 'required',
             'harga'=> 'required',
-            'jumlah_unit' => 'required',
             'gambar'=> 'image'
         ]);
 

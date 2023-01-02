@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Armada;
 use App\Models\Paket;
 use App\Models\Pesanan;
+use App\Models\SyaratKetentuan;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Carbon;
 
@@ -51,11 +52,13 @@ class PageController extends Controller
         })->with(['detail_pakets'])->get();
         $search_armadas = collect([]);
 
-        foreach ($pakets as $paket) {
-            foreach ($armadas as $armada) {
-                $armada->harga = $armada->harga + $paket->harga;
-                $armada->paket = $paket;
-                $search_armadas->push($armada);
+        foreach ($armadas as $armada) {
+            foreach ($pakets as $paket) {
+                $armd = $armada->replicate();
+                $armd->id = $armada->id;
+                $armd->harga = $armada->harga + $paket->harga;
+                $armd->paket = $paket;
+                $search_armadas->push($armd);
             }
         }
 
@@ -99,6 +102,20 @@ class PageController extends Controller
 
     public function profile() {
         $pesanans = Pesanan::where('user_id', auth()->user()->id)->get();
+        $pesanans = $pesanans->map(function ($p) {
+            $is_denda = false;
+            if (Carbon::parse($p->tgl_akhir)->isPast() && $p->status == 3) {
+                $is_denda = true;
+            }
+            $p->is_denda = $is_denda;
+            return $p;
+        });
         return view('userpage.profile', compact('pesanans'));
     }
-}
+    public function syaratKetentuan() {
+      $syarats = SyaratKetentuan::get();
+    
+      return view("userpage.syarat-ketentuan", compact("syarats"));
+    }
+
+}    

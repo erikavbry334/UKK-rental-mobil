@@ -24,7 +24,7 @@ class UserController extends Controller
         
     User::where("id", auth()->user()->id)->update($data);
     
-    return redirect("/profile");
+    return redirect("/profile")->with(['success' => 'Berhasil memperbarui profile']);
   }
 
 }

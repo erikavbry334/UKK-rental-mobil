@@ -10,8 +10,13 @@
             </div>
             <div class="card-body">
                 <div class="mb-3">
-                    <label for="formFile" class="form-label">nama paket</label>
-                    <input value="{{ $syarat->keterangan }}" class="form-control" type="text" name="keterangan"
+                    <label for="formFile" class="form-label">isi syarat</label>
+                    <input value="{{ $syarat->syarat }}" class="form-control" type="text" name="syarat"
+                        aria-label=".form-control-lg example">
+                </div>
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">isi ketentuan</label>
+                    <input value="{{ $syarat->ketentuan }}" class="form-control" type="text" name="ketentuan"
                         aria-label=".form-control-lg example">
                 </div>
                 <div class="card-footer">

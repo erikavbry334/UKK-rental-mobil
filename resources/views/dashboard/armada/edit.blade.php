@@ -26,10 +26,6 @@
                         aria-label=".form-control-lg example">
                 </div>
                 <div class="mb-3">
-                    <label for="formFile" class="form-label">jumlah unit</label>
-                    <input value="{{ $armada->jumlah_unit }}" class="form-control" type="number" name="jumlah_unit" aria-label=".form-control-lg example">
-                </div>
-                <div class="mb-3">
                     <label for="formFile" class="form-label d-block">gambar</label>
                     <img src="{{ asset($armada->gambar) }}" class="img-fluid" width="400" alt="">
                     <input class="form-control" type="file" id="gambar" name="gambar"

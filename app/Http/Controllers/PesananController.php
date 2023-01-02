@@ -9,17 +9,18 @@ use App\Models\Pesanan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Services\Midtrans\CreateSnapTokenService;
+use App\Models\Denda;
 
 class PesananController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request, $status)
     {    $pesanans = Pesanan::where(function ($q) use ($request) {
             $q->where('nama_pemesan', 'LIKE', '%' . $request->search . '%');
-        })->get();
+        })->where('status', $status)->get();
         return view('dashboard.pesanan.index', [
             'pesanans'=> $pesanans,
-            'request' => $request
-
+            'request' => $request,
+            'status' => $status
         ]);
     }
 
@@ -41,7 +42,7 @@ class PesananController extends Controller
         
         $armada = Armada::find($data['armada_id']);
         $paket = Paket::find($data['paket_id']);
-        $data['total_harga'] = $armada->harga + $paket->harga;
+        $data['total_harga'] = ($armada->harga * $data['lama_sewa']) + $paket->harga;
         $data['user_id'] = auth()->user()->id;
 
         $pesanan = Pesanan::create($data);
@@ -54,14 +55,54 @@ class PesananController extends Controller
         return response()->json(['snap_token' => $snapToken]);
     }
 
-    public function detail($id)
+    public function detail($uuid)
     {
-        $pesanan = Pesanan::find($id);
+        $pesanan = Pesanan::where('uuid', $uuid)->first();
+        $is_denda = false;
+        $total_denda = 0;
+        if (Carbon::parse($pesanan->tgl_akhir)->isPast() && $pesanan->status == 3) {
+            $is_denda = true;
+            $telat_berapa_hari = Carbon::parse($pesanan->tgl_akhir)->diff(now())->format('%a');
+            $total_denda = $telat_berapa_hari * 50000;
+        }
+        $pesanan->is_denda = $is_denda;
+        $pesanan->total_denda = $total_denda;
         return view('userpage.detailpesanan', compact('pesanan'));
     }
 
     public function batal($id) {
-        Pesanan::where('id', $id)->update(['status' => 5]);
+        Pesanan::where('id', $id)->update(['status' => 6]);
         return redirect('/profile');
+    }
+
+    // update status pesanan oleh admin
+    public function updateStatus(Request $request, $id) {
+        $data = $request->validate([
+            'status' => 'required'
+        ]);
+
+        $pesanan = Pesanan::where('id', $id)->first();
+        if ($data['status'] == '4') { // telah dikembalikan
+            $data['tgl_kembali'] = now();
+
+            if ($pesanan->tgl_akhir < $data['tgl_kembali']) {
+                $telat_berapa_hari = Carbon::parse($pesanan->tgl_akhir)->diff($data['tgl_kembali'])->format('%a');
+                $total_denda = $telat_berapa_hari * 50000;
+                Denda::create([
+                    'pesanan_id' => $pesanan->id,
+                    'telat_berapa_hari' => $telat_berapa_hari,
+                    'total_denda' => $total_denda
+                ]);
+            }
+        }
+        Pesanan::where('id', $id)->update($data);
+
+        return redirect('/dashboard/pesanan/' . $request->status);
+    }
+
+    public function dashboardDetail($id)
+    {
+        $pesanan = Pesanan::find($id);
+        return view('dashboard.pesanan.detail', compact('pesanan'));
     }
 }

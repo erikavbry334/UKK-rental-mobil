@@ -47,10 +47,12 @@ class Pesanan extends Model
         } else if ($this->status == 2) {
             return 'sudah dibayar';
         } else if ($this->status == 3) {
-            return 'telah dikembalikan';
+            return 'sedang disewa';
         } else if ($this->status == 4) {
+            return 'telah dikembalikan';
+        } else if ($this->status == 5) {
             return 'selesai';
-        }else if ($this->status == 5) {
+        }else if ($this->status == 6) {
             return 'dibatalkan';
         }
     }

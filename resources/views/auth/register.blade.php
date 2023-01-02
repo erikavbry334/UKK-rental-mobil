@@ -18,25 +18,26 @@
     <!-- Custom styles for this template-->
     <link href="{{asset("assets/vendor/fontawesome-free/css/all.min.css")}}" rel="stylesheet">
   </head>
-  <body class="text-center">
-  <body class="bg-gradient-primary">
+  <body style="background: #22b3c1">
 
     <div class="container">
 
         <!-- Outer Row -->
         <div class="row justify-content-center">
 
-            <div class="col-xl-10 col-lg-12 col-md-9">
+            <div class="col-xl-10 col-lg-12 col-md-9 d-flex align-items-center" style="height: 100vh">
 
-                <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card o-hidden border-0 shadow-lg my-5 w-100">
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block "></div>
+                            <div class="col-lg-6 d-none d-lg-block ">
+                                <img src="{{asset("assets/images/login.jpg")}}" style="width: 100%; height: 100%; object-fit: cover">
+                            </div>
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Daftar</h1>
+                                        <h1 class="text-dark mb-4">Daftar</h1>
                                     </div>
                                     <form method="POST" action="/register">
                                       @csrf
@@ -56,16 +57,13 @@
                                         </div>
                                         <div class="form-group">
                                         </div>
-                                        <button class="btn btn-primary btn-user btn-block">
+                                        <button class="btn btn-user btn-block text-white" style="background: #22b3c1">
                                             Daftar
                                         </button>
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
-                                    </div>
-                                    <div class="text-center">
-                                        <a class="small" href="/login">Login</a>
+                                        <a class="medium" href="/login">Login</a>
                                     </div>
                                 </div>
                             </div>

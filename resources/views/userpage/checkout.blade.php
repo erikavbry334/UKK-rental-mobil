@@ -5,7 +5,7 @@
         <div class="container">
             <div class="row">
                 {{-- data penyewa --}}
-                <div class="col-lg-7 col-md-12 ">
+                <div class="col-lg-8 col-md-12 ">
                     <h4 style="background: #22b3c1;" class="text-white py-2 text-center">Data Pemesan</h4>
                     <div id="reservation-form" role="search" class="p-2">
                         <div class="row ">
@@ -40,33 +40,28 @@
 
                     {{-- detail pesanan --}}
                 </div>
-                <div class="col-lg-5 col-md-12">
-                    <div id="reservation-form" name="gs" method="submit" role="search" class="p-2">
+                 <div class=" col-lg-4 col-md-12">
+                    <h4 style="background: #22b3c1;" class="text-white py-2 text-center"> Detail Pesanan</em></h4>
+                    <form id="reservation-form" name="gs" method="submit" role="search" style="padding: 20px 20px">
                         <div class="row">
                             <div class="col-lg-12">
-                                <h4>Detail Pesanan</em></h4>
+                                <img src="{{ asset($armada->gambar) }}" style="width: 100%; height: 250px; object-fit: cover">
                             </div>
-                            <div class="col-lg-5">
-                                <img src="{{ asset($armada->gambar) }}" class="img-fluid" alt="">
-                            </div>
-                            <div class="col-lg-3">
-                                <h4 class="text-start mb-1">{{ $armada->nama_armada }}</h4>
-                                <h6>{{ $paket->nama_paket }}</h6>
-                                <div class="line-dec">
-                                    <h5 class="text-primary">Rp
-                                        {{ number_format($paket->harga + $armada->harga, 0, 0, '.') }}</h5>
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-12 mt-4">
+                                <h4 class="text-start mb-2">{{ $armada->nama_armada }}</h4>
+                                <div>{{ $paket->nama_paket }}</div>
+                                <h6>Rp {{ number_format($paket->harga + $armada->harga, 0, 0, '.') }}</h6>
+                                <div class="line-dec m-3"></div>
                                 <ul>
+                                    <li>Detail Paket:</li>
                                     @foreach ($paket->detail_pakets as $detail)
                                         <li>{{ $detail->nama }}</li>
                                     @endforeach
                                 </ul>
                             </div>
-                            <button id="bayar">Bayar Sekarang</button>
                         </div>
-                    </div>
+                        <button id="bayar" class="mt-4" type="button">Bayar Sekarang</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -100,7 +95,7 @@
                         onSuccess: function(result) {
                             /* You may add your own js here, this is just example */
                             // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
-                            console.log(result)
+                            window.location.href = `/pesanan/${result.order_id}`;
                         },
                         // Optional
                         onPending: function(result) {

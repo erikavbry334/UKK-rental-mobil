@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="card shadow mb-4">
             <div class="card-header d-flex w-100 py-3">
-                <h3 class="m-0 font-weight-bold text-primary">Data</h3>
+                <h3 class="m-0 font-weight-bold " style="color:  #22b3c1">Syarat dan Ketentuan</h3>
                 <a href="/dashboard/syarat-ketentuan/create" class="btn btn-primary ml-auto">+ Tambah</a>
             </div>
             <div class="card-body">
@@ -38,7 +38,8 @@
                                     <thead>
                                         <tr role="row">
                                             <th>No</th>
-                                            <th>keterangan</th>
+                                            <th>syarat</th>
+                                            <th>ketentuan</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -46,7 +47,8 @@
                                         @foreach ($syarats as $i => $syarat)
                                             <tr>
                                                 <td>{{ $i + 1 }}</td>
-                                                <td>{{ $syarat->keterangan }}</td>
+                                                <td>{{ $syarat->syarat }}</td>
+                                                <td>{{ $syarat->ketentuan }}</td>
                                                 <td>
                                                     <a href="/dashboard/syarat-ketentuan/{{ $syarat->id }}/edit"
                                                         class="btn btn-success ml-auto">edit</a>

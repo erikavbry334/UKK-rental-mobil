@@ -19,7 +19,8 @@ class PaketController extends Controller
         })->get();
         return view('dashboard.paket.index', [
             'pakets'=> $pakets,
-            'request' => $request
+            'request' => $request,
+            'title' => 'Paket'
         ]);
     }
 
