@@ -18,7 +18,7 @@ class PesananController extends Controller
     public function index(Request $request, $status)
     {   
         $per = $request->per ? $request->per : 10;
-        
+
         $pesanans = Pesanan::where(function ($q) use ($request) {
             $q->where('nama_pemesan', 'LIKE', '%' . $request->search . '%');
         })->where('status', $status)->paginate($per);

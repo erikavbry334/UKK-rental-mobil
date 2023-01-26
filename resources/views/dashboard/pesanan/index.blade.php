@@ -38,7 +38,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-6">
-                                <form action="/dashboard/pesanan" method="GET" id="dataTable_filter"
+                                <form action="" method="GET" id="dataTable_filter"
                                     class="dataTables_filter d-flex justify-content-end">
                                     <label>
                                         Search:
