@@ -15,7 +15,6 @@
             </div>
         </div>
         <div class="container-fluid">
-
             <div class="row">
                 <div class="col-lg-12">
                     <div class="owl-weekly-offers owl-carousel">
@@ -43,40 +42,52 @@
             </div>
         </div>
     </div>
-    <div class="more-about">
+    <div class="more-about mt-5">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12 mt-3">
-                    <div class="section-heading text-center" data-aos="fade-right">
-                        <h2>Mengapa Sewa Mobil Melalui e-RentCar</h2>
+                <div class="col-lg-12">
+                    <div class="section-heading text-center pb-5" data-aos="fade-right">
+                        <h2>Mengapa Sewa Mobil Melalui CAREV ?</h2>
                     </div>
                     <div class="row">
                         <div class="col-lg-3">
-                            <div style="text-align:center" data-aos="fade-left">
-                                <img src="assets/images/mudah.png" style="width: 150px">
-                                <h4 class="text-center mt-3">Mudah & Fleksibel</h4>
-                                <p>Total Guests Yearly</p>
+                            <div class="px-3" style="text-align:center" data-aos="fade-left">
+                            <div class="card shadow border-0 card-service">
+                                <div class="card-body text-center py-5">
+                                    <img src="assets/images/mudah.png" style="width: 150px">
+                                    <h4 class="text-center mt-5">Mudah & Fleksibel</h4>
+                                </div>
+                            </div>
                             </div>
                         </div>
                         <div class="col-lg-3">
-                            <div style="text-align:center" data-aos="fade-left">
-                                <img src="assets/images/murah.png" style="width: 150px">
-                                <h4 class="text-center mt-3">Harga Murah</h4>
-                                <p>Total Guests Yearly</p>
+                            <div class="px-3" style="text-align:center" data-aos="fade-left">
+                            <div class="card shadow border-0 card-service">
+                                <div class="card-body text-center py-5">
+                                    <img src="assets/images/murah.png" style="width: 150px">
+                                    <h4 class="text-center mt-5">Harga Murah</h4>
+                                </div>
+                            </div>
                             </div>
                         </div>
                         <div class="col-lg-3">
-                            <div style="text-align:center" data-aos="fade-left">
-                                <img src="assets/images/nyaman.png" style="width: 150px">
-                                <h4 class="text-center mt-3">Nyaman</h4>
-                                <p>Total Guests Yearly</p>
+                            <div class="px-3" style="text-align:center" data-aos="fade-left">
+                             <div class="card shadow border-0 card-service">
+                                <div class="card-body text-center py-5">
+                                    <img src="assets/images/nyaman.png" style="width: 150px">
+                                    <h4 class="text-center mt-5">Nyaman</h4>
+                                </div>
+                            </div>
                             </div>
                         </div>
                         <div class="col-lg-3">
-                            <div style="text-align:center" data-aos="fade-left">
-                                <img src="assets/images/banyakpilihan.png" style="width: 150px">
-                                <h4 class="text-center mt-3">Banyak Pilihan</h4>
-                                <p>Total Guests Yearly</p>
+                            <div class="px-3" style="text-align:center" data-aos="fade-left">
+                             <div class="card shadow border-0 card-service">
+                                <div class="card-body text-center py-5">
+                                    <img src="assets/images/banyakpilihan.png" style="width: 150px">
+                                    <h4 class="text-center mt-5">Banyak Pilihan</h4>
+                                </div>
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -106,7 +117,7 @@
             $(this).addClass("active");
         });
 
-        document.addEventListener( 'DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             new Splide('#image-carousel', {
                 autoplay: true,
                 type: 'loop',

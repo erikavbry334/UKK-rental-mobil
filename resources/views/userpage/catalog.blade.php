@@ -64,10 +64,11 @@
                                 <div class="item p-0">
                                     <img src={{ $armada->gambar }} alt="" style="object-fit: cover; aspect-ratio: 16/9; width: 100%">
                                     <div class="content px-4">
-                                        <h4 class="border-0 mb-0 text-center" style="font-size: 30px">{{ $armada->nama_armada }}</h4>
+                                        <h4 class="border-0 mb-0 text-center" style="font-size: 30px " >{{ $armada->nama_armada }}</h4>
+                                        <h4 class="border-0 mb-0 text-center text-info" style="font-size: 22px">Rp {{ number_format($armada->harga, 0, 0, '.') }}</h4>
                                         <h6 class="mt-0" style="font-weight: 400">{{ $armada->paket->nama_paket }}</h6>
                                         <div class="d-flex justify-content-between">
-                                            <h5 class="text-info mt-3">Rp {{ number_format($armada->harga, 0, 0, '.') }}</h5>
+                                            <h5 class="text-info mt-3">Rp {{ number_format($armada->paket->harga, 0, 0, '.') }}</h5>
                                             <div class="main-button">
                                                 <a
                                                     href="{{ url("/catalog/$armada->id?paket_id=" . $armada->paket->id . '&tgl_pesan=' . request()->tgl_pesan . '&jumlah_unit=' . request()->jumlah_unit) }}">Pesan</a>

@@ -1,4 +1,3 @@
-@extends('dashboard.layouts.main')
 
 @section('content')
     <div class="container-fluid">
@@ -69,7 +68,7 @@
                     </div>
                     {{-- detail pesanan --}}
                     <div class="col-lg-5 col-md-12">
-                        <form id="reservation-form" name="gs" method="submit" role="search" class="p-2">
+                        <form id="reservation-form" name="gs" method="GET" action="{{ route('cetak.pesanan', $pesanan->id) }}" class="p-2">
                             <div class="row">
                                 <div class="col-lg-12">
                                     <h4>Detail Pesanan</em></h4>
@@ -90,6 +89,8 @@
                                             <li>{{ $detail->nama }}</li>
                                         @endforeach
                                     </ul>
+
+                                    <button class="btn btn-danger">cetak</button>
                         </form>
                     </div>
                 </div>

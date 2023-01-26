@@ -752,7 +752,7 @@ Banner Style
   position: absolute;
   width: 80%;
   left: 10%;
-  bottom: 130px;
+  bottom: 0;
   display: inline-block;
 }
 #section-1 .more-info i {
@@ -1841,12 +1841,13 @@ Deals Page Style
 */
 
 .page-heading {
-  background-image: url(../images/heading-bg.jpg);
+  background-image: url(../images/kontak.jpg);
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
   padding: 260px 0px 190px 0px;
   text-align: center;
+  min-height: 640px;
 }
 
 .page-heading h4 {
@@ -2187,7 +2188,25 @@ Reservation Page Style
   opacity: 0.8;
 }
 
+.slider-content {
+  position: absolute;
+  left: 80px;
+  top: 40%;
+  transform: translateY(-50%);
+}
 
+.card-service {
+  transition: 0.3s;
+}
+
+.card-service:hover {
+  background-color: #22b3c1;
+  transform: scale(1.1);
+}
+
+.card-service:hover h4 {
+  color: #fff;
+}
 
 /* 
 ---------------------------------------------

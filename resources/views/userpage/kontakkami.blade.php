@@ -1,4 +1,4 @@
-@extends('userpage.layouts.main', ['title' => 'Deals'])
+@extends('userpage.layouts.main', ['title' => 'Kontak Kami'])
 
 @section('content')
     <div class="page-heading">
@@ -25,7 +25,7 @@
           <div class="info-item">
             <i class="fa fa-envelope"></i>
             <h4> Email </h4>
-            <a href="#">erikavebriyanti30304@gmail.com</a>
+            <a href="mailto:erikavebriyanti30304@gmail.com">erikavebriyanti30304@gmail.com</a>
           </div>
         </div>
         <div class="col-lg-4 col-sm-6">

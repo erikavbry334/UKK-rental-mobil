@@ -32,10 +32,10 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-car"></i>
+                <div class="sidebar-brand-icon">
+                    <img src="{{ asset('assets/images/logoadmin.png') }}" alt="" style="width: 50px;">
                 </div>
-                <div class="sidebar-brand-text mx-1"> Admin RentCar </div>
+                <div class="sidebar-brand-text" style="font-size: 24px">CAREV</div>
 
             </a>
 
@@ -149,7 +149,7 @@
                                 <a class="dropdown-item" href="#" data-toggle="modal"
                                     data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
+                                   Keluar
                                 </a>
                             </div>
                         </li>
@@ -199,15 +199,15 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Keluar?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-body">apakah anda yakin ingin Keluar dari halaman ini?</div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="/logout">Logout</a>
+                    <button class="btn btn-danger" type="button" data-dismiss="modal">batal</button>
+                    <a class="btn btn-primary" href="/logout">Keluar</a>
                 </div>
             </div>
         </div>
@@ -223,6 +223,7 @@
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('assets/js/sb-admin-2.min.js') }}"></script>
 
+    @yield('script')
 </body>
 
 </html>

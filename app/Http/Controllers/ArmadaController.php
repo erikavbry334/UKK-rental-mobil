@@ -14,9 +14,11 @@ class ArmadaController extends Controller
      */
     public function index(Request $request)
     {
+        $per = $request->per ? $request->per : 10;
+
         $armadas = Armada::where(function ($q) use ($request) {
             $q->where('nama_armada', 'LIKE', '%' . $request->search . '%');
-        })->get();
+        })->paginate($per);
         return view('dashboard.armada.index', [
             'armadas' => $armadas,
             'request' => $request

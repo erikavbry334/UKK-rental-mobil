@@ -11,14 +11,16 @@
                     <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                         <div class="row">
                             <div class="col-sm-12 col-md-6">
-                                <div class="dataTables_length" id="dataTable_length"><label>Show <select
-                                            name="dataTable_length" aria-controls="dataTable"
+                                <div class="dataTables_length">
+                                    <label>Show
+                                        <select name="per" id="per" aria-controls="dataTable"
                                             class="custom-select custom-select-sm form-control form-control-sm">
-                                            <option value="10">10</option>
-                                            <option value="25">25</option>
-                                            <option value="50">50</option>
-                                            <option value="100">100</option>
-                                        </select> entries</label></div>
+                                            <option value="10" {{ request()->per == '10' ? 'selected' : '' }}>10</option>
+                                            <option value="25" {{ request()->per == '25' ? 'selected' : '' }}>25</option>
+                                            <option value="50" {{ request()->per == '50' ? 'selected' : '' }}>50</option>
+                                            <option value="100" {{ request()->per == '100' ? 'selected' : '' }}>100</option>
+                                        </select> entries</label>
+                                </div>
                             </div>
                             <div class="col-sm-12 col-md-6">
                                 <form action="/dashboard/denda" method="GET" id="dataTable_filter"
@@ -41,7 +43,7 @@
                                             <th>nama pemesan</th>
                                             <th>Telat berapa hari</th>
                                             <th>total denda</th>
-                                            <th>Aksi</th>
+                                            <th>Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -52,14 +54,11 @@
                                                 <td>{{ $denda->telat_berapa_hari }}</td>
                                                 <td>{{ $denda->total_denda }}</td>
                                                 <td>
-                                                    <a href="/dashboard/denda/{{ $denda->id }}/edit"
-                                                        class="btn btn-success ml-auto">edit</a>
-
-                                                    <form action="/dashboard/denda/{{ $denda->id }}" method="POST">
-                                                        @method('delete')
-                                                        @csrf
-                                                        <button class="btn btn-danger" type="submit">hapus</button>
-                                                    </form>
+                                                    @if ($denda->pesanan->status == 5)
+                                                        <span class="badge badge-success">Sudah Dibayar</span>
+                                                    @else
+                                                        <span class="badge badge-danger">Belum Dibayar</span>
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -72,4 +71,12 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script>
+        document.querySelector('#per').addEventListener('change', function () {
+            window.location.href = "?per=" + this.value 
+        });
+    </script>
 @endsection

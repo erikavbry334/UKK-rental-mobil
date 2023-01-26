@@ -14,9 +14,11 @@ class SyaratKetentuanController extends Controller
      */
     public function index(Request $request)
     {
+        $per = $request->per ? $request->per : 10;
+
         $syarats = SyaratKetentuan::where(function ($q) use ($request) {
             $q->where('syarat', 'LIKE', '%' . $request->search . '%');
-        })->get();
+        })->paginate($per);
         return view('dashboard.syarat-ketentuan.index', [
             'syarats' =>  $syarats,
             'request' => $request

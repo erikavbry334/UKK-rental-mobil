@@ -24,9 +24,9 @@ class PageController extends Controller
     }
 
     public function catalog(Request $request) {
-        $request->validate([
-            'tgl_pesan' => 'required',
-        ]);
+        if (!isset($request->tgl_pesan)) {
+            return redirect('/');
+        }
 
         $armadas = Armada::when(isset(request()->armada_id) ?? false, function ($q) {
             $q->where('id', request()->armada_id);
@@ -36,27 +36,26 @@ class PageController extends Controller
             $is_available = true;
             $pesanans = Pesanan::where('armada_id', $armada->id)->get();
             foreach ($pesanans as $pesanan) {
-                $tgl_sewa_selesai = Carbon::parse($pesanan->tgl_pesan)->addDays($pesanan->lama_sewa);
-                $tgl_sewa_cari = Carbon::parse(request()->tgl_pesan);
+                $tgl_kembali = Carbon::parse($pesanan->tgl_kembali);
+                $tgl_pesan_cari = Carbon::parse(request()->tgl_pesan);
 
-                if ($tgl_sewa_cari < $tgl_sewa_selesai) $is_available = false;
+                if (!isset($pesanan->tgl_kembali)) $is_available = false;
+
+                if ($tgl_pesan_cari < $tgl_kembali) $is_available = false;
             }
 
-            if (!$is_available) return false;
-
-            return true;
+            return $is_available;
         });
 
         $pakets = Paket::when(isset(request()->paket_id) ?? false, function ($q) {
             $q->where('id', request()->paket_id);
         })->with(['detail_pakets'])->get();
-        $search_armadas = collect([]);
 
+        $search_armadas = collect([]);
         foreach ($armadas as $armada) {
             foreach ($pakets as $paket) {
                 $armd = $armada->replicate();
                 $armd->id = $armada->id;
-                $armd->harga = $armada->harga + $paket->harga;
                 $armd->paket = $paket;
                 $search_armadas->push($armd);
             }
@@ -64,7 +63,7 @@ class PageController extends Controller
 
         return view('userpage.catalog', [
             'search_armadas' => $search_armadas->all()
-        ]);
+     ]);
     }
 
     public function catalogDetail($id) {
@@ -87,7 +86,7 @@ class PageController extends Controller
             'alamat' =>'required',
             'tgl_pesan' => 'required',
             'catatan' => 'nullable',
-
+            'check' => 'required'
         ]);
 
         $armada = Armada::find($request->id);
@@ -112,6 +111,7 @@ class PageController extends Controller
         });
         return view('userpage.profile', compact('pesanans'));
     }
+    
     public function syaratKetentuan() {
       $syarats = SyaratKetentuan::get();
     

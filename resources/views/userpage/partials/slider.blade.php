@@ -7,15 +7,34 @@
         <section id="image-carousel" class="splide" aria-label="Beautiful Images">
             <div class="splide__track">
                 <ul class="splide__list">
-                    <li class="splide__slide">
-                        <img src="{{ asset('assets/images/banner-01.jpg') }}" alt="">
+                    <li class="splide__slide position-relative">
+                        <img src="{{ asset('assets/images/banner-02.jpg') }}" alt="">
+                        <div class="slider-content">
+                            <div data-aos="fade-up" data-aos-delay="500">
+                                <h1 class="text-white" data-aos="fade-left">Sewa Mobil murah </h1>
+                                <h3 class="text-white" data-aos="fade-left">Di Surabaya</h3>
+                                <p>Dapatkan penawaran khusus sekarang!</p>
+                                <div class="main-button text-start">
+                                    <a href="/kontakkami"> kontak kami </a>
+                                </div>
+                            </div>
+                        </div>
                     </li>
-                    <li class="splide__slide">
+                    <li class="splide__slide position-relative">
                         <img src="{{ asset('assets/images/banner-01.jpg') }}" alt="">
+                        <div class="slider-content">
+                            <div data-aos="fade-up" data-aos-delay="500">
+                                <h1 class="text-white" data-aos="fade-left">Sewa Mobil <br>Lepas Kunci Tanpa Ribet</h1>
+                                <p>tersedia armada aman dan nyaman</p>
+                                <div class="main-button text-start">
+                                    <a href="/kontakkami"> kontak kami </a>
+                                </div>
+                            </div>
+                        </div>
                     </li>
-                    <li class="splide__slide">
+                    {{-- <li class="splide__slide position-relative">
                         <img src="{{ asset('assets/images/banner-01.jpg') }}" alt="">
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
         </section>
@@ -26,7 +45,7 @@
                         <div class="more-info">
                             <form action="/catalog" method="GET" class="row">
                                 <div class="col-lg-4 col-sm-6 col-12 d-flex">
-                                    <i class="fa fa-user"></i>
+                                    <i class="fas fa-car-alt"></i>
                                     <h4 class="flex-fill">
                                         <span>Armada:</span><br>
                                         <select class="form-control w-100" name="armada_id" placeholder="Pilih Armada">
@@ -40,7 +59,7 @@
                                     </h4>
                                 </div>
                                 <div class="col-lg-3 col-sm-6 col-12 d-flex">
-                                    <i class="fa fa-globe"></i>
+                                    <i class="fas fa-calendar-alt"></i>
                                     <h4 class="flex-fill">
                                         <span>tanggal:</span><br>
                                         <input type="date" name="tgl_pesan" id=""
@@ -49,7 +68,7 @@
                                     </h4>
                                 </div>
                                 <div class="col-lg-3 col-sm-6 col-12 d-flex">
-                                    <i class="fa fa-globe"></i>
+                                    <i class="fas fa-newspaper"></i>
                                     <h4 class="flex-fill">
                                         <span>paket:</span><br>
                                         <select class="form-control" name="paket_id" placeholder="Pilih Paket">
@@ -69,9 +88,9 @@
                         </div>
                     </div>
 
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
+        </div>
+    </div>
+    </div>
 </section>

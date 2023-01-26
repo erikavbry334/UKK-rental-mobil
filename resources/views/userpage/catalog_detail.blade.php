@@ -3,11 +3,11 @@
 @section('content')
     <div class="reservation-form">
         <div class="container">
-            <div class="row">
-                {{--form pemesanan  --}}
-                <div class="col-lg-8 col-md-12 mt-3 " >
+            <form class="row" method="POST" action="/checkout">
+                {{-- form pemesanan  --}}
+                <div class="col-lg-8 col-md-12 mt-3 ">
                     <h4 style="background: #22b3c1;" class="text-white py-2 text-center">Data Pemesan</h4>
-                    <form id="reservation-form" method="POST" action="/checkout">
+                    <div id="reservation-form">
                         @csrf
                         <input type="hidden" name="id" value="{{ $armada->id }}">
                         <input type="hidden" name="paket_id" value="{{ $paket->id }}">
@@ -21,7 +21,7 @@
                             </div>
                             <div class="col-lg-12">
                                 <label for="chooseDestination" class="form-label">alamat </label>
-                                <input type="text" name="alamat" class="Name" placeholder="alamat anda" >
+                                <input type="text" name="alamat" class="Name" placeholder="alamat anda">
                             </div>
                             <div class="col-lg-5">
                                 <fieldset>
@@ -33,7 +33,8 @@
                             <div class="col-lg-4">
                                 <fieldset>
                                     <label for="Number" class="form-label">tgl_sewa</label>
-                                    <input type="date" name="tgl_pesan" class="date" value="{{ request()->tgl_pesan }}" required readonly>
+                                    <input type="date" name="tgl_pesan" class="date" value="{{ request()->tgl_pesan }}"
+                                        required readonly>
                                 </fieldset>
                             </div>
                             <div class="col-lg-3">
@@ -44,19 +45,26 @@
                                 <label for="chooseDestination" class="form-label">Catatan </label>
                                 <textarea id="" cols="20" rows="10" placeholder="catatan Lain2" name="catatan"></textarea>
                             </div>
+                            <div class="col-lg-12 mb-4">
+                                <label for="check" class="d-flex align-items-center">
+                                    <input type="checkbox" class="mb-0" id="check" name="check" style="width: 16px; height: 16px">
+                                    <span class="ms-2">Saya telah setuju dengan <a href="{{ url('syarat-ketentuan') }}">Syarat & Ketentuan</a></span>
+                                </label>
+                            </div>
                             <fieldset>
                                 <button>pembayaran</button>
                             </fieldset>
                         </div>
-                    </form>
+                    </div>
                 </div>
                 {{-- pesanan --}}
                 <div class=" col-lg-4 col-md-12 mt-3">
                     <h4 style="background: #22b3c1;" class="text-white py-2 text-center"> Pesanan</em></h4>
-                    <form id="reservation-form" name="gs" method="submit" role="search" style="padding: 20px 20px">
+                    <div id="reservation-form" name="gs" method="submit" role="search" style="padding: 20px 20px">
                         <div class="row">
                             <div class="col-lg-12">
-                                <img src="{{ asset($armada->gambar) }}" style="width: 100%; height: 250px; object-fit: cover">
+                                <img src="{{ asset($armada->gambar) }}"
+                                    style="width: 100%; height: 250px; object-fit: cover">
                             </div>
                             <div class="col-lg-12">
                                 <h4 class="text-start mb-2">{{ $armada->nama_armada }}</h4>
@@ -71,14 +79,9 @@
                                 </ul>
                             </div>
                         </div>
-                    </form>
-                    <label for="check">
-                        <input type="checkbox" id="check" name="check">
-                        Saya telah setuju dengan <a href="{{ url('syarat-ketentuan') }}">Syarat & Ketentuan</a>
-                    </label>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
-
 @endsection

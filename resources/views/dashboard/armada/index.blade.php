@@ -12,14 +12,16 @@
                     <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                         <div class="row">
                             <div class="col-sm-12 col-md-6">
-                                <div class="dataTables_length" id="dataTable_length"><label>Show <select
-                                            name="dataTable_length" aria-controls="dataTable"
+                                <div class="dataTables_length">
+                                    <label>Show
+                                        <select name="per" id="per" aria-controls="dataTable"
                                             class="custom-select custom-select-sm form-control form-control-sm">
-                                            <option value="10">10</option>
-                                            <option value="25">25</option>
-                                            <option value="50">50</option>
-                                            <option value="100">100</option>
-                                        </select> entries</label></div>
+                                            <option value="10" {{ request()->per == '10' ? 'selected' : '' }}>10</option>
+                                            <option value="25" {{ request()->per == '25' ? 'selected' : '' }}>25</option>
+                                            <option value="50" {{ request()->per == '50' ? 'selected' : '' }}>50</option>
+                                            <option value="100" {{ request()->per == '100' ? 'selected' : '' }}>100</option>
+                                        </select> entries</label>
+                                </div>
                             </div>
                             <div class="col-sm-12 col-md-6">
                                 <form action="/dashboard/armada" method="GET" id="dataTable_filter"
@@ -54,7 +56,8 @@
                                                 <td>{{ $armada->no_plat }}</td>
                                                 <td>{{ $armada->harga }}</td>
                                                 <td>
-                                                    <img src="{{ asset($armada->gambar) }}" class="img-fluid" width="200">
+                                                    <img src="{{ asset($armada->gambar) }}" class="img-fluid"
+                                                        width="200">
                                                 </td>
                                                 <td>
                                                     <a href="/dashboard/armada/{{ $armada->id }}/edit"
@@ -70,11 +73,21 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+
                             </div>
                         </div>
                     </div>
                 </div>
+                {{ $armadas->links() }}
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script>
+        document.querySelector('#per').addEventListener('change', function () {
+            window.location.href = "?per=" + this.value 
+        });
+    </script>
 @endsection

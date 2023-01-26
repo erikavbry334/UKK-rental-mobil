@@ -85,6 +85,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'level:admin']],
     Route::post('pesanan/{id}/update-status', [PesananController::class, 'updateStatus']);
     Route::get('laporan', [LaporanController::class, 'index']);
     Route::post('laporan', [LaporanController::class, 'cetak']);
+    Route::get('pesanan/{id}/cetak', [PesananController::class, 'cetak'])->name('cetak.pesanan');
 
 });
 

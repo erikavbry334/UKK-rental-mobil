@@ -50,7 +50,7 @@
                             <div class="col-lg-12 mt-4">
                                 <h4 class="text-start mb-2">{{ $armada->nama_armada }}</h4>
                                 <div>{{ $paket->nama_paket }}</div>
-                                <h6>Rp {{ number_format($paket->harga + $armada->harga, 0, 0, '.') }}</h6>
+                                <h6>Rp {{ number_format($paket->harga + ($armada->harga * $data['lama_sewa']), 0, 0, '.') }}</h6>
                                 <div class="line-dec m-3"></div>
                                 <ul>
                                     <li>Detail Paket:</li>

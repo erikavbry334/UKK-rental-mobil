@@ -10,13 +10,26 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Services\Midtrans\CreateSnapTokenService;
 use App\Models\Denda;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class PesananController extends Controller
 {
     public function index(Request $request, $status)
-    {    $pesanans = Pesanan::where(function ($q) use ($request) {
+    {   
+        $per = $request->per ? $request->per : 10;
+        
+        $pesanans = Pesanan::where(function ($q) use ($request) {
             $q->where('nama_pemesan', 'LIKE', '%' . $request->search . '%');
-        })->where('status', $status)->get();
+        })->where('status', $status)->paginate($per);
+        $pesanans = $pesanans->map(function ($p) {
+            $is_denda = false;
+            if (Carbon::parse($p->tgl_akhir)->isPast() && ($p->status == 3 || $p->status == 4)) {
+                $is_denda = true;
+            }
+            $p->is_denda = $is_denda;
+            return $p;
+        });
         return view('dashboard.pesanan.index', [
             'pesanans'=> $pesanans,
             'request' => $request,
@@ -35,6 +48,7 @@ class PesananController extends Controller
             'tgl_pesan' => 'required',
             'lama_sewa' => 'required|numeric',
             'catatan' => 'nullable',
+            'check' => 'required',
 
         ]);
 
@@ -104,5 +118,11 @@ class PesananController extends Controller
     {
         $pesanan = Pesanan::find($id);
         return view('dashboard.pesanan.detail', compact('pesanan'));
+    }
+
+    public function cetak($id) {
+        $pesanan = pesanan::with(['armada', 'paket'])->where('id',$id)->first();
+        $pdf = Pdf::loadView('laporan.strukpesanan', compact('pesanan'))->setPaper('a4', 'landscape');
+        return $pdf->download('Struk Pesanan.pdf');
     }
 }

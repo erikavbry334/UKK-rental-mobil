@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\denda;
+use Illuminate\Support\Carbon;
 
 class DendaController extends Controller
 {
@@ -14,9 +15,12 @@ class DendaController extends Controller
      */
     public function index(Request $request)
     {
-        $dendas = denda::where(function ($q) use ($request) {
+        $per = $request->per ? $request->per : 10;
+
+        $dendas = denda::with(['pesanan'])->where(function ($q) use ($request) {
             $q->where('telat_berapa_hari', 'LIKE', '%' . $request->search . '%');
-        })->get();
+        })->paginate($per);
+
         return view('dashboard.denda.index', [
             'dendas' =>  $dendas,
             'request' => $request
