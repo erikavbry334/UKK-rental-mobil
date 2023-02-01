@@ -16,19 +16,24 @@
                                     <label>Show
                                         <select name="per" id="per" aria-controls="dataTable"
                                             class="custom-select custom-select-sm form-control form-control-sm">
-                                            <option value="10" {{ request()->per == '10' ? 'selected' : '' }}>10</option>
-                                            <option value="25" {{ request()->per == '25' ? 'selected' : '' }}>25</option>
-                                            <option value="50" {{ request()->per == '50' ? 'selected' : '' }}>50</option>
-                                            <option value="100" {{ request()->per == '100' ? 'selected' : '' }}>100</option>
+                                            <option value="10" {{ request()->per == '10' ? 'selected' : '' }}>10
+                                            </option>
+                                            <option value="25" {{ request()->per == '25' ? 'selected' : '' }}>25
+                                            </option>
+                                            <option value="50" {{ request()->per == '50' ? 'selected' : '' }}>50
+                                            </option>
+                                            <option value="100" {{ request()->per == '100' ? 'selected' : '' }}>100
+                                            </option>
                                         </select> entries</label>
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-6">
-                                <form action="/dashboard/paket" method="GET" id="dataTable_filter" class="dataTables_filter d-flex justify-content-end">
+                                <form action="/dashboard/paket" method="GET" id="dataTable_filter"
+                                    class="dataTables_filter d-flex justify-content-end">
                                     <label>
                                         Search:
-                                        <input type="search" name="search" value="{{ $request->search }}" class="form-control form-control-sm" placeholder=""
-                                            aria-controls="dataTable">
+                                        <input type="search" name="search" value="{{ $request->search }}"
+                                            class="form-control form-control-sm" placeholder="" aria-controls="dataTable">
                                     </label>
                                 </form>
                             </div>
@@ -49,23 +54,31 @@
                                     <tbody>
                                         @foreach ($pakets as $i => $paket)
                                             <tr>
-                                                <td>{{ $i + 1 }}</td>
-                                                <td>{{ $paket->nama_paket }}</td>
-                                                <td>{{ $paket->harga }}</td>
-                                                <td>
+                                                <td style="width: 80px">{{ $i + 1 }}</td>
+                                                <td style="width: 250px">{{ $paket->nama_paket }}</td>
+                                                <td style="width: 250px">{{ $paket->harga }}</td>
+                                                <td style="width: 350px">
                                                     <img src="{{ asset($paket->gambar) }}" class="img-fluid" width="200">
                                                 </td>
-                                                <td>
-                                                    <a href="/dashboard/paket/{{ $paket->id }}/dtpaket"
-                                                        class="btn btn-info ml-auto">detail paket</a>
-                                                    <a href="/dashboard/paket/{{ $paket->id }}/edit"
-                                                        class="btn btn-success ml-auto">edit</a>
+                                                <td style="width: 150px">
+                                                    <div class="d-flex" style="gap: 1rem">
+                                                        <a href="/dashboard/paket/{{ $paket->id }}/dtpaket"
+                                                            class="btn btn-info">
+                                                            <i class="fa fa-eye"></i>
+                                                        </a>
+                                                        <a href="/dashboard/paket/{{ $paket->id }}/edit"
+                                                            class="btn btn-success">
+                                                            <i class="fa fa-pen"></i>
+                                                        </a>
 
-                                                    <form action="/dashboard/paket/{{ $paket->id }}" method="POST">
-                                                        @method('delete')
-                                                        @csrf
-                                                        <button class="btn btn-danger" type="submit">hapus</button>
-                                                    </form>
+                                                        <form action="/dashboard/paket/{{ $paket->id }}" method="POST">
+                                                            @method('delete')
+                                                            @csrf
+                                                            <button class="btn btn-danger" type="submit">
+                                                                <i class="fa fa-trash"></i>
+                                                            </button>
+                                                        </form>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -83,8 +96,8 @@
 
 @section('script')
     <script>
-        document.querySelector('#per').addEventListener('change', function () {
-            window.location.href = "?per=" + this.value 
+        document.querySelector('#per').addEventListener('change', function() {
+            window.location.href = "?per=" + this.value
         });
     </script>
 @endsection

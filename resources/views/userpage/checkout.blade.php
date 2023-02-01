@@ -33,6 +33,8 @@
                             <div class="col-lg-9">
                                 <input type="text_area" readonly value="{{ $data['catatan'] }}">
                             </div>
+                            
+                            <input type="hidden" name="check" value="{{$data['check']}}">
                         </div>
                         </form>
                     </div>
@@ -88,6 +90,7 @@
                     tgl_pesan: "{{ $data['tgl_pesan'] }}",
                     lama_sewa: "{{ $data['lama_sewa'] }}",
                     catatan: "{{ $data['catatan'] }}",
+                    check: "{{$data['check']}}"
                 },
                 success: function(data) {
                     snap.pay(data.snap_token, {

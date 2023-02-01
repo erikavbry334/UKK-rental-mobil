@@ -16,10 +16,14 @@
                                     <label>Show
                                         <select name="per" id="per" aria-controls="dataTable"
                                             class="custom-select custom-select-sm form-control form-control-sm">
-                                            <option value="10" {{ request()->per == '10' ? 'selected' : '' }}>10</option>
-                                            <option value="25" {{ request()->per == '25' ? 'selected' : '' }}>25</option>
-                                            <option value="50" {{ request()->per == '50' ? 'selected' : '' }}>50</option>
-                                            <option value="100" {{ request()->per == '100' ? 'selected' : '' }}>100</option>
+                                            <option value="10" {{ request()->per == '10' ? 'selected' : '' }}>10
+                                            </option>
+                                            <option value="25" {{ request()->per == '25' ? 'selected' : '' }}>25
+                                            </option>
+                                            <option value="50" {{ request()->per == '50' ? 'selected' : '' }}>50
+                                            </option>
+                                            <option value="100" {{ request()->per == '100' ? 'selected' : '' }}>100
+                                            </option>
                                         </select> entries</label>
                                 </div>
                             </div>
@@ -45,6 +49,7 @@
                                             <th>no plat</th>
                                             <th>Harga</th>
                                             <th>Gambar</th>
+                                            <th>Status</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -55,19 +60,30 @@
                                                 <td>{{ $armada->nama_armada }}</td>
                                                 <td>{{ $armada->no_plat }}</td>
                                                 <td>{{ $armada->harga }}</td>
-                                                <td>
+                                                <td style="width: 250px">
                                                     <img src="{{ asset($armada->gambar) }}" class="img-fluid"
-                                                        width="200">
+                                                    width="200">
                                                 </td>
-                                                <td>
-                                                    <a href="/dashboard/armada/{{ $armada->id }}/edit"
-                                                        class="btn btn-success ml-auto">edit</a>
-
-                                                    <form action="/dashboard/armada/{{ $armada->id }}" method="POST">
-                                                        @method('delete')
-                                                        @csrf
-                                                        <button class="btn btn-danger" type="submit">hapus</button>
-                                                    </form>
+                                                 
+                                                <td style="width: 100px">
+                                                    <span class="badge badge-primary">{{ $armada->status }}</span>
+                                                </td>
+                                                <td style="width: 100px">
+                                                    <div class="d-flex " style="gap: 1rem">
+                                                        <a href="/dashboard/armada/{{ $armada->id }}/edit"
+                                                            class="btn btn-success ">
+                                                            <i class="fa fa-pen"></i>
+                                                        </a>
+                                                        
+                                                        <form action="/dashboard/armada/{{ $armada->id }}"
+                                                            method="POST">
+                                                            @method('delete')
+                                                            @csrf
+                                                            <button class="btn btn-danger" type="submit">
+                                                                <i class="fa fa-trash"></i>
+                                                            </button>
+                                                        </form>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -86,8 +102,8 @@
 
 @section('script')
     <script>
-        document.querySelector('#per').addEventListener('change', function () {
-            window.location.href = "?per=" + this.value 
+        document.querySelector('#per').addEventListener('change', function() {
+            window.location.href = "?per=" + this.value
         });
     </script>
 @endsection

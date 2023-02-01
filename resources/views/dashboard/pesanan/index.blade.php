@@ -111,7 +111,9 @@
                                                 @endif
                                                 <td>
                                                     <a href="/dashboard/pesanan/{{ $pesanan->id }}/detail"
-                                                        class="btn btn-info">Detail</a>
+                                                        class="btn btn-info">
+                                                        <i class="fa fa-eye"></i>
+                                                    </a>
                                                     @if ($pesanan->status != 5 && $pesanan->status != 6)
                                                         <form action="/dashboard/pesanan/{{ $pesanan->id }}/update-status"
                                                             method="POST">

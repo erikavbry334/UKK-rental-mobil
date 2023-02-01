@@ -37,10 +37,10 @@
                                     style="width: 100%;">
                                     <thead>
                                         <tr role="row">
-                                            <th>No</th>
+                                            <th style="width: 80px">No</th>
                                             <th>Detail Paket</th>
                                             <th>Paket</th>
-                                            <th>Aksi</th>
+                                            <th style="width: 150px">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -49,14 +49,18 @@
                                                 <td>{{ $i + 1 }}</td>
                                                 <td>{{ $detail->nama }}</td>
                                                 <td>{{ $detail->paket->nama_paket }}</td>
-                                                <td>
+                                                <td class="d-flex" style="width: 150px; gap: 1rem">
                                                     <a href="/dashboard/paket/{{ $paket_id }}/dtpaket/{{ $detail->id }}/edit"
-                                                        class="btn btn-success ml-auto">edit</a>
+                                                        class="btn btn-success">
+                                                        <i class="fa fa-pen"></i>
+                                                    </a>
 
                                                     <form action="/dashboard/paket/{{ $paket_id }}/dtpaket/{{ $detail->id }}" method="POST">
                                                         @method('delete')
                                                         @csrf
-                                                        <button class="btn btn-danger" type="submit">hapus</button>
+                                                        <button class="btn btn-danger" type="submit">
+                                                            <i class="fa fa-trash"></i>
+                                                        </button>
                                                     </form>
                                                 </td>
                                             </tr>

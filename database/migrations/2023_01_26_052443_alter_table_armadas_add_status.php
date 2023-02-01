@@ -13,22 +13,20 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pengembalians', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('pesanan_id')->constrained('pesanans');
-            $table->date('tgl_kembali');
-            $table->foreignId('denda_id')->nullable()->constrained('dendas');
-            $table->timestamps();
+        Schema::table('armadas', function (Blueprint $table) {
+            $table->enum('status', ['Tersedia', 'Servis', 'Rusak'])->default('Tersedia');
         });
     }
 
-    /*
+    /**
      * Reverse the migrations.
      *
      * @return void
      */
     public function down()
     {
-        Schema::dropIfExists('pengembalians');
+        Schema::table('armadas', function (Blueprint $table) {
+            //
+        });
     }
 };

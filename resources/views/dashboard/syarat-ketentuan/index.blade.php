@@ -51,14 +51,18 @@
                                                 <td>{{ $i + 1 }}</td>
                                                 <td>{{ $syarat->syarat }}</td>
                                                 <td>{{ $syarat->ketentuan }}</td>
-                                                <td>
+                                                <td class="d-flex" style="gap: 1rem">
                                                     <a href="/dashboard/syarat-ketentuan/{{ $syarat->id }}/edit"
-                                                        class="btn btn-success ml-auto">edit</a>
+                                                        class="btn btn-success">
+                                                        <i class="fa fa-pen"></i>
+                                                    </a>
 
                                                     <form action="/dashboard/syarat-ketentuan/{{ $syarat->id }}" method="POST">
                                                         @method('delete')
                                                         @csrf
-                                                        <button class="btn btn-danger" type="submit">hapus</button>
+                                                        <button class="btn btn-danger" type="submit">
+                                                            <i class="fa fa-trash"></i>
+                                                        </button>
                                                     </form>
                                                 </td>
                                             </tr>

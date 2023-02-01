@@ -30,7 +30,7 @@ class PageController extends Controller
 
         $armadas = Armada::when(isset(request()->armada_id) ?? false, function ($q) {
             $q->where('id', request()->armada_id);
-        })->get();
+        })->where('status', 'Tersedia')->get();
 
         $armadas = $armadas->filter(function ($armada) {
             $is_available = true;

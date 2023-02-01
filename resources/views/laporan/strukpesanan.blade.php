@@ -22,92 +22,108 @@
             vertical-align: baseline;
             border-radius: 0.35rem;
         }
+
+        table {
+            width: 100%;
+        }
     </style>
 </head>
 
 <body>
-    <h1>Tes</h1>
-    <table>
-        <tr>
-            <td style="width: 50%">
-                <h4 style="background: #22b3c1; margin: 0; color: #fff; padding: 0.75rem">Data Pemesan</h4>
-                <div style="border: 1px solid #22b3c1;">
+    <div style="padding: 1rem; border: 1px solid #333;">
+
+        <h1 style="text-align: center"> CAREV RENTAL MOBIL </h1>
+
+        <hr>
+        <hr>
+        {{-- <div style="background: #22b3c1; text-align: center; padding: 1rem; margin-bottom: 1rem">
+            <img src="{{ public_path('assets/images/logo4.png') }}" alt="logo" style="width: 170px;">
+        </div> --}}
+        <h2>Kwitansi Pembayaran</h2>
+        <table>
+            <tr>
+                <td style="width: 50%">
                     <table>
                         <tr>
-                            <td style="padding: 0.5rem 0.25rem">nama lengkap</td>
-                            <td style="padding: 0.5rem 0.25rem">:</td>
-                            <td style="padding: 0.5rem 0.25rem">{{ $pesanan->nama_pemesan }}</td>
+                            <td style="padding: 0.25rem">no kwitansi</td>
+                            <td style="padding: 0.25rem">:</td>
+                            <td style="padding: 0.25rem">{{ $pesanan->id }}</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.5rem 0.25rem">Alamat</td>
-                            <td style="padding: 0.5rem 0.25rem">:</td>
-                            <td style="padding: 0.5rem 0.25rem">{{ $pesanan->alamat }}</td>
+                            <td style="padding: 0.25rem">nama lengkap</td>
+                            <td style="padding: 0.25rem">:</td>
+                            <td style="padding: 0.25rem">{{ $pesanan->nama_pemesan }}</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.5rem 0.25rem">Nomor Handphone</td>
-                            <td style="padding: 0.5rem 0.25rem">:</td>
-                            <td style="padding: 0.5rem 0.25rem">{{ $pesanan->no_hp }}</td>
+                            <td style="padding: 0.25rem">Alamat</td>
+                            <td style="padding: 0.25rem">:</td>
+                            <td style="padding: 0.25rem">{{ $pesanan->alamat }}</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.5rem 0.25rem">catatan tambahan</td>
-                            <td style="padding: 0.5rem 0.25rem">:</td>
-                            <td style="padding: 0.5rem 0.25rem">{{ $pesanan->catatan }}</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 0.5rem 0.25rem">Statuse</td>
-                            <td style="padding: 0.5rem 0.25rem">:</td>
-                            <td style="padding: 0.5rem 0.25rem">
-                                @if ($pesanan->status == 1)
-                                    <span class="badge" style="background: #f6c23e">{{ $pesanan->status_text }}</span>
-                                @elseif ($pesanan->status == 2)
-                                    <span class="badge" style="background: #4e73df">{{ $pesanan->status_text }}</span>
-                                @elseif ($pesanan->status == 3)
-                                    <span class="badge" style="background: #4e73df">{{ $pesanan->status_text }}</span>
-                                @elseif ($pesanan->status == 4)
-                                    <span class="badge" style="background: #4e73df">{{ $pesanan->status_text }}</span>
-                                @elseif ($pesanan->status == 5)
-                                    <span class="badge" style="background: #1cc88a; color: #fff">{{ $pesanan->status_text }}</span>
-                                @elseif ($pesanan->status == 6)
-                                    <span class="badge" style="background: #e74a3b">{{ $pesanan->status_text }}</span>
-                                @endif
-                            </td>
+                            <td style="padding: 0.25rem">Nomor Handphone</td>
+                            <td style="padding: 0.25rem">:</td>
+                            <td style="padding: 0.25rem">{{ $pesanan->no_hp }}</td>
                         </tr>
                     </table>
-                </div>
-            </td>
-            <td style="width: 50%; padding-left: 2rem">
-                <div>
-                    <div>
-                        <h4>Detail Pesanan</h4>
-                    </div>
-                    <div>
-                        <table>
-                            <td style="width: 40%">
-                                <img src="{{ public_path($pesanan->armada->gambar) }}" style="max-width: 100%">
+                </td>
+                <td style="width: 50%; padding-left: 2rem; vertical-align: top">
+                    <table>
+                        <tr>
+                            <td style="padding: 0.25rem">uang sejumlah</td>
+                            <td style="padding: 0.25rem">:</td>
+                            <td style="padding: 0.25rem">
+                                {{ number_format($pesanan->paket->harga + $pesanan->armada->harga, 0, 0, '.') }}</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.25rem">catatan tambahan</td>
+                            <td style="padding: 0.25rem">:</td>
+                            <td style="padding: 0.25rem">{{ $pesanan->catatan }}</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
 
-                            </td>
-                            <td>
-                                <div>
-                                    <h4 style="margin: 0">{{ $pesanan->armada->nama_armada }}</h4>
-                                    <h6 style="margin: 0">{{ $pesanan->paket->nama_paket }}</h6>
-                                    <h5 style="margin: 0; color: #22b3c1">Rp
-                                        {{ number_format($pesanan->paket->harga + $pesanan->armada->harga, 0, 0, '.') }}
-                                    </h5>
-                                </div>
-                            </td>
-                        </table>
-                    </div>
-                    <div style="margin-top: -2rem">
-                        <ul>
-                            @foreach ($pesanan->paket->detail_pakets as $detail)
-                                <li>{{ $detail->nama }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-            </td>
-        </tr>
-    </table>
+        <table border="3" cellspacing="0" style="width: 100%; margin: 2rem 0">
+            <tr>
+                <th>No. Plat</th>
+                <th>Armada</th>
+                <th>Paket</th>
+                <th>Waktu Sewa</th>
+                <th>Tanggal Sewa</th>
+                <th>Tanggal Kembali</th>
+            </tr>
+            <tr>
+                <td style="padding: 0.5rem">{{ $pesanan->armada->no_plat }}</td>
+                <td style="padding: 0.5rem">
+                    <div>{{ $pesanan->armada->nama_armada }}</div>
+                    <div>{{ number_format($pesanan->armada->harga, 0, ',', '.') }}</div>
+                </td>
+                <td style="padding: 0.5rem">
+                    <div>{{ $pesanan->paket->nama_paket }}</div>
+                    <div>{{ number_format($pesanan->paket->harga, 0, ',', '.') }}</div>
+                </td>
+                <td style="padding: 0.5rem; text-align: center">{{ $pesanan->lama_sewa }} hari</td>
+                <td style="padding: 0.5rem; text-align: center">{{ $pesanan->tgl_pesan }}</td>
+                <td style="padding: 0.5rem; text-align: center">{{ $pesanan->tgl_kembali }}</td>
+            </tr>
+        </table>
+
+        <table style="padding-bottom: 5rem; margin-top: 3rem">
+            <tr>
+                <td style="width: 80%">
+                    <span
+                        style="margin-left: 3rem; border: 1px solid #333; padding: 0.5rem; background: #cececed7">Total
+                        Harga: Rp
+                        {{ number_format($pesanan->paket->harga + $pesanan->armada->harga, 0, 0, '.') }}</span>
+                </td>
+                <td style="width: 40%; text-align: center">
+                    <div>Surabaya, {{ date('d-m-Y') }}</div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
 </body>
 
 </html>

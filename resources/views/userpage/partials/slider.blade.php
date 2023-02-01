@@ -8,7 +8,7 @@
             <div class="splide__track">
                 <ul class="splide__list">
                     <li class="splide__slide position-relative">
-                        <img src="{{ asset('assets/images/banner-02.jpg') }}" alt="">
+                        <img src="{{ asset('assets/images/banner-02.jpg') }}" style="width: 100%; height: 100%; object-fit: cover">
                         <div class="slider-content">
                             <div data-aos="fade-up" data-aos-delay="500">
                                 <h1 class="text-white" data-aos="fade-left">Sewa Mobil murah </h1>
@@ -21,7 +21,7 @@
                         </div>
                     </li>
                     <li class="splide__slide position-relative">
-                        <img src="{{ asset('assets/images/banner-01.jpg') }}" alt="">
+                        <img src="{{ asset('assets/images/banner-01.jpg') }}" style="width: 100%; height: 100%; object-fit: cover">
                         <div class="slider-content">
                             <div data-aos="fade-up" data-aos-delay="500">
                                 <h1 class="text-white" data-aos="fade-left">Sewa Mobil <br>Lepas Kunci Tanpa Ribet</h1>

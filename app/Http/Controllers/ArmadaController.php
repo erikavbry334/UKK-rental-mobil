@@ -47,7 +47,8 @@ class ArmadaController extends Controller
             'nama_armada' => 'required',
             'no_plat'=> 'required',
             'harga'=> 'required',
-            'gambar'=> 'required'
+            'gambar'=> 'required',
+            'status'=> 'required',
         ]);
 
         $data['gambar'] = 'storage/' . $request->file('gambar')->store('armada', 'public');
@@ -94,7 +95,8 @@ class ArmadaController extends Controller
             'nama_armada' => 'required',
             'no_plat'=> 'required',
             'harga'=> 'required',
-            'gambar'=> 'image'
+            'gambar'=> 'image',
+            'status'=> 'required',
         ]);
 
         if (isset($request->gambar)) {

@@ -16,38 +16,38 @@
                                 <fieldset>
                                     <label for="Name" class="form-label">Nama Lengkap</label>
                                     <input type="text" name="nama_pemesan" class="Name" placeholder="nama anda"
-                                        autocomplete="on" required>
+                                        autocomplete="on" required value="{{ old('nama_pemesan') }}">
                                 </fieldset>
                             </div>
                             <div class="col-lg-12">
                                 <label for="chooseDestination" class="form-label">alamat </label>
-                                <input type="text" name="alamat" class="Name" placeholder="alamat anda">
+                                <input type="text" name="alamat" class="Name" placeholder="alamat anda" value="{{ old('alamat') }}">
                             </div>
                             <div class="col-lg-5">
                                 <fieldset>
                                     <label for="Number" class="form-label">Nomor Handphone</label>
                                     <input type="text" name="no_hp" class="Number" placeholder="nomor aktif"
-                                        autocomplete="on" required>
+                                        autocomplete="on" required value="{{ old('no_hp') }}">
                                 </fieldset>
                             </div>
                             <div class="col-lg-4">
                                 <fieldset>
                                     <label for="Number" class="form-label">tgl_sewa</label>
                                     <input type="date" name="tgl_pesan" class="date" value="{{ request()->tgl_pesan }}"
-                                        required readonly>
+                                        required readonly value="{{ old('tgl_pesan') }}">
                                 </fieldset>
                             </div>
                             <div class="col-lg-3">
                                 <label for="chooseDestination" class="form-label">lama sewa</label>
-                                <input type="number" name="lama_sewa" min="1">
+                                <input type="number" name="lama_sewa" min="1" value="{{ old('lama_sewa') }}">
                             </div>
                             <div class="col-lg-12">
                                 <label for="chooseDestination" class="form-label">Catatan </label>
-                                <textarea id="" cols="20" rows="10" placeholder="catatan Lain2" name="catatan"></textarea>
+                                <textarea id="" cols="20" rows="10" placeholder="catatan Lain2" name="catatan">{{ old('catatan') }}</textarea>
                             </div>
                             <div class="col-lg-12 mb-4">
                                 <label for="check" class="d-flex align-items-center">
-                                    <input type="checkbox" class="mb-0" id="check" name="check" style="width: 16px; height: 16px">
+                                    <input type="checkbox" class="mb-0" id="check" name="check" style="width: 16px; height: 16px" required>
                                     <span class="ms-2">Saya telah setuju dengan <a href="{{ url('syarat-ketentuan') }}">Syarat & Ketentuan</a></span>
                                 </label>
                             </div>

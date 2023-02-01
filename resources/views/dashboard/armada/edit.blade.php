@@ -31,6 +31,38 @@
                     <input class="form-control" type="file" id="gambar" name="gambar"
                         aria-label=".form-control-lg example">
                 </div>
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">status</label>
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="status" id="status-Tersedia"
+                                    value="Tersedia" {{ $armada->status === 'Tersedia' ? 'checked' : '' }}>
+                                <label class="form-check-label" for="status-Tersedia">
+                                    Tersedia
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="status" id="status-Servis"
+                                    value="Servis" {{ $armada->status === 'Servis' ? 'checked' : '' }}>
+                                <label class="form-check-label" for="status-Servis">
+                                    Servis
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="status" id="status-Rusak"
+                                    value="Rusak" {{ $armada->status === 'Rusak' ? 'checked' : '' }}>
+                                <label class="form-check-label" for="status-Rusak">
+                                    Rusak
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             </div>
             <div class="card-footer">
