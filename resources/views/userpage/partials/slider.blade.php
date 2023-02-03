@@ -11,9 +11,9 @@
                         <img src="{{ asset('assets/images/banner-02.jpg') }}" style="width: 100%; height: 100%; object-fit: cover">
                         <div class="slider-content">
                             <div data-aos="fade-up" data-aos-delay="500">
-                                <h1 class="text-white" data-aos="fade-left">Sewa Mobil murah </h1>
-                                <h3 class="text-white" data-aos="fade-left">Di Surabaya</h3>
-                                <p>Dapatkan penawaran khusus sekarang!</p>
+                                <h1 data-aos="fade-left" style="color: #fcf9da">Sewa Mobil murah </h1>
+                                <h3 data-aos="fade-left" style="color: #fcf9da">Di Surabaya</h3>
+                                <p style="color: #fcf9da">Dapatkan penawaran khusus sekarang!</p>
                                 <div class="main-button text-start">
                                     <a href="/kontakkami"> kontak kami </a>
                                 </div>
@@ -24,8 +24,8 @@
                         <img src="{{ asset('assets/images/banner-01.jpg') }}" style="width: 100%; height: 100%; object-fit: cover">
                         <div class="slider-content">
                             <div data-aos="fade-up" data-aos-delay="500">
-                                <h1 class="text-white" data-aos="fade-left">Sewa Mobil <br>Lepas Kunci Tanpa Ribet</h1>
-                                <p>tersedia armada aman dan nyaman</p>
+                                <h1 data-aos="fade-left" style="color: #fcf9da">Sewa Mobil <br>Lepas Kunci Tanpa Ribet</h1>
+                                <p style="color: #fcf9da">tersedia armada aman dan nyaman</p>
                                 <div class="main-button text-start">
                                     <a href="/kontakkami"> kontak kami </a>
                                 </div>
@@ -82,7 +82,7 @@
                                     </h4>
                                 </div>
                                 <div class="col-lg-2">
-                                    <button type="submit" class="btn btn-primary btn-lg w-100 mt-4">Cari</button>
+                                    <button type="submit" class="btn btn-primary btn-lg w-100 mt-4" style="background: #db636f; border-color: #db636f">Cari</button>
                                 </div>
                             </form>
                         </div>

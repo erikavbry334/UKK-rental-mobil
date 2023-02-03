@@ -51,6 +51,8 @@ class ArmadaController extends Controller
             'status'=> 'required',
         ]);
 
+        $data['harga'] = str_replace('.', '', $data['harga']);
+        $data['harga'] = str_replace(',', '.', $data['harga']);
         $data['gambar'] = 'storage/' . $request->file('gambar')->store('armada', 'public');
 
         Armada::create($data);
@@ -106,6 +108,8 @@ class ArmadaController extends Controller
             $data['gambar'] = 'storage/' . $request->file('gambar')->store('armada', 'public');
         }
 
+        $data['harga'] = str_replace('.', '', $data['harga']);
+        $data['harga'] = str_replace(',', '.', $data['harga']);
         $armada->update($data);
         return redirect('/dashboard/armada');
     }

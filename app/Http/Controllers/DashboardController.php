@@ -34,4 +34,28 @@ class DashboardController extends Controller
         $users = User::paginate($per);
         return view('dashboard.index', compact('jumlah_armada', 'jumlah_paket', 'jumlah_pesanan', 'title','pesanans', 'users','jumlah_denda'));
     }
+
+    public function profile() {
+        return view('dashboard.profile.index');
+    }
+
+    public function profilePost(Request $request) {
+      $data = $request->validate([
+        "name" => "required",
+        "email" => "required|email",
+        "avatar" => "image"
+    ]);
+    
+    if ($request->file('avatar')) {
+      if (is_file(storage_path('app/'.str_replace('storage', 'public', auth()->user()->avatar)))) {
+        unlink(storage_path('app/'.str_replace('storage', 'public', auth()->user()->avatar)));
+      }
+
+      $data['avatar'] = 'storage/' . $request->file('avatar')->store('avatar', 'public');
+    }
+        
+    User::where("id", auth()->user()->id)->update($data);
+    
+    return redirect("/dashboard/profile")->with(['success' => 'Berhasil memperbarui profile']);
+  }
 }

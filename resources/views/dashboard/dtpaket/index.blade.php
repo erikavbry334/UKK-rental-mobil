@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="card shadow mb-4">
             <div class="card-header d-flex w-100 py-3">
-                <h3 class="m-0 font-weight-bold" style="color:  #22b3c1">Detail {{$paket->nama_paket}}</h3>
+                <h3 class="m-0 font-weight-bold" style="color:  #f8f9fc">Detail {{ $paket->nama_paket }}</h3>
                 <a href="/dashboard/paket/{{ $paket_id }}/dtpaket/create" class="btn btn-primary ml-auto"> + Tambah</a>
             </div>
             <div class="card-body">
@@ -22,11 +22,12 @@
                                         </select> entries</label></div>
                             </div>
                             <div class="col-sm-12 col-md-6">
-                                <form action="/dashboard/dtpaket" method="GET" id="dataTable_filter" class="dataTables_filter d-flex justify-content-end">
+                                <form action="/dashboard/dtpaket" method="GET" id="dataTable_filter"
+                                    class="dataTables_filter d-flex justify-content-end">
                                     <label>
                                         Search:
-                                        <input type="search" name="search" value="{{ $request->search }}" class="form-control form-control-sm" placeholder=""
-                                            aria-controls="dataTable">
+                                        <input type="search" name="search" value="{{ $request->search }}"
+                                            class="form-control form-control-sm" placeholder="" aria-controls="dataTable">
                                     </label>
                                 </form>
                             </div>
@@ -55,7 +56,9 @@
                                                         <i class="fa fa-pen"></i>
                                                     </a>
 
-                                                    <form action="/dashboard/paket/{{ $paket_id }}/dtpaket/{{ $detail->id }}" method="POST">
+                                                    <form
+                                                        action="/dashboard/paket/{{ $paket_id }}/dtpaket/{{ $detail->id }}"
+                                                        method="POST">
                                                         @method('delete')
                                                         @csrf
                                                         <button class="btn btn-danger" type="submit">

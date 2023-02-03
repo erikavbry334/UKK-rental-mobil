@@ -12,8 +12,8 @@
                 <div class="row">
                     {{-- data penyewa --}}
                     <div class="col-lg-7 col-md-12 ">
-                        <h4 style="background: #22b3c1;" class="text-white py-2 text-center mb-0">Data Pemesan</h4>
-                        <div id="reservation-form" role="search" class="p-2" style="border: 1px solid #22b3c1;">
+                        <h4 style="background: #f8f9fc;" class="text-white py-2 text-center mb-0">Data Pemesan</h4>
+                        <div id="reservation-form" role="search" class="p-2" style="border: 1px solid #f8f9fc;">
                             <div class="row ">
                                 <label for="" class="col-sm-3 form-label">nama lengkap</label>
                                 <div class="col-sm-9">
@@ -25,7 +25,7 @@
                                 </div>
                                 <label for="" class="col-sm-3 form-label">Nomor Handphone</label>
                                 <div class="col-lg-9">
-                                   : {{ $pesanan['no_hp'] }}
+                                    : {{ $pesanan['no_hp'] }}
                                 </div>
                                 <label for="" class="col-sm-3 form-label">Tanggal pesan</label>
                                 <div class="col-lg-9">
@@ -57,7 +57,7 @@
                                         <td>
                                             <span class="badge bg-success text-white">{{ $pesanan->status_text }}</span>
                                         </td>
-                                        @elseif ($pesanan->status == 6)
+                                    @elseif ($pesanan->status == 6)
                                         <td>
                                             <span class="badge bg-danger">{{ $pesanan->status_text }}</span>
                                         </td>
@@ -69,7 +69,8 @@
                     </div>
                     {{-- detail pesanan --}}
                     <div class="col-lg-5 col-md-12">
-                        <form id="reservation-form" name="gs" method="GET" action="{{ route('cetak.pesanan', $pesanan->id) }}" class="p-2">
+                        <form id="reservation-form" name="gs" method="GET"
+                            action="{{ route('cetak.pesanan', $pesanan->id) }}" class="p-2">
                             <div class="row">
                                 <div class="col-lg-12">
                                     <h4>Detail Pesanan</em></h4>
@@ -81,8 +82,8 @@
                                     <h4 class="text-start mb-1">{{ $pesanan->armada->nama_armada }}</h4>
                                     <h6>{{ $pesanan->paket->nama_paket }}</h6>
                                     <h5 class="text-primary">Rp
-                                            {{ number_format($pesanan->paket->harga + $pesanan->armada->harga, 0, 0, '.') }}
-                                        </h5>
+                                        {{ number_format($pesanan->paket->harga + $pesanan->armada->harga, 0, 0, '.') }}
+                                    </h5>
                                 </div>
                                 <div class="col-lg-4">
                                     <ul>

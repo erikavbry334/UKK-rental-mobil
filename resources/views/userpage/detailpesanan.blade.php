@@ -6,7 +6,7 @@
             <div class="row">
                 {{-- data penyewa --}}
                 <div class="col-lg-7 col-md-12 ">
-                    <h4 style="background: #22b3c1;" class="text-white py-2 text-center">Data Pemesan</h4>
+                    <h4 style="background: #1d2c34;" class="text-white py-2 text-center">Data Pemesan</h4>
                     <div id="reservation-form" role="search" class="p-2">
                         <div class="row ">
                             <label for="" class="col-sm-3 form-label">nama lengkap</label>

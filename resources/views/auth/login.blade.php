@@ -20,22 +20,21 @@
     <link href="{{ asset('assets/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
 </head>
 
-<body style="background: #22b3c1">
+<body style="background: #1d2c34">
 
     <div class="container">
 
         <!-- Outer Row -->
         <div class="row justify-content-center">
 
-            <div class="col-lg-12 col-md-9 d-flex align-items-center" style="height: 100vh">
+            <div class="col-xl-10 col-lg-12 col-md-9 d-flex align-items-center" style="height: 100vh">
 
-                <div class="card o-hidden border-0 shadow my-5 w-100" style="height: 70vh">
+                <div class="card o-hidden border-0 shadow my-5 w-100">
                     <div class="card-body p-0 h-100">
                         <!-- Nested Row within Card Body -->
                         <div class="row h-100">
-                            <div class="col-lg-7 d-none d-lg-block ">
-                                <img src="{{ asset('assets/images/login.jpg') }}"
-                                    style="width: 100%; height: 100%; object-fit: cover">
+                            <div class="col-lg-7 d-none d-lg-block "
+                                style="background-image: url({{ asset('assets/images/login.jpg') }}); background-size: cover; background-position: center">
                             </div>
                             <div class="col-lg-5 d-flex align-items-center">
                                 <div class="p-5 w-100">
@@ -47,23 +46,23 @@
                                         <div class="form-group">
                                             <input type="email" name="email" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder=" Email Address..." style="font-size: 1.5rem">
+                                                placeholder=" Email Address...">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" name="password"
                                                 class="form-control form-control-user" id="exampleInputPassword"
-                                                placeholder="Password" style="font-size: 1.5rem">
+                                                placeholder="Password">
                                         </div>
                                         <div class="form-group">
                                         </div>
-                                        <button class="btn btn-user btn-block text-white"
-                                            style="background: #22b3c1; font-size: 1.5rem">
+                                        <button class="btn btn-user btn-block text-white" style="background: #1d2c34;">
                                             Login
                                         </button>
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="medium" href="/register" style="font-size: 1.5rem "w>Daftar</a>
+                                        <span>belum punya akun?</span>
+                                        <a class="medium" href="/register">Daftar</a>
                                     </div>
                                 </div>
                             </div>

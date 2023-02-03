@@ -5,7 +5,7 @@
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
                     <a href="/" class="logo ms-4">
-                        <img src="{{ asset('assets/images/logo4.png') }}" alt="logo" style="width: 170px;">
+                        <img src="{{ asset('assets/images/logo5.png') }}" alt="logo" style="width: 170px;">
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->

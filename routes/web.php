@@ -72,12 +72,15 @@ Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth');
 
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'level:admin']], function () {
     Route::get('/', [DashboardController::class, 'index']);
+    Route::get('/profile', [DashboardController::class, 'profile']);
+    Route::post('/profile', [DashboardController::class, 'profilePost']);
     Route::resource('paket', PaketController::class);
     Route::prefix('paket/{paket_id}')->group(function () {
         Route::resource('dtpaket', DetailPaketController::class);
     });
     Route::resource('armada', ArmadaController::class);
     Route::resource('denda', DendaController::class);
+    Route::get('denda/{id}/cetak', [DendaController::class, 'cetak']);
     Route::resource('syarat-ketentuan', SyaratKetentuanController::class);
     Route::resource('pesanan', PesananController::class)->except(['show']);
     Route::get('pesanan/{status}', [PesananController::class, 'index']);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\denda;
 use Illuminate\Support\Carbon;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class DendaController extends Controller
 {
@@ -25,6 +26,12 @@ class DendaController extends Controller
             'dendas' =>  $dendas,
             'request' => $request
         ]);
+    }
+
+    public function cetak($id) {
+        $denda = denda::find($id);
+        $pdf = Pdf::loadView('laporan.denda', compact('denda'))->setPaper('a4', 'landscape');
+        return $pdf->download('Struk Pesanan.pdf');
     }
 
     /**

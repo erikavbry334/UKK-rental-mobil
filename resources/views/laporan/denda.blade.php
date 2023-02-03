@@ -39,7 +39,7 @@
         {{-- <div style="background: #1d2c34; text-align: center; padding: 1rem; margin-bottom: 1rem">
             <img src="{{ public_path('assets/images/logo4.png') }}" alt="logo" style="width: 170px;">
         </div> --}}
-        <h2>Kwitansi Pembayaran</h2>
+        <h2>Kwitansi Denda</h2>
         <table>
             <tr>
                 <td style="width: 50%">
@@ -47,65 +47,33 @@
                         <tr>
                             <td style="padding: 0.25rem">no kwitansi</td>
                             <td style="padding: 0.25rem">:</td>
-                            <td style="padding: 0.25rem">{{ $pesanan->id }}</td>
+                            <td style="padding: 0.25rem">{{ $denda->id }}</td>
                         </tr>
                         <tr>
                             <td style="padding: 0.25rem">nama lengkap</td>
                             <td style="padding: 0.25rem">:</td>
-                            <td style="padding: 0.25rem">{{ $pesanan->nama_pemesan }}</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 0.25rem">Alamat</td>
-                            <td style="padding: 0.25rem">:</td>
-                            <td style="padding: 0.25rem">{{ $pesanan->alamat }}</td>
+                            <td style="padding: 0.25rem">{{ $denda->pesanan->nama_pemesan }}</td>
                         </tr>
                         <tr>
                             <td style="padding: 0.25rem">Nomor Handphone</td>
                             <td style="padding: 0.25rem">:</td>
-                            <td style="padding: 0.25rem">{{ $pesanan->no_hp }}</td>
+                            <td style="padding: 0.25rem">{{ $denda->pesanan->no_hp }}</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.25rem">Alamat</td>
+                            <td style="padding: 0.25rem">:</td>
+                            <td style="padding: 0.25rem">{{ $denda->pesanan->alamat }}</td>
                         </tr>
                     </table>
                 </td>
                 <td style="width: 50%; padding-left: 2rem; vertical-align: top">
                     <table>
                         <tr>
-                            <td style="padding: 0.25rem">uang sejumlah</td>
-                            <td style="padding: 0.25rem">:</td>
-                            <td style="padding: 0.25rem">
-                                {{ number_format($pesanan->paket->harga + $pesanan->armada->harga, 0, 0, '.') }}</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 0.25rem">catatan tambahan</td>
-                            <td style="padding: 0.25rem">:</td>
-                            <td style="padding: 0.25rem">{{ $pesanan->catatan }}</td>
+                            <td style="padding: 0.25rem"><span style="margin-right: 2rem">denda sejumlah</span> :
+                                {{ number_format($denda->total_denda, 0, 0, '.') }}</td>
                         </tr>
                     </table>
                 </td>
-            </tr>
-        </table>
-
-        <table border="3" cellspacing="0" style="width: 100%; margin: 2rem 0">
-            <tr>
-                <th>No. Plat</th>
-                <th>Armada</th>
-                <th>Paket</th>
-                <th>Waktu Sewa</th>
-                <th>Tanggal Sewa</th>
-                <th>Tanggal Kembali</th>
-            </tr>
-            <tr>
-                <td style="padding: 0.5rem">{{ $pesanan->armada->no_plat }}</td>
-                <td style="padding: 0.5rem">
-                    <div>{{ $pesanan->armada->nama_armada }}</div>
-                    <div>{{ number_format($pesanan->armada->harga, 0, ',', '.') }}</div>
-                </td>
-                <td style="padding: 0.5rem">
-                    <div>{{ $pesanan->paket->nama_paket }}</div>
-                    <div>{{ number_format($pesanan->paket->harga, 0, ',', '.') }}</div>
-                </td>
-                <td style="padding: 0.5rem; text-align: center">{{ $pesanan->lama_sewa }} hari</td>
-                <td style="padding: 0.5rem; text-align: center">{{ $pesanan->tgl_pesan }}</td>
-                <td style="padding: 0.5rem; text-align: center">{{ $pesanan->tgl_kembali }}</td>
             </tr>
         </table>
 
@@ -114,8 +82,8 @@
                 <td style="width: 80%">
                     <span
                         style="margin-left: 3rem; border: 1px solid #333; padding: 0.5rem; background: #cececed7">Total
-                        Harga: Rp
-                        {{ number_format($pesanan->paket->harga + $pesanan->armada->harga, 0, 0, '.') }}</span>
+                        Denda: Rp
+                        {{ number_format($denda->total_denda, 0, 0, '.') }}</span>
                 </td>
                 <td style="width: 40%; text-align: center">
                     <div>Surabaya, {{ date('d-m-Y') }}</div>

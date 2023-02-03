@@ -10,20 +10,25 @@
             <div class="card-body">
                 <div class="mb-3">
                     <label for="formFile" class="form-label">Nama Armada</label>
-                    <input class="form-control" type="text" name="nama_armada" aria-label=".form-control-lg example">
+                    <input class="form-control" type="text" name="nama_armada" aria-label=".form-control-lg example" autocomplete="off">
                 </div>
                 <div class="mb-3">
                     <label for="formFile" class="form-label">no_plat</label>
-                    <input class="form-control" type="text" name="no_plat" aria-label=".form-control-lg example">
+                    <input class="form-control" type="text" name="no_plat" aria-label=".form-control-lg example" autocomplete="off">
                 </div>
                 <div class="mb-3">
                     <label for="formFile" class="form-label">harga</label>
-                    <input class="form-control" type="number" name="harga" aria-label=".form-control-lg example">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Rp</span>
+                        </div>
+                        <input class="form-control" type="text" name="harga" aria-label=".form-control-lg example" oninput="this.value = this.value.replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, '.')" autocomplete="off">
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="formFile" class="form-label">gambar</label>
                     <input class="form-control" type="file" id="gambar" name="gambar"
-                        aria-label=".form-control-lg example">
+                        aria-label=".form-control-lg example" autocomplete="off">
                 </div>
                 <div class="mb-3">
                     <label for="formFile" class="form-label">status</label>

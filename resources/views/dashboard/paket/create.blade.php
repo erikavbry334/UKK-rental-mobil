@@ -14,11 +14,17 @@
                 </div>
                 <div class="mb-3">
                     <label for="formFile" class="form-label">harga paket</label>
-                    <input class="form-control" type="number" name="harga" aria-label=".form-control-lg example">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Rp</span>
+                        </div>
+                        <input class="form-control" type="text" name="harga" aria-label=".form-control-lg example" oninput="this.value = this.value.replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, '.')">
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="formFile" class="form-label">gambar</label>
-                    <input class="form-control" type="file" id="gambar" name="gambar" aria-label=".form-control-lg example">
+                    <input class="form-control" type="file" id="gambar" name="gambar"
+                        aria-label=".form-control-lg example">
                 </div>
 
             </div>
@@ -26,4 +32,4 @@
                 <button type="submit" class="btn btn-primary ml-auto">submit</button>
             </div>
         </form>
-@endsection
+    @endsection

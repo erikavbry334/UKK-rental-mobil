@@ -4,20 +4,22 @@
     <div class="container" style="padding-top: 80px">
         <form action="/user" method="POST" enctype="multipart/form-data" class="card shadow mb-4">
             @csrf
-            <div class="card-header d-flex justify-content-between w-100 py-3">
-                <h3 class="m-0 font-weight-bold text-primary">Profile Saya</h3>
-                <a href="/logout" class="btn btn-danger ml-auto">logout</a>
+            <div class="card-header d-flex justify-content-between w-100 py-3" style="background: #1d2c34">
+                <h3 class="m-0 font-weight-bold text-brand">Profile Saya</h3>
+                <a href="/logout" class="border border-danger btn ml-auto text-white">logout</a>
             </div>
             <div class="card-body">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="edit-tab" data-toggle="tab" data-target="#edit-tab-pane"
-                            type="button" role="tab" aria-controls="edit-tab-pane" aria-selected="true">Edit
+                        <button class="nav-link active text-brand" id="edit-tab" data-toggle="tab"
+                            data-target="#edit-tab-pane" type="button" role="tab" aria-controls="edit-tab-pane"
+                            aria-selected="true">Edit
                             Profile</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="profile-tab" data-toggle="tab" data-target="#profile-tab-pane"
-                            type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Riwayat
+                        <button class="nav-link text-brand" id="profile-tab" data-toggle="tab"
+                            data-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane"
+                            aria-selected="false">Riwayat
                             Pesanan</button>
                     </li>
                 </ul>
@@ -29,18 +31,18 @@
                         </div>
                         <div class="row user-detail position-relative">
                             @if (session()->get('success'))
-                            <div class="d-flex justify-content-end position-absolute" style="left: 0">
-                                <div class="alert alert-success mt-4" role="alert" style="width: 400px">
-                                    {{session()->get('success')}}
+                                <div class="d-flex justify-content-end position-absolute" style="left: 0">
+                                    <div class="alert alert-success mt-4" role="alert" style="width: 400px">
+                                        {{ session()->get('success') }}
+                                    </div>
                                 </div>
-                            </div>
                             @endif
                             <div class="col-lg-12 col-sm-12 col-12">
                                 <label for="avatar" style="position: relative;">
-                                    <img src="{{ auth()->user()->avatar_url }}" style="width: 200px!important"
+                                    <img src="{{ auth()->user()->avatar_url }}" style="width: 200px!important; aspect-ratio: 1/1"
                                         class="rounded-circle img-thumbnail avatar-preview">
-                                    <div style="position: absolute; cursor: pointer; top: 0; right: 0; border-radius: 50%; width: 32px; height: 32px"
-                                        class="bg-white border d-flex justify-content-center align-items-center">
+                                    <div style="position: absolute; cursor: pointer; top: 0; right: 0; border-radius: 50%; width: 32px; height: 32px; background: #1d2c34"
+                                        class="align-items-center border btn btn-primary d-flex justify-content-center border-0">
                                         <i class="fa fa-pen"></i>
                                     </div>
                                     <input type="file" class="d-none" name="avatar" id="avatar"
@@ -92,33 +94,33 @@
                                                         <td>
                                                             <span
                                                                 class="badge bg-warning">{{ $pesanan->status_text }}</span>
-                                                                @if ($pesanan->is_denda)
-                                                                    <span class="badge bg-danger">Denda</span>
-                                                                @endif
+                                                            @if ($pesanan->is_denda)
+                                                                <span class="badge bg-danger">Denda</span>
+                                                            @endif
                                                         </td>
                                                     @elseif ($pesanan->status == 2 || $pesanan->status == 3 || $pesanan->status == 4)
                                                         <td>
                                                             <span
                                                                 class="badge bg-primary">{{ $pesanan->status_text }}</span>
-                                                                @if ($pesanan->is_denda)
-                                                                    <span class="badge bg-danger">Denda</span>
-                                                                @endif
+                                                            @if ($pesanan->is_denda)
+                                                                <span class="badge bg-danger">Denda</span>
+                                                            @endif
                                                         </td>
                                                     @elseif ($pesanan->status == 5)
                                                         <td>
                                                             <span
                                                                 class="badge bg-success">{{ $pesanan->status_text }}</span>
-                                                                @if ($pesanan->is_denda)
-                                                                    <span class="badge bg-danger">Denda</span>
-                                                                @endif
+                                                            @if ($pesanan->is_denda)
+                                                                <span class="badge bg-danger">Denda</span>
+                                                            @endif
                                                         </td>
                                                     @elseif ($pesanan->status == 6)
                                                         <td>
                                                             <span
                                                                 class="badge bg-danger">{{ $pesanan->status_text }}</span>
-                                                                @if ($pesanan->is_denda)
-                                                                    <span class="badge bg-danger">Denda</span>
-                                                                @endif
+                                                            @if ($pesanan->is_denda)
+                                                                <span class="badge bg-danger">Denda</span>
+                                                            @endif
                                                         </td>
                                                     @endif
                                                     <td>

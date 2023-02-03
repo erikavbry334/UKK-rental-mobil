@@ -22,8 +22,12 @@
                 </div>
                 <div class="mb-3">
                     <label for="formFile" class="form-label">harga</label>
-                    <input value="{{ $armada->harga }}" class="form-control" type="number" name="harga"
-                        aria-label=".form-control-lg example">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Rp</span>
+                        </div>
+                        <input class="form-control" value="{{ number_format($armada->harga, 0, ',', '.') }}" type="text" name="harga" aria-label=".form-control-lg example" oninput="this.value = this.value.replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, '.')">
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="formFile" class="form-label d-block">gambar</label>

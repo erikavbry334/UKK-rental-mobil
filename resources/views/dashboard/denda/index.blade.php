@@ -4,7 +4,8 @@
     <div class="container-fluid">
         <div class="card shadow mb-4">
             <div class="card-header d-flex w-100 py-3">
-                <h3 class="m-0 font-weight-bold " style="color:  #22b3c1">Denda</h3></h3>
+                <h3 class="m-0 font-weight-bold " style="color:  #f8f9fc">Denda</h3>
+                </h3>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -15,10 +16,14 @@
                                     <label>Show
                                         <select name="per" id="per" aria-controls="dataTable"
                                             class="custom-select custom-select-sm form-control form-control-sm">
-                                            <option value="10" {{ request()->per == '10' ? 'selected' : '' }}>10</option>
-                                            <option value="25" {{ request()->per == '25' ? 'selected' : '' }}>25</option>
-                                            <option value="50" {{ request()->per == '50' ? 'selected' : '' }}>50</option>
-                                            <option value="100" {{ request()->per == '100' ? 'selected' : '' }}>100</option>
+                                            <option value="10" {{ request()->per == '10' ? 'selected' : '' }}>10
+                                            </option>
+                                            <option value="25" {{ request()->per == '25' ? 'selected' : '' }}>25
+                                            </option>
+                                            <option value="50" {{ request()->per == '50' ? 'selected' : '' }}>50
+                                            </option>
+                                            <option value="100" {{ request()->per == '100' ? 'selected' : '' }}>100
+                                            </option>
                                         </select> entries</label>
                                 </div>
                             </div>
@@ -44,6 +49,7 @@
                                             <th>Telat berapa hari</th>
                                             <th>total denda</th>
                                             <th>Status</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -60,6 +66,13 @@
                                                         <span class="badge badge-danger">Belum Dibayar</span>
                                                     @endif
                                                 </td>
+                                                <td>
+                                                    <form action="/dashboard/denda/{{ $denda->id }}/cetak">
+                                                        <button type="submit" class="btn btn-sm btn-danger">
+                                                            <i class="fa fa-file-pdf"></i>
+                                                        </button>
+                                                    </form>
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -75,8 +88,8 @@
 
 @section('script')
     <script>
-        document.querySelector('#per').addEventListener('change', function () {
-            window.location.href = "?per=" + this.value 
+        document.querySelector('#per').addEventListener('change', function() {
+            window.location.href = "?per=" + this.value
         });
     </script>
 @endsection

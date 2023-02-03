@@ -3,8 +3,8 @@
 @section('content')
     <div class="container-fluid">
         <div class="card shadow mb-4">
-            <div class="card-header d-flex w-100 py-3">
-                <h3 class="m-0 font-weight-bold" style="color:  #22b3c1">Data Armada</h3>
+            <div class="card-header d-flex w-100 py-3" style="background: #1d2c34; ">
+                <h3 class="m-0 font-weight-bold" style="color: #db636f">Data Armada</h3>
                 <a href="/dashboard/armada/create" class="btn btn-primary ml-auto"> + Tambah </a>
             </div>
             <div class="card-body">
@@ -59,12 +59,12 @@
                                                 <td>{{ $i + 1 }}</td>
                                                 <td>{{ $armada->nama_armada }}</td>
                                                 <td>{{ $armada->no_plat }}</td>
-                                                <td>{{ $armada->harga }}</td>
+                                                <td>Rp {{ number_format($armada->harga, 0, ',', '.') }}</td>
                                                 <td style="width: 250px">
                                                     <img src="{{ asset($armada->gambar) }}" class="img-fluid"
-                                                    width="200">
+                                                        width="200">
                                                 </td>
-                                                 
+
                                                 <td style="width: 100px">
                                                     <span class="badge badge-primary">{{ $armada->status }}</span>
                                                 </td>
@@ -74,7 +74,7 @@
                                                             class="btn btn-success ">
                                                             <i class="fa fa-pen"></i>
                                                         </a>
-                                                        
+
                                                         <form action="/dashboard/armada/{{ $armada->id }}"
                                                             method="POST">
                                                             @method('delete')

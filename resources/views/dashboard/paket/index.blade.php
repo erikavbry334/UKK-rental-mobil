@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="card shadow mb-4">
             <div class="card-header d-flex w-100 py-3">
-                <h3 class="m-0 font-weight-bold" style="color:  #22b3c1">Data Paket</h3>
+                <h3 class="m-0 font-weight-bold" style="color:  #f8f9fc">Data Paket</h3>
                 <a href="/dashboard/paket/create" class="btn btn-primary ml-auto">+ Tambah</a>
             </div>
             <div class="card-body">
@@ -56,7 +56,7 @@
                                             <tr>
                                                 <td style="width: 80px">{{ $i + 1 }}</td>
                                                 <td style="width: 250px">{{ $paket->nama_paket }}</td>
-                                                <td style="width: 250px">{{ $paket->harga }}</td>
+                                                <td style="width: 250px">Rp {{ number_format($paket->harga, 0, ',', '.') }}</td>
                                                 <td style="width: 350px">
                                                     <img src="{{ asset($paket->gambar) }}" class="img-fluid" width="200">
                                                 </td>

@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="card shadow mb-4">
             <div class="card-header d-flex w-100 py-3">
-                <h3 class="m-0 font-weight-bold " style="color:  #22b3c1">Syarat dan Ketentuan</h3>
+                <h3 class="m-0 font-weight-bold " style="color:  #f8f9fc">Syarat dan Ketentuan</h3>
                 <a href="/dashboard/syarat-ketentuan/create" class="btn btn-primary ml-auto">+ Tambah</a>
             </div>
             <div class="card-body">
@@ -16,19 +16,24 @@
                                     <label>Show
                                         <select name="per" id="per" aria-controls="dataTable"
                                             class="custom-select custom-select-sm form-control form-control-sm">
-                                            <option value="10" {{ request()->per == '10' ? 'selected' : '' }}>10</option>
-                                            <option value="25" {{ request()->per == '25' ? 'selected' : '' }}>25</option>
-                                            <option value="50" {{ request()->per == '50' ? 'selected' : '' }}>50</option>
-                                            <option value="100" {{ request()->per == '100' ? 'selected' : '' }}>100</option>
+                                            <option value="10" {{ request()->per == '10' ? 'selected' : '' }}>10
+                                            </option>
+                                            <option value="25" {{ request()->per == '25' ? 'selected' : '' }}>25
+                                            </option>
+                                            <option value="50" {{ request()->per == '50' ? 'selected' : '' }}>50
+                                            </option>
+                                            <option value="100" {{ request()->per == '100' ? 'selected' : '' }}>100
+                                            </option>
                                         </select> entries</label>
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-6">
-                                <form action="/dashboard/syarat-ketentuan" method="GET" id="dataTable_filter" class="dataTables_filter d-flex justify-content-end">
+                                <form action="/dashboard/syarat-ketentuan" method="GET" id="dataTable_filter"
+                                    class="dataTables_filter d-flex justify-content-end">
                                     <label>
                                         Search:
-                                        <input type="search" name="search" value="{{ $request->search }}" class="form-control form-control-sm" placeholder=""
-                                            aria-controls="dataTable">
+                                        <input type="search" name="search" value="{{ $request->search }}"
+                                            class="form-control form-control-sm" placeholder="" aria-controls="dataTable">
                                     </label>
                                 </form>
                             </div>
@@ -57,7 +62,8 @@
                                                         <i class="fa fa-pen"></i>
                                                     </a>
 
-                                                    <form action="/dashboard/syarat-ketentuan/{{ $syarat->id }}" method="POST">
+                                                    <form action="/dashboard/syarat-ketentuan/{{ $syarat->id }}"
+                                                        method="POST">
                                                         @method('delete')
                                                         @csrf
                                                         <button class="btn btn-danger" type="submit">
@@ -80,8 +86,8 @@
 
 @section('script')
     <script>
-        document.querySelector('#per').addEventListener('change', function () {
-            window.location.href = "?per=" + this.value 
+        document.querySelector('#per').addEventListener('change', function() {
+            window.location.href = "?per=" + this.value
         });
     </script>
 @endsection
