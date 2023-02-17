@@ -67,11 +67,14 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    <form action="/dashboard/denda/{{ $denda->id }}/cetak">
-                                                        <button type="submit" class="btn btn-sm btn-danger">
-                                                            <i class="fa fa-file-pdf"></i>
-                                                        </button>
-                                                    </form>
+                                                    <div class="d-flex">
+                                                        <form action="/dashboard/denda/{{ $denda->id }}/cetak" class="mr-2">
+                                                            <button type="submit" class="btn btn-sm btn-danger">
+                                                                <i class="fa fa-file-pdf"></i>
+                                                            </button>
+                                                        </form>
+                                                        <a href="/dashboard/pesanan/{{ $denda->pesanan_id }}/detail" class="btn btn-info btn-sm" target="_blank">Pesanan</a>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         @endforeach
