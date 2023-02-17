@@ -83,7 +83,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'level:admin']],
     Route::get('denda/{id}/cetak', [DendaController::class, 'cetak']);
     Route::resource('syarat-ketentuan', SyaratKetentuanController::class);
     Route::resource('pesanan', PesananController::class)->except(['show']);
-    Route::get('pesanan/{status}', [PesananController::class, 'index']);
+    Route::get('pesanan/{status?}', [PesananController::class, 'index']);
     Route::get('pesanan/{id}/detail', [PesananController::class, 'dashboardDetail']);
     Route::post('pesanan/{id}/update-status', [PesananController::class, 'updateStatus']);
     Route::get('laporan', [LaporanController::class, 'index']);

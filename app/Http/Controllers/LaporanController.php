@@ -23,6 +23,6 @@ class LaporanController extends Controller
         
         $data['bulan'] = $bulans[$data['bulan'] - 1];
         $pdf = Pdf::loadView('laporan.pesanan', compact('pesanans', 'data'));
-        return $pdf->download('Laporan Pesanan.pdf', );
+        return $pdf->download('Laporan Pesanan.pdf');
     }
 }

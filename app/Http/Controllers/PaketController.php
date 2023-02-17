@@ -53,8 +53,8 @@ class PaketController extends Controller
         $data['harga'] = str_replace(',', '.', $data['harga']);
         $data['gambar'] = 'storage/' . $request->file('gambar')->store('paket', 'public');
 
-        Paket::create($data);
-        return redirect('/dashboard/paket');
+        Paket::create($data);   
+        return redirect('/dashboard/paket')->with('success', 'Data berhasil ditambahkan');
     }
 
     /**
@@ -107,7 +107,7 @@ class PaketController extends Controller
         $data['harga'] = str_replace('.', '', $data['harga']);
         $data['harga'] = str_replace(',', '.', $data['harga']);
         $paket->update($data);
-        return redirect('/dashboard/paket');
+        return redirect('/dashboard/paket')->with('info', 'Data berhasil diperbarui');
     }
 
     /**

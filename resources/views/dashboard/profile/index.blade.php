@@ -2,13 +2,6 @@
 
 @section('content')
     <form action="/dashboard/profile" method="POST" enctype="multipart/form-data" class="row user-detail position-relative">
-        @if (session()->get('success'))
-            <div class="d-flex justify-content-end position-absolute" style="right: 0">
-                <div class="alert alert-success mt-4" role="alert" style="width: 400px">
-                    {{ session()->get('success') }}
-                </div>
-            </div>
-        @endif
         @csrf
         <div class="col-lg-12 col-sm-12 col-12">
             <label for="avatar" style="position: relative;">

@@ -3,8 +3,8 @@
 @section('content')
     <div class="container-fluid">
         <div class="card shadow mb-4">
-            <div class="card-header d-flex w-100 py-3">
-                <h3 class="m-0 font-weight-bold " style="color:  #f8f9fc">Syarat dan Ketentuan</h3>
+            <div class="card-header d-flex w-100 py-3" style="background: #1d2c34;">
+                <h3 class="m-0 font-weight-bold " style="color:  #db636f">Syarat dan Ketentuan</h3>
                 <a href="/dashboard/syarat-ketentuan/create" class="btn btn-primary ml-auto">+ Tambah</a>
             </div>
             <div class="card-body">
@@ -53,7 +53,7 @@
                                     <tbody>
                                         @foreach ($syarats as $i => $syarat)
                                             <tr>
-                                                <td>{{ $i + 1 }}</td>
+                                                <td>{{ $syarats->firstItem() + $i }}</td>
                                                 <td>{{ $syarat->syarat }}</td>
                                                 <td>{{ $syarat->ketentuan }}</td>
                                                 <td class="d-flex" style="gap: 1rem">
@@ -62,14 +62,9 @@
                                                         <i class="fa fa-pen"></i>
                                                     </a>
 
-                                                    <form action="/dashboard/syarat-ketentuan/{{ $syarat->id }}"
-                                                        method="POST">
-                                                        @method('delete')
-                                                        @csrf
-                                                        <button class="btn btn-danger" type="submit">
-                                                            <i class="fa fa-trash"></i>
-                                                        </button>
-                                                    </form>
+                                                    <button class="btn btn-danger hapus" type="submit" data-id="{{ $syarat->id }}">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -79,6 +74,8 @@
                         </div>
                     </div>
                 </div>
+                {{ $syarats->withQueryString()->links() }}
+
             </div>
         </div>
     </div>
@@ -89,5 +86,38 @@
         document.querySelector('#per').addEventListener('change', function() {
             window.location.href = "?per=" + this.value
         });
+
+        $('.hapus').on('click', function() {
+            var id = $(this).data('id');
+            Swal.fire({
+                title: 'Apakah Anda Yakin?',
+                text: "Data Yang Dihapus Tidak Dapat Dikembalikan.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Hapus',
+                cancelButtonText: 'Batal',
+                preConfirm: (login) => {
+                    return $.ajax({
+                        url: `/dashboard/syarat-ketentuan/${id}`,
+                        method: 'POST',
+                        data: {
+                            _method: "DELETE",
+                            _token: "{{ csrf_token() }}"
+                        },
+                        error: function() {
+                            Swal.showValidationMessage('Data gagal dihapus!')
+                        }
+                    });
+                },
+                allowOutsideClick: () => !Swal.isLoading()
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    Swal.fire('Data berhasil dihapus!', '', 'success').then(() => window.location.reload());
+                }   
+            })
+        })
     </script>
 @endsection

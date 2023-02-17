@@ -3,8 +3,8 @@
 @section('content')
     <div class="container-fluid">
         <div class="card shadow mb-4">
-            <div class="card-header d-flex w-100 py-3">
-                <h3 class="m-0 font-weight-bold " style="color:  #f8f9fc">Denda</h3>
+            <div class="card-header d-flex w-100 py-3" style="background: #1d2c34;">
+                <h3 class="m-0 font-weight-bold " style="color:  #db636f">Denda</h3>
                 </h3>
             </div>
             <div class="card-body">
@@ -55,7 +55,7 @@
                                     <tbody>
                                         @foreach ($dendas as $i => $denda)
                                             <tr>
-                                                <td>{{ $i + 1 }}</td>
+                                                <td>{{ $dendas->firstItem() + $i }}</td>
                                                 <td>{{ $denda->pesanan->nama_pemesan }}</td>
                                                 <td>{{ $denda->telat_berapa_hari }}</td>
                                                 <td>{{ $denda->total_denda }}</td>
@@ -81,6 +81,8 @@
                         </div>
                     </div>
                 </div>
+                {{ $dendas->withQueryString()->links() }}
+
             </div>
         </div>
     </div>

@@ -15,20 +15,21 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class PesananController extends Controller
 {
-    public function index(Request $request, $status)
+    public function index(Request $request, $status = null)
     {   
         $per = $request->per ? $request->per : 10;
 
         $pesanans = Pesanan::where(function ($q) use ($request) {
             $q->where('nama_pemesan', 'LIKE', '%' . $request->search . '%');
-        })->where('status', $status)->paginate($per);
-        $pesanans = $pesanans->map(function ($p) {
+        })->when(isset($status) ?? false, function ($q) use ($status) {
+            $q->where('status', $status);
+        })->paginate($per);
+        $pesanans->map(function ($p) {
             $is_denda = false;
             if (Carbon::parse($p->tgl_akhir)->isPast() && ($p->status == 3 || $p->status == 4)) {
                 $is_denda = true;
             }
             $p->is_denda = $is_denda;
-            return $p;
         });
         return view('dashboard.pesanan.index', [
             'pesanans'=> $pesanans,
@@ -66,7 +67,9 @@ class PesananController extends Controller
 
         Pembayaran::create(['pesanan_id' => $pesanan->id, 'snap_token' => $snapToken]);
 
-        return response()->json(['snap_token' => $snapToken]);
+        $armada->update(['status' => 'Disewa']);
+
+        return redirect('/pesanan/' . $pesanan->uuid);
     }
 
     public function detail($uuid)
@@ -86,6 +89,7 @@ class PesananController extends Controller
 
     public function batal($id) {
         Pesanan::where('id', $id)->update(['status' => 6]);
+        Armada::where('id', Pesanan::find($id)->armada_id)->update(['status' => 'Tersedia']);
         return redirect('/profile');
     }
 
@@ -109,7 +113,11 @@ class PesananController extends Controller
                 ]);
             }
         }
-        Pesanan::where('id', $id)->update($data);
+        $pesanan->update($data);
+
+        if ($data['status'] == 4 || $data['status'] == 6) {
+            Armada::where('id', $pesanan->armada_id)->update(['status' => 'Tersedia']);
+        }
 
         return redirect('/dashboard/pesanan/' . $request->status);
     }

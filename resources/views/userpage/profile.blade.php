@@ -30,13 +30,6 @@
                             <div class="col-lg-12 col-sm-12 col-12 profile-header"></div>
                         </div>
                         <div class="row user-detail position-relative">
-                            @if (session()->get('success'))
-                                <div class="d-flex justify-content-end position-absolute" style="left: 0">
-                                    <div class="alert alert-success mt-4" role="alert" style="width: 400px">
-                                        {{ session()->get('success') }}
-                                    </div>
-                                </div>
-                            @endif
                             <div class="col-lg-12 col-sm-12 col-12">
                                 <label for="avatar" style="position: relative;">
                                     <img src="{{ auth()->user()->avatar_url }}" style="width: 200px!important; aspect-ratio: 1/1"

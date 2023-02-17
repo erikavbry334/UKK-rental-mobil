@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/splide.min.css') }}">
     <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
 </head>
 
 <body style="padding-bottom: 110px; position: relative; min-height: 100vh">
@@ -63,6 +65,16 @@
     </script>
     <!-- Scripts -->
     @yield('script')
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    @if ($message = Session::get('success'))
+        <script>
+            toastr.options = {
+                "positionClass": "toast-top-center",
+            }
+            toastr.success('{{ $message }}')
+        </script>
+    @endif
 </body>
 
 </html>

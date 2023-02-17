@@ -6,6 +6,7 @@ use App\Models\Pembayaran;
 use App\Models\Pesanan;
 use Illuminate\Http\Request;
 use App\Services\Midtrans\CallbackService;
+use App\Models\Armada;
 
 class PaymentCallbackController extends Controller
 {
@@ -29,6 +30,7 @@ class PaymentCallbackController extends Controller
                     'status' => 3,
                 ]);
                 Pesanan::where('id', $order->id)->update(['status' => '5']);
+                Armada::where('id', $order->pesanan_id)->update(['status', 'Tersedia']);
             }
 
             if ($callback->isCancelled()) {
@@ -36,6 +38,7 @@ class PaymentCallbackController extends Controller
                     'status' => 3,
                 ]);
                 Pesanan::where('id', $order->id)->update(['status' => '5']);
+                Armada::where('id', $order->pesanan_id)->update(['status', 'Tersedia']);
             }
 
             return response()

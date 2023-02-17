@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title> SB Admin 2 - Dashboard</title>
+    <title> Admin - Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('assets/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -19,6 +19,7 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('assets/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
 </head>
 
@@ -75,6 +76,7 @@
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="/dashboard/pesanan">Semua</a>
                         <a class="collapse-item" href="/dashboard/pesanan/2">Sudah Dibayar</a>
                         <a class="collapse-item" href="/dashboard/pesanan/3">Sedang Disewa</a>
                         <a class="collapse-item" href="/dashboard/pesanan/4">Telah Dikembalikan</a>
@@ -140,7 +142,8 @@
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
                                     {{ auth()->user()->name }}
                                 </span>
-                                <img class="img-profile rounded-circle" src="{{ asset(auth()->user()->avatar_url) }}">
+                                <img class="img-profile rounded-circle"
+                                    src="{{ asset(auth()->user()->avatar_url) }}">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -180,7 +183,7 @@
                 <footer class="sticky-footer bg-white">
                     <div class="container my-auto">
                         <div class="copyright text-center my-auto">
-                            <span>Copyright &copy; Your Website 2021</span>
+                            <span>Copyright &copy; Your Website 2023</span>
                         </div>
                     </div>
                 </footer>
@@ -227,7 +230,25 @@
         <!-- Custom scripts for all pages-->
         <script src="{{ asset('assets/js/sb-admin-2.min.js') }}"></script>
 
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
         @yield('script')
+        @if ($message = Session::get('success'))
+            <script>
+                toastr.options = {
+                    "positionClass": "toast-top-center mt-5",
+                }
+                toastr.success('{{ $message }}')
+            </script>
+        @elseif ($message = Session::get('info'))
+            <script>
+                toastr.options = {
+                    "positionClass": "toast-top-center mt-5",
+                }
+                toastr.info('{{ $message }}')
+            </script>
+        @endif
 </body>
 
 </html>

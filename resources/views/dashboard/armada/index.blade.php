@@ -56,7 +56,7 @@
                                     <tbody>
                                         @foreach ($armadas as $i => $armada)
                                             <tr>
-                                                <td>{{ $i + 1 }}</td>
+                                                <td>{{ $armadas->firstItem() + $i }}</td>
                                                 <td>{{ $armada->nama_armada }}</td>
                                                 <td>{{ $armada->no_plat }}</td>
                                                 <td>Rp {{ number_format($armada->harga, 0, ',', '.') }}</td>
@@ -64,9 +64,20 @@
                                                     <img src="{{ asset($armada->gambar) }}" class="img-fluid"
                                                         width="200">
                                                 </td>
-
                                                 <td style="width: 100px">
-                                                    <span class="badge badge-primary">{{ $armada->status }}</span>
+                                                    @if ($armada->status == "Tersedia")
+                                                        <span
+                                                            class="badge badge-success">{{ $armada->status }}</span>
+                                                    @elseif ($armada->status == "Servis")
+                                                        <span
+                                                            class="badge badge-warning">{{ $armada->status }}</span>
+                                                    @elseif ($armada->status == "Rusak")
+                                                        <span
+                                                            class="badge badge-danger">{{ $armada->status }}</span>
+                                                    @elseif ($armada->status == "Disewa")
+                                                        <span
+                                                            class="badge badge-primary">{{ $armada->status }}</span>
+                                                    @endif
                                                 </td>
                                                 <td style="width: 100px">
                                                     <div class="d-flex " style="gap: 1rem">
@@ -75,14 +86,10 @@
                                                             <i class="fa fa-pen"></i>
                                                         </a>
 
-                                                        <form action="/dashboard/armada/{{ $armada->id }}"
-                                                            method="POST">
-                                                            @method('delete')
-                                                            @csrf
-                                                            <button class="btn btn-danger" type="submit">
-                                                                <i class="fa fa-trash"></i>
-                                                            </button>
-                                                        </form>
+                                                        <button class="btn btn-danger hapus" type="submit"
+                                                            data-id="{{ $armada->id }}">
+                                                            <i class="fa fa-trash"></i>
+                                                        </button>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -94,7 +101,7 @@
                         </div>
                     </div>
                 </div>
-                {{ $armadas->links() }}
+                {{ $armadas->withQueryString()->links() }}
             </div>
         </div>
     </div>
@@ -105,5 +112,38 @@
         document.querySelector('#per').addEventListener('change', function() {
             window.location.href = "?per=" + this.value
         });
+
+        $('.hapus').on('click', function() {
+            var id = $(this).data('id');
+            Swal.fire({
+                title: 'Apakah Anda Yakin?',
+                text: "Data Yang Dihapus Tidak Dapat Dikembalikan.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Hapus',
+                cancelButtonText: 'Batal',
+                preConfirm: (login) => {
+                    return $.ajax({
+                        url: `/dashboard/armada/${id}`,
+                        method: 'POST',
+                        data: {
+                            _method: "DELETE",
+                            _token: "{{ csrf_token() }}"
+                        },
+                        error: function() {
+                            Swal.showValidationMessage('Data gagal dihapus!')
+                        }
+                    });
+                },
+                allowOutsideClick: () => !Swal.isLoading()
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    Swal.fire('Data berhasil dihapus!', '', 'success').then(() => window.location.reload());
+                }
+            })
+        })
     </script>
 @endsection

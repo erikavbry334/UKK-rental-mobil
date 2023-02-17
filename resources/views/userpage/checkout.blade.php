@@ -29,7 +29,8 @@
             </div>
         </div>
 
-        <div class="container">
+        <form id="reservation-form" class="container" action="/checkout/charge" method="POST">
+            @csrf
             <div class="row">
                 {{-- data penyewa --}}
                 <div class="col-lg-8 col-md-12 ">
@@ -38,29 +39,31 @@
                         <div class="row ">
                             <label for="" class="col-sm-3 form-label">nama lengkap</label>
                             <div class="col-sm-9">
-                                <input type="text" readonly value="{{ $data['nama_pemesan'] }}">
+                                <input type="text" readonly value="{{ $data['nama_pemesan'] }}" name="nama_pemesan">
                             </div>
                             <label for="" class="col-sm-3 form-label">Alamat</label>
                             <div class="col-lg-9">
-                                <input type="text" readonly value="{{ $data['alamat'] }}">
+                                <input type="text" readonly value="{{ $data['alamat'] }}" name="alamat">
                             </div>
                             <label for="" class="col-sm-3 form-label">Nomor Handphone</label>
                             <div class="col-lg-9">
-                                <input type="text" readonly value="{{ $data['no_hp'] }}">
+                                <input type="text" readonly value="{{ $data['no_hp'] }}" name="no_hp">
                             </div>
                             <label for="" class="col-sm-3 form-label">Tanggal pesan</label>
                             <div class="col-lg-9">
-                                <input type="text" readonly value="{{ $data['tgl_pesan'] }}">
+                                <input type="text" readonly value="{{ $data['tgl_pesan'] }}" name="tgl_pesan">
                             </div>
                             <label for="" class="col-sm-3 form-label">Lama sewa</label>
                             <div class="col-lg-9">
-                                <input type="text" readonly value="{{ $data['lama_sewa'] }}">
+                                <input type="text" readonly value="{{ $data['lama_sewa'] }}" name="lama_sewa">
                             </div>
                             <label for="" class="col-sm-3 form-label">catatan tambahan</label>
                             <div class="col-lg-9">
-                                <input type="text_area" readonly value="{{ $data['catatan'] }}">
+                                <input type="text_area" readonly value="{{ $data['catatan'] }}" name="catatan">
                             </div>
 
+                            <input type="hidden" name="armada_id" value="{{ $armada->id }}">
+                            <input type="hidden" name="paket_id" value="{{ $paket->id }}">
                             <input type="hidden" name="check" value="{{ $data['check'] }}">
                         </div>
                         </form>
@@ -71,7 +74,7 @@
                 </div>
                 <div class=" col-lg-4 col-md-12">
                     <h4 style="background: #1d2c34;" class="text-white py-2 text-center"> Detail Pesanan</em></h4>
-                    <form id="reservation-form" name="gs" method="submit" role="search" style="padding: 20px 20px">
+                    <div name="gs" method="submit" role="search" style="padding: 20px 20px">
                         <div class="row">
                             <div class="col-lg-12">
                                 <img src="{{ asset($armada->gambar) }}"
@@ -92,59 +95,10 @@
                                 </ul>
                             </div>
                         </div>
-                        <button id="bayar" class="mt-4" type="button">Bayar Sekarang</button>
-                    </form>
+                        <button id="bayar" class="mt-4" type="submit">Bayar Sekarang</button>
+                    </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
-@endsection
-
-@section('script')
-    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.client_key') }}">
-    </script>
-    <script>
-        document.querySelector('#bayar').addEventListener('click', function(ev) {
-            $.ajax({
-                url: '/checkout/charge',
-                method: 'POST',
-                headers: {
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                },
-                data: {
-                    armada_id: "{{ $armada->id }}",
-                    paket_id: "{{ $paket->id }}",
-                    nama_pemesan: "{{ $data['nama_pemesan'] }}",
-                    no_hp: "{{ $data['no_hp'] }}",
-                    alamat: "{{ $data['alamat'] }}",
-                    tgl_pesan: "{{ $data['tgl_pesan'] }}",
-                    lama_sewa: "{{ $data['lama_sewa'] }}",
-                    catatan: "{{ $data['catatan'] }}",
-                    check: "{{ $data['check'] }}"
-                },
-                success: function(data) {
-                    snap.pay(data.snap_token, {
-                        // Optional
-                        onSuccess: function(result) {
-                            /* You may add your own js here, this is just example */
-                            // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
-                            window.location.href = `/pesanan/${result.order_id}`;
-                        },
-                        // Optional
-                        onPending: function(result) {
-                            /* You may add your own js here, this is just example */
-                            // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
-                            console.log(result)
-                        },
-                        // Optional
-                        onError: function(result) {
-                            /* You may add your own js here, this is just example */
-                            // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
-                            console.log(result)
-                        }
-                    });
-                }
-            });
-        });
-    </script>
 @endsection

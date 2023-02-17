@@ -54,8 +54,8 @@
                             <div class="col-lg-5">
                                 <fieldset>
                                     <label for="Number" class="form-label">Nomor Handphone</label>
-                                    <input type="text" name="no_hp" class="Number" placeholder="nomor aktif"
-                                        autocomplete="on" required value="{{ old('no_hp') }}" autocomplete="off">
+                                    <input type="number" name="no_hp" class="Number" placeholder="nomor aktif"
+                                        autocomplete="off" required value="{{ old('no_hp') }}">
                                 </fieldset>
                             </div>
                             <div class="col-lg-4">
@@ -77,7 +77,7 @@
                                 <label for="check" class="d-flex align-items-center">
                                     <input type="checkbox" class="mb-0" id="check" name="check"
                                         style="width: 16px; height: 16px" required>
-                                    <span class="ms-2">Saya telah setuju dengan <a
+                                    <span class="ms-2">Saya telah setuju dengan <a class="text-danger"
                                             href="{{ url('syarat-ketentuan') }}">Syarat & Ketentuan</a></span>
                                 </label>
                             </div>

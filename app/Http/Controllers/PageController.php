@@ -32,20 +32,20 @@ class PageController extends Controller
             $q->where('id', request()->armada_id);
         })->where('status', 'Tersedia')->get();
 
-        $armadas = $armadas->filter(function ($armada) {
-            $is_available = true;
-            $pesanans = Pesanan::where('armada_id', $armada->id)->get();
-            foreach ($pesanans as $pesanan) {
-                $tgl_kembali = Carbon::parse($pesanan->tgl_kembali);
-                $tgl_pesan_cari = Carbon::parse(request()->tgl_pesan);
+        // $armadas = $armadas->filter(function ($armada) {
+        //     $is_available = true;
+        //     $pesanans = Pesanan::where('armada_id', $armada->id)->get();
+        //     foreach ($pesanans as $pesanan) {
+        //         $tgl_kembali = Carbon::parse($pesanan->tgl_kembali);
+        //         $tgl_pesan_cari = Carbon::parse(request()->tgl_pesan);
 
-                if (!isset($pesanan->tgl_kembali)) $is_available = false;
+        //         if (!isset($pesanan->tgl_kembali)) $is_available = false;
 
-                if ($tgl_pesan_cari < $tgl_kembali) $is_available = false;
-            }
+        //         if ($tgl_pesan_cari < $tgl_kembali) $is_available = false;
+        //     }
 
-            return $is_available;
-        });
+        //     return $is_available;
+        // });
 
         $pakets = Paket::when(isset(request()->paket_id) ?? false, function ($q) {
             $q->where('id', request()->paket_id);

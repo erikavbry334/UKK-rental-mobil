@@ -49,7 +49,7 @@ class SyaratKetentuanController extends Controller
         ]);
 
         SyaratKetentuan::create($data);
-        return redirect('/dashboard/syarat-ketentuan');
+        return redirect('/dashboard/syarat-ketentuan')->with('success', 'Data berhasil ditambahkan');
     }
 
     /**
@@ -92,7 +92,7 @@ class SyaratKetentuanController extends Controller
         ]);
 
         $syarat->update($data);
-        return redirect('/dashboard/syarat-ketentuan');
+        return redirect('/dashboard/syarat-ketentuan')->with('info', 'Data berhasil diperbarui');
     }
 
     /**

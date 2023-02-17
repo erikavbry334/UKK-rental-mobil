@@ -7,7 +7,7 @@
             @method('put')
             @csrf
             <div class="card-header d-flex w-100 py-3">
-                <h3 class="m-0 font-weight-bold text-primary">Edit Data Kategori</h3>
+                <h3 class="m-0 font-weight-bold text-primary">Edit Data Paket</h3>
             </div>
             <div class="card-body">
                 <div class="mb-3">

@@ -15,9 +15,10 @@ class DetailPaketController extends Controller
      */
     public function index(Request $request, $paket_id)
     {
+        $per = $request->per ? $request->per : 10;
         $detail_pakets = DetailPaket::with(['paket'])->where(function ($q) use ($request) {
             $q->where('nama', 'LIKE', '%' . $request->search . '%');
-        })->where('paket_id', $paket_id)->get();
+        })->where('paket_id', $paket_id)->paginate($per);
         $paket = Paket::find($paket_id);
         return view('dashboard.dtpaket.index', compact('detail_pakets', 'request', 'paket_id', 'paket'));
     }
@@ -45,7 +46,7 @@ class DetailPaketController extends Controller
         ]);
 
         Paket::find($paket_id)->detail_pakets()->create($data);
-        return redirect('/dashboard/paket/' . $paket_id . '/dtpaket');
+        return redirect('/dashboard/paket/' . $paket_id . '/dtpaket')->with('success', 'Data berhasil ditambahkan');
     }
 
     /**
@@ -86,7 +87,7 @@ class DetailPaketController extends Controller
         ]);
 
         $detail_pakets->update($data);
-        return redirect('/dashboard/paket/' . $paket_id . '/dtpaket');
+        return redirect('/dashboard/paket/' . $paket_id . '/dtpaket')->with('info', 'Data berhasil diperbarui');
     }
 
     /**

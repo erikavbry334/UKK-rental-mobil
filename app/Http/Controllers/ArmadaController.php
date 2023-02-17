@@ -56,7 +56,7 @@ class ArmadaController extends Controller
         $data['gambar'] = 'storage/' . $request->file('gambar')->store('armada', 'public');
 
         Armada::create($data);
-        return redirect('/dashboard/armada');
+        return redirect('/dashboard/armada')->with('success', 'Data berhasil ditambahkan');
     }
 
     /**
@@ -111,7 +111,7 @@ class ArmadaController extends Controller
         $data['harga'] = str_replace('.', '', $data['harga']);
         $data['harga'] = str_replace(',', '.', $data['harga']);
         $armada->update($data);
-        return redirect('/dashboard/armada');
+        return redirect('/dashboard/armada')->with('info', 'Data berhasil diperbarui');
     }
 
     /**

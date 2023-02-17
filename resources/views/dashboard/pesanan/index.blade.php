@@ -3,8 +3,8 @@
 @section('content')
     <div class="container-fluid">
         <div class="card shadow mb-4">
-            <div class="card-header d-flex w-100 py-3">
-                <h3 class="m-0 font-weight-bold" style="color: #f8f9fc">
+            <div class="card-header d-flex w-100 py-3" style="background: #1d2c34;">
+                <h3 class="m-0 font-weight-bold" style="color: #db636f">
                     Data Pesanan:
                     @if ($status == 1)
                         Menunggu Pembayaran
@@ -18,6 +18,8 @@
                         Selesai
                     @elseif ($status == 6)
                         Batal
+                    @else
+                        Semua Pesanan
                     @endif
                 </h3>
             </div>
@@ -72,7 +74,7 @@
                                     <tbody>
                                         @foreach ($pesanans as $i => $pesanan)
                                             <tr>
-                                                <td>{{ $i + 1 }}</td>
+                                                <td>{{ $pesanans->firstItem() + $i }}</td>
                                                 <td>{{ $pesanan->nama_pemesan }}</td>
                                                 <td>{{ $pesanan->tgl_pesan }} s.d {{ $pesanan->tgl_akhir }}</td>
                                                 <td>{{ $pesanan->tgl_kembali }}</td>
@@ -120,7 +122,7 @@
                                                         class="btn btn-info">
                                                         <i class="fa fa-eye"></i>
                                                     </a>
-                                                    @if ($pesanan->status != 5 && $pesanan->status != 6)
+                                                    @if ($pesanan->status != 1 && $pesanan->status != 5 && $pesanan->status != 6)
                                                         <form action="/dashboard/pesanan/{{ $pesanan->id }}/update-status"
                                                             method="POST">
                                                             @csrf
@@ -143,7 +145,7 @@
                                                             @csrf
                                                             <button type="submit" class="btn btn-danger">
                                                                 <input type="hidden" name="status" value="3">
-                                                                Batal <i class="fas fa-chevron-right"></i>
+                                                                Batal <i class="fas fa-times"></i>
                                                             </button>
                                                         </form>
                                                     @endif
