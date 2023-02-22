@@ -33,7 +33,7 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
-                <div class="sidebar-brand-icon">
+                <div class="sidebar-brand-icon"> 
                     <img src="{{ asset('assets/images/admin.png') }}" alt="" style="width: 50px;">
                 </div>
                 <div class="sidebar-brand-text" style="font-size: 24px">CAREV</div>

@@ -69,42 +69,42 @@
                         </div> --}}
                         <div class="col-lg-3">
                             <div class="px-4" style="text-align:center" data-aos="fade-left">
-                             <div class="card shadow border-0 card-service">
-                                <div class="card-body text-center py-5">
-                                    <img src="assets/images/mudah.png" style="width: 100px">
-                                    <h5 class="text-center mt-5">Mudah & Fleksibel</h5>
+                                <div class="card shadow border-0 card-service">
+                                    <div class="card-body text-center py-5">
+                                        <img src="assets/images/mudah.png" style="width: 100px">
+                                        <h5 class="text-center mt-5">Mudah & Fleksibel</h5>
+                                    </div>
                                 </div>
-                            </div>
                             </div>
                         </div>
                         <div class="col-lg-3">
                             <div class="px-4" style="text-align:center" data-aos="fade-left">
-                            <div class="card shadow border-0 card-service">
-                                <div class="card-body text-center py-5">
-                                    <img src="assets/images/murah.png" style="width: 100px">
-                                    <h5 class="text-center mt-5">Harga Murah</h5>
+                                <div class="card shadow border-0 card-service">
+                                    <div class="card-body text-center py-5">
+                                        <img src="assets/images/murah.png" style="width: 100px">
+                                        <h5 class="text-center mt-5">Harga Murah</h5>
+                                    </div>
                                 </div>
-                            </div>
                             </div>
                         </div>
                         <div class="col-lg-3">
                             <div class="px-4" style="text-align:center" data-aos="fade-left">
-                             <div class="card shadow border-0 card-service">
-                                <div class="card-body text-center py-5">
-                                    <img src="assets/images/nyaman.png" style="width: 100px">
-                                    <h5 class="text-center mt-5">Nyaman</h5>
+                                <div class="card shadow border-0 card-service">
+                                    <div class="card-body text-center py-5">
+                                        <img src="assets/images/nyaman.png" style="width: 100px">
+                                        <h5 class="text-center mt-5">Nyaman</h5>
+                                    </div>
                                 </div>
-                            </div>
                             </div>
                         </div>
                         <div class="col-lg-3">
                             <div class="px-4" style="text-align:center" data-aos="fade-left">
-                             <div class="card shadow border-0 card-service">
-                                <div class="card-body text-center py-5">
-                                    <img src="assets/images/banyakpilihan.png" style="width: 100px">
-                                    <h5 class="text-center mt-5">Banyak Pilihan</h5>
+                                <div class="card shadow border-0 card-service">
+                                    <div class="card-body text-center py-5">
+                                        <img src="assets/images/banyakpilihan.png" style="width: 100px">
+                                        <h5 class="text-center mt-5">Banyak Pilihan</h5>
+                                    </div>
                                 </div>
-                            </div>
                             </div>
                         </div>
                     </div>
@@ -141,6 +141,10 @@
                 interval: 3000,
                 arrows: false
             }).mount();
+
+            $('.tgl_pesan').flatpickr({
+                minDate: 'today'
+            })
         });
     </script>
 @endsection
