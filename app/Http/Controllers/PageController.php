@@ -52,8 +52,8 @@ class PageController extends Controller
         })->with(['detail_pakets'])->get();
 
         $search_armadas = collect([]);
-        foreach ($armadas as $armada) {
-            foreach ($pakets as $paket) {
+        foreach ($pakets as $paket) {
+            foreach ($armadas as $armada) {
                 $armd = $armada->replicate();
                 $armd->id = $armada->id;
                 $armd->paket = $paket;

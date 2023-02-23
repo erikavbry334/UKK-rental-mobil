@@ -388,13 +388,13 @@ Header Style
 */
 
 .background-header {
-    background-color: #1d2c34 !important;
+    background-color: transparent;
     height: 70px !important;
     position: fixed !important;
     top: 0 !important;
     left: 0;
     right: 0;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15) !important;
+    box-shadow: unset !important;
     -webkit-transition: all 0.5s ease 0s;
     -moz-transition: all 0.5s ease 0s;
     -o-transition: all 0.5s ease 0s;
@@ -402,7 +402,6 @@ Header Style
 }
 
 .header-area {
-    background-color: #1d2c34;
     position: absolute;
     height: 70px;
     top: 0;
@@ -2327,9 +2326,10 @@ Reservation Page Style
 
 .slider-content {
     position: absolute;
-    left: 80px;
-    top: 40%;
-    transform: translateY(-50%);
+    left: 50%;
+    top: 50%;
+    width: 100%;
+    transform: translate(-50%, -50%);
 }
 
 .card-service {
@@ -2554,4 +2554,105 @@ body {
 .stepper.active * {
     color: #fff;
     border-color: #fff;
+}
+
+.text-dark {
+    color: #1d2c34 !important;
+}
+
+.text-red-brand {
+    color: #db636f;
+}
+
+.bg-dark-brand {
+    background-color: #1d2c34;
+}
+
+.paket-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.paket-card .card-body {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgb(2, 0, 23);
+    background: linear-gradient(
+        0deg,
+        rgba(2, 0, 23, 0.8939950980392157) 0%,
+        rgba(2, 1, 25, 0.1) 54%
+    );
+    transition: 0.4s;
+}
+
+.paket-card .card-body h2 {
+    position: absolute;
+    bottom: 1rem;
+}
+.paket-card .card-body .harga {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.5rem 1.75rem;
+    border-radius: 2rem;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    /* color: #ff863f; */
+}
+
+.paket-card .card-body ul {
+    color: #fff;
+    transition: 0.4s;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    padding: 2rem;
+    padding-left: 3rem;
+    transform: translateY(100%);
+    background: rgb(2, 0, 23);
+    background: linear-gradient(
+        0deg,
+        rgba(2, 0, 23, 0.8) 0%,
+        rgba(2, 1, 25, 0.8939950980392157) 54%
+    );
+}
+
+.paket-card:hover .card-body {
+    transform: translateY(-100%);
+}
+
+/* .paket-card h4::after {
+    display: block;
+    content: '';
+    width: 50%;
+    height: 2px;
+    background-color: #db636f;
+    border-radius: 4px;
+    margin-top: 1rem;
+} */
+
+.paket-card ul,
+.paket-card li {
+    list-style: initial;
+}
+
+.armada-card {
+    overflow: hidden;
+}
+
+.armada-card img {
+    transition: 2s;
+}
+
+.armada-card:hover img {
+    transform: scale(1.2);
 }

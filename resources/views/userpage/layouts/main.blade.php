@@ -66,7 +66,6 @@
     </script>
     <!-- Scripts -->
     @yield('script')
-
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     @if ($message = Session::get('success'))

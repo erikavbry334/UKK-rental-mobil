@@ -16,29 +16,37 @@
         </div>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-12">
-                    <div class="owl-weekly-offers owl-carousel">
-                        @foreach ($pakets as $paket)
-                            <div class="item">
-                                <div class="thumb">
-                                    <img src="{{ $paket->gambar }}" style="object-fit: cover;">
-                                    <div class="text" style="width: 240px; background: #1d2c34">
-                                        <h4 class="mb-2" style="color: #db636f">{{ $paket->nama_paket }}</h4>
-                                        <br>
-                                        <h6 class="text-white">Rp {{ number_format($paket->harga, 0, 0, '.') }}</h6>
-                                        <div class="line-dec"></div>
-                                        <ul class="mt-5">
-                                            <li class="text-white">Detail Paket:</li>
-                                            @foreach ($paket->detail_pakets as $detail)
-                                                <li>{{ $detail->nama }}</li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                </div>
+                @php
+                    $fmt = new NumberFormatter('id_ID', NumberFormatter::PADDING_POSITION);
+                @endphp
+                @foreach ($pakets as $paket)
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card border-0 paket-card">
+                            <img src="{{ $paket->gambar }}" class="card-img-top img-fluid rounded-3"
+                                style="height: 480px; object-fit: cover">
+                            <div class="card-body">
+                                <h5 class="text-red-brand harga">Rp {{ $fmt->format($paket->harga) }}</h5>
+                                <h2 class="text-white fw-bold">{{ $paket->nama_paket }}</h2>
+                                <ul>
+                                    @foreach ($paket->detail_pakets as $detail)
+                                        <li class="my-2 fs-5">{{ $detail->nama }}</li>
+                                    @endforeach
+                                </ul>
                             </div>
-                        @endforeach
+                            {{-- <div class="card-body">
+                                <div class="d-flex justify-content-between flex-wrap">
+                                    <h4 class="text-dark fw-bold">{{ $paket->nama_paket }}</h4>
+                                    <h2 class="text-red-brand fw-normal">Rp {{ $fmt->format($paket->harga) }}</h2>
+                                </div>
+                                <ul class="mt-4 ps-4">
+                                    @foreach ($paket->detail_pakets as $detail)
+                                        <li>{{ $detail->nama }}</li>
+                                    @endforeach
+                                </ul>
+                            </div> --}}
+                        </div>
                     </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
@@ -139,12 +147,23 @@
                 autoplay: true,
                 type: 'loop',
                 interval: 3000,
-                arrows: false
+                arrows: false,
+                pagination: false
             }).mount();
 
             $('.tgl_pesan').flatpickr({
                 minDate: 'today'
             })
         });
+    </script>
+
+    <script>
+        window.onscroll = function() {
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                document.querySelector('header.header-sticky').classList.add('bg-dark-brand');
+            } else {
+                document.querySelector('header.header-sticky').classList.remove('bg-dark-brand');
+            }
+        }
     </script>
 @endsection

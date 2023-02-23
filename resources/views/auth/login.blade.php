@@ -55,7 +55,7 @@
                                         </div>
                                         <div class="form-group">
                                         </div>
-                                        <button class="btn btn-user btn-block text-white" style="background: #1d2c34;">
+                                        <button class="btn btn-user btn-block text-white" style="background: #db636f">
                                             Login
                                         </button>
                                     </form>

@@ -29,17 +29,17 @@
                 </div>
             </div>
         </div>
-        <div class="container">
+        <div class="container-fluid px-5">
 
             <div class="row">
                 {{-- filter pencarian --}}
                 <div class="col-lg-3 col-md-12">
-                    <h3 style="background: #1d2c34;" class="text-white py-1 text-center">Filter Pencarian</h3>
+                    <h3 style="background: #1d2c34;" class="text-white py-3 text-center">Filter Pencarian</h3>
                     <div class="col-lg-12">
-                        <div id="reservation-form" role="search" class="p-2">
+                        <div role="search" style="background: #f9f9f9;">
                             <form action="/catalog" method="GET" class="row">
                                 <div class="col-lg-12 my-4">
-                                    <div class="row">
+                                    <div class="row px-3">
                                         <div class="col-2">
                                             <i class="fas fa-car-alt text-brand icon-circle" style="font-size: 24px"></i>
                                         </div>
@@ -57,20 +57,20 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-12 my-4">
-                                    <div class="row">
+                                    <div class="row px-3">
                                         <div class="col-2">
                                             <i class="fas fa-calendar-alt text-brand icon-circle"
                                                 style="font-size: 24px"></i>
                                         </div>
                                         <div class="col-10">
                                             <input type="date" name="tgl_pesan" id=""
-                                                value="{{ date('Y-m-d') }}" class="form-control mb-0"
+                                                value="{{ date('Y-m-d') }}" class="form-control mb-0 tgl_pesan"
                                                 value="{{ request()->tgl_pesan }}" required>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-12 my-4">
-                                    <div class="row">
+                                    <div class="row px-3">
                                         <div class="col-2">
                                             <i class="fas fa-newspaper text-brand icon-circle" style="font-size: 24px"></i>
                                         </div>
@@ -87,7 +87,7 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
-                                    <button type="submit" class="btn btn-primary btn-lg w-100 mt-4">Cari</button>
+                                    <button type="submit" class="btn btn-danger btn-lg w-100 mt-4 fs-4 fw-bold bg-dark-brand rounded-0">Cari</button>
                                 </div>
                             </form>
                         </div>
@@ -98,17 +98,19 @@
                     <div class="row">
                         <div class="col-lg-12">
                             @if (count($search_armadas))
-                                <div class="section-heading text-center">
+                                <div class="section-heading text-center mt-4 mb-0">
                                     <h2> Armada Yang Tersedia </h2>
                                 </div>
                         </div>
                         @foreach ($search_armadas as $armada)
                             <div class="col-lg-4 col-sm-6">
-                                <div class="item p-0">
-                                    <img src={{ $armada->gambar }} alt=""
-                                        style="object-fit: cover; aspect-ratio: 16/9; width: 100%">
-                                    <div class="content px-4">
-                                        <h4 class="border-0 mb-0 text-center" style="font-size: 30px ">
+                                <div class="item p-0 border shadow-sm armada-card" style="overflow: hidden">
+                                    <div class="d-flex justify-content-center align-items-center bg-white" style="object-fit: contain; aspect-ratio: 1/1; width: 100%" class="bg-white">
+                                        <img src={{ $armada->gambar }} alt=""
+                                            style="object-fit: contain; aspect-ratio: 1/1; width: 100%">
+                                    </div>
+                                    <div class="content px-4 py-2">
+                                        <h4 class="border-0 mb-0 pb-1 text-center" style="font-size: 30px ">
                                             {{ $armada->nama_armada }}</h4>
                                         <h4 class="border-0 mb-0 text-center text-brand" style="font-size: 22px">Rp
                                             {{ number_format($armada->harga, 0, 0, '.') }}</h4>
@@ -135,4 +137,15 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            $('.tgl_pesan').flatpickr({
+                minDate: 'today'
+            })
+        });
+    </script>
 @endsection

@@ -1,4 +1,4 @@
-<header class="header-area header-sticky background-header">
+<header class="header-area header-sticky background-header {{ !Request::is('/') ? 'bg-dark-brand' : '' }}">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -10,22 +10,26 @@
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li><a href="/" class="{{ ($title === 'Home') ? 'active' : ''}}">Beranda</a></li>
+                        <li><a href="/" class="{{ $title === 'Home' ? 'active' : '' }}">Beranda</a>
+                        </li>
                         {{-- <li><a href="/catalog" class="{{($title === 'Catalog') ? 'active' : ''}}">Catalog</a></li> --}}
-                        <li><a href="/syarat-ketentuan" class="{{($title === 'syaratketentuan') ? 'active' : ''}}">Tentang</a></li>
-                        <li><a href="/kontakkami" class="{{($title === 'Kontak Kami') ? 'active' : ''}}">Kontak Kami</a></li>
+                        <li><a href="/syarat-ketentuan"
+                                class="{{ $title === 'syaratketentuan' ? 'active' : '' }}">Tentang</a></li>
+                        <li><a href="/kontakkami" class="{{ $title === 'Kontak Kami' ? 'active' : '' }}">Kontak
+                                Kami</a></li>
                         @guest
-                        <li><a href="/login" class="{{($title === 'Login') ? 'active' : ''}}">Login</a></li>
+                            <li><a href="/login" class="{{ $title === 'Login' ? 'active' : '' }} btn btn-danger" style="background: #db636f">Login</a></li>
                         @endguest
                         @auth
-                        <li>
-                            <a href="/profile" class="{{($title === 'profile')}}">
-                                <img src="{{ asset(auth()->user()->avatar_url) }}" style="border-radius: 99999px; width: 32px; height: 32px; object-fit: cover">
-                            </a>
-                        </li>
+                            <li>
+                                <a href="/profile" class="{{ $title === 'profile' }}">
+                                    <img src="{{ asset(auth()->user()->avatar_url) }}"
+                                        style="border-radius: 99999px; width: 32px; height: 32px; object-fit: cover">
+                                </a>
+                            </li>
                         @endauth
-                        
-                    </ul>   
+
+                    </ul>
                     <a class='menu-trigger'>
                         <span>Menu</span>
                     </a>
