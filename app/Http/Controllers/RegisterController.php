@@ -14,10 +14,15 @@ class RegisterController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->all();
+        $data = $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string',
+        ]);
+        
         $data['password'] = bcrypt($data['password']);
         $user = User::create($data);
 
-        return redirect('/login');
+        return redirect('/login')->with('success', 'Registrasi akun berhasil');
     }
 }

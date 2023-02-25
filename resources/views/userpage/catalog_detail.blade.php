@@ -1,7 +1,15 @@
 @extends('userpage.layouts.main', ['title' => 'Catalog - ' . $armada->nama_armada])
 
+@section('style')
+    <style>
+        ul, li {
+            list-style-type: disc !important;
+            margin-left: 1rem
+        }
+    </style>
+@endsection
 @section('content')
-    <div class="reservation-form">
+    <div class="reservation-form amazing-deals">
         <div class="row mb-4">
             <div class="col-md-4 px-0">
                 <div class="stepper">
@@ -101,14 +109,22 @@
                                 <div>{{ $paket->nama_paket }}</div>
                                 <h6>Rp {{ number_format($paket->harga + $armada->harga, 0, 0, '.') }}</h6>
                                 <div class="line-dec m-3"></div>
+                                <h6>Detail Paket:</h6>
                                 <ul style="list-style: disc;">
-                                    <li>Detail Paket:</li>
                                     @foreach ($paket->detail_pakets as $detail)
                                         <li style="list-style: disc; margin-left: 1rem">{{ $detail->nama }}</li>
                                     @endforeach
                                 </ul>
                             </div>
                         </div>
+                    </div>
+                    <div class="mt-4">
+                        <h5 class="mb-2">Catatan:</h5>
+                        <ul>
+                            <li>Wilayah penggunaan (Pulau Jawa)</li>
+                            <li>Syarat & Ketentuan dapat berubah sewaktu-waktu apabila diperlukan</li>
+                            <li>Mobil yang disewa diharuskan diambil di kantor kami serta memberikan syarat-syarat yang sudah ditentukan</li>
+                        </ul>
                     </div>
                 </div>
             </form>

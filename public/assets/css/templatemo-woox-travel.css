@@ -2626,6 +2626,16 @@ body {
     );
 }
 
+.paket-card .card-body ul li.syarat {
+    position: absolute;
+    bottom: 1rem;
+    list-style: none;
+}
+
+.paket-card .card-body ul li.syarat a {
+    color: #fff;
+}
+
 .paket-card:hover .card-body {
     transform: translateY(-100%);
 }

@@ -17,6 +17,7 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <link href="{{ asset('assets/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
 </head>
 
@@ -45,11 +46,11 @@
                                         @csrf
                                         <div class="form-group">
                                             <input type="email" name="email" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
+                                                id="exampleInputEmail" aria-describedby="emailHelp" autocomplete="off"
                                                 placeholder=" Email Address...">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" name="password"
+                                            <input type="password" name="password" autocomplete="off"
                                                 class="form-control form-control-user" id="exampleInputPassword"
                                                 placeholder="Password">
                                         </div>
@@ -77,5 +78,17 @@
     </div>
 
 </body>
+
+<script src="{{ asset('assets/vendor/jquery/jquery.min.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+@if ($message = Session::get('success'))
+    <script>
+        toastr.options = {
+            "positionClass": "toast-top-center",
+        }
+        toastr.success('{{ $message }}')
+    </script>
+@endif
+
 
 </html>

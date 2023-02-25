@@ -16,9 +16,19 @@ class PaketSeeder extends Seeder
     public function run()
     {
         Paket::create([
-            'nama_paket' => 'Paket Keluarga',
-            'harga' => 100000,
-            'gambar' => 'storage/paket/paket keluarga.png'
+            'nama_paket' => 'Paket Regular',
+            'harga' => 200000,
+            'gambar' => 'storage/paket/paket-regular.png'
         ]);
+        Paket::create([
+            'nama_paket' => 'Paket Premium',
+            'harga' => 350000,
+            'gambar' => 'storage/paket/paket-premium.png'
+        ]);
+        // Paket::create([
+        //     'nama_paket' => 'Paket Deluxe',
+        //     'harga' => 450000,
+        //     'gambar' => 'storage/paket/paket-deluxe.png'
+        // ]);
     }
 }

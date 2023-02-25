@@ -12,4 +12,8 @@ class Paket extends Model
     public function detail_pakets() {
         return $this->hasMany(DetailPaket::class);
     }
+
+    public function syarat_ketentuans() {
+        return $this->hasMany(SyaratKetentuan::class);
+    }
 }

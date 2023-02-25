@@ -1,4 +1,4 @@
-<header class="header-area header-sticky background-header {{ !Request::is('/') ? 'bg-dark-brand' : '' }}">
+<header class="header-area header-sticky background-header {{ Request::is('catalog', 'catalog/*', 'profile', 'checkout', 'pesanan', 'pesanan/*') ? 'bg-dark-brand' : '' }}">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -14,11 +14,12 @@
                         </li>
                         {{-- <li><a href="/catalog" class="{{($title === 'Catalog') ? 'active' : ''}}">Catalog</a></li> --}}
                         <li><a href="/syarat-ketentuan"
-                                class="{{ $title === 'syaratketentuan' ? 'active' : '' }}">Tentang</a></li>
+                                class="{{ $title === 'syaratketentuan' ? 'active' : '' }}">syarat dan ketentuan</a></li>
                         <li><a href="/kontakkami" class="{{ $title === 'Kontak Kami' ? 'active' : '' }}">Kontak
                                 Kami</a></li>
                         @guest
-                            <li><a href="/login" class="{{ $title === 'Login' ? 'active' : '' }} btn btn-danger" style="background: #db636f">Login</a></li>
+                            <li><a href="/login" class="{{ $title === 'Login' ? 'active' : '' }} btn btn-danger"
+                                    style="background: #db636f">Login</a></li>
                         @endguest
                         @auth
                             <li>

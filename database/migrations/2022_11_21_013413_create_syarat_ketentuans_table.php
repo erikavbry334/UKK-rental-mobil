@@ -16,8 +16,7 @@ return new class extends Migration
         Schema::create('syarat_ketentuans', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('syarat');
-            $table->string('ketentuan');
+            $table->text('isi');
         });
     }
 

@@ -43,18 +43,23 @@
                                     </div>
                                     <form method="POST" action="/register">
                                         @csrf
+                                        @error('email')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                         <div class="form-group">
                                             <input type="text" name="name" class="form-control form-control-user"
-                                                id="exampleInputName" aria-describedby="emailHelp"
+                                                id="exampleInputName" aria-describedby="emailHelp" autocomplete="off"
                                                 placeholder="Nama....">
                                         </div>
                                         <div class="form-group">
                                             <input type="email" name="email" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
+                                                id="exampleInputEmail" aria-describedby="emailHelp" autocomplete="off"
                                                 placeholder=" Email Address...">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" name="password"
+                                            <input type="password" name="password" autocomplete="off"
                                                 class="form-control form-control-user" id="exampleInputPassword"
                                                 placeholder="Password">
                                         </div>

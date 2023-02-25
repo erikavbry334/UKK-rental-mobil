@@ -113,9 +113,9 @@ class PageController extends Controller
     }
     
     public function syaratKetentuan() {
-      $syarats = SyaratKetentuan::get();
+      $syarat = SyaratKetentuan::first();
     
-      return view("userpage.syarat-ketentuan", compact("syarats"));
+      return view("userpage.syarat-ketentuan", compact("syarat"));
     }
 
 }    

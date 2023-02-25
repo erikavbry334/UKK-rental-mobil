@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <p>Copyright © 2022 <a href="#">Erika RentCar</a> Company. All rights reserved.</p>
+                <p>Copyright © 2022 <a href="#">CAREVRentCar</a> Company. All rights reserved.</p>
             </div>
         </div>
     </div>

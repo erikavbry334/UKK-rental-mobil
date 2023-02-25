@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
+    @yield('style')
 </head>
 
 <body style="padding-bottom: 110px; position: relative; min-height: 100vh">
@@ -74,6 +75,18 @@
                 "positionClass": "toast-top-center",
             }
             toastr.success('{{ $message }}')
+        </script>
+    @endif
+
+    @if (!Request::is('catalog', 'catalog/*', 'profile', 'checkout', 'pesanan', 'pesanan/*'))
+        <script>
+            window.onscroll = function() {
+                if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                    document.querySelector('header.header-sticky').classList.add('bg-dark-brand');
+                } else {
+                    document.querySelector('header.header-sticky').classList.remove('bg-dark-brand');
+                }
+            }
         </script>
     @endif
 </body>

@@ -31,6 +31,9 @@
                                     @foreach ($paket->detail_pakets as $detail)
                                         <li class="my-2 fs-5">{{ $detail->nama }}</li>
                                     @endforeach
+                                    <li class="syarat">
+                                        <a href="syarat-ketentuan">Syarat & Ketentuan <i class="fa fa-chevron-right"></i></a>
+                                    </li>
                                 </ul>
                             </div>
                             {{-- <div class="card-body">
@@ -155,15 +158,5 @@
                 minDate: 'today'
             })
         });
-    </script>
-
-    <script>
-        window.onscroll = function() {
-            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-                document.querySelector('header.header-sticky').classList.add('bg-dark-brand');
-            } else {
-                document.querySelector('header.header-sticky').classList.remove('bg-dark-brand');
-            }
-        }
     </script>
 @endsection

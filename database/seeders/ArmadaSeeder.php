@@ -17,9 +17,21 @@ class ArmadaSeeder extends Seeder
     {
         Armada::create([
             'nama_armada' => 'Avanza',
-            'no_plat' => 'L 2412 XL',
-            'harga' => 200000,
-            'gambar' => 'storage/armada/DAoxekNj9GysCJ0kPK8obeEiFNMuAgsbxMzArO5q.jpg',
+            'no_plat' => 'L 1980 XL',
+            'harga' => 250000,
+            'gambar' => 'storage/armada/avanza.jpg',
         ]);
+        Armada::create([
+            'nama_armada' => 'Xenia',
+            'no_plat' => 'L 572 PO',
+            'harga' => 300000,
+            'gambar' => 'storage/armada/xenia.jpg',
+        ]);
+        // Armada::create([
+        //     'nama_armada' => 'Fortuner',
+        //     'no_plat' => 'L 873 ME',
+        //     'harga' => 450000,
+        //     'gambar' => 'storage/armada/fortuner.jpg',
+        // ]);
     }
 }
