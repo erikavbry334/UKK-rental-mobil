@@ -5,7 +5,6 @@
         <div class="card shadow mb-4">
             <div class="card-header d-flex w-100 py-3">
                 <h3 class="m-0 font-weight-bold text-primary">
-
                 </h3>
             </div>
             <div class="card-body">
@@ -13,7 +12,7 @@
                     {{-- data penyewa --}}
                     <div class="col-lg-7 col-md-12 ">
                         <h4 style="background: #1d2c34; color: #db636f" class="py-2 text-center mb-0">Data Pemesan</h4>
-                        <div id="reservation-form" role="search" class="p-2" style="border: 1px solid #f8f9fc;">
+                        <div id="reservation-form" role="search" class="p-4" style="border: 3px solid #f8f9fc;">
                             <div class="row ">
                                 <label for="" class="col-sm-3 form-label">nama lengkap</label>
                                 <div class="col-sm-9">
@@ -84,7 +83,7 @@
                                         {{ number_format($pesanan->paket->harga + $pesanan->armada->harga, 0, 0, '.') }}
                                     </h5>
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-lg-12">
                                     <ul>
                                         @foreach ($pesanan->paket->detail_pakets as $detail)
                                             <li>{{ $detail->nama }}</li>

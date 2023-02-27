@@ -3,8 +3,8 @@
 @section('content')
     <div class="container-fluid">
         <div class="card shadow mb-4">
-            <div class="card-header d-flex w-100 py-3">
-                <h3 class="m-0 font-weight-bold" style="color:  #f8f9fc">Laporan</h3>
+            <div class="card-header d-flex w-100 py-3" style="background: #1d2c34; ">
+                <h3 class="m-0 font-weight-bold" style="color: #db636f">Laporan</h3>
             </div>
             <div class="card-body">
                 <form action="" method="POST" class="row">

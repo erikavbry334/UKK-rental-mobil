@@ -1,14 +1,20 @@
 @extends('userpage.layouts.main', ['title' => 'detail pesanan'])
 
-@section('content')
+@section('style')
+ <style>
+        ul, li {
+            list-style-type: disc !important;
+            margin-left: 1rem
+        }
+    </style>
     <div class="reservation-form">
         <div class="container">
             <div class="row">
                 {{-- data penyewa --}}
-                <div class="col-lg-7 col-md-12 ">
+                <div class="col-lg-8 col-md-12 ">
                     <h4 style="background: #1d2c34;" class="text-white py-2 text-center">Data Pemesan</h4>
-                    <div id="reservation-form" role="search" class="p-2">
-                        <div class="row ">
+                    <div id="reservation-form" role="search" class="p-4">
+                        <div class="row">
                             <label for="" class="col-sm-3 form-label">nama lengkap</label>
                             <div class="col-sm-9">
                                 <input type="text" readonly value="{{ $pesanan['nama_pemesan'] }}">
@@ -64,32 +70,42 @@
                     </div>
                 </div>
                 {{-- detail pesanan --}}
-                <div class="col-lg-5 col-md-12">
-                    <form id="reservation-form" name="gs" method="submit" role="search" class="p-2">
+                <div class="col-lg-4 col-md-12">
+                    <form id="reservation-form" name="gs" method="submit" role="search" class="p-0">
+                        <h4 style="background: #1d2c34;" class="text-white py-2 text-center mb-2">Detail Pesanan</h4>
                         <div class="row">
                             <div class="col-lg-12">
-                                <h4>Detail Pesanan</em></h4>
+                                <img src="{{ asset($pesanan->armada->gambar) }}" class="img-fluid" style="width: 100%; height: 250px; object-fit: contain">
                             </div>
-                            <div class="col-lg-5">
-                                <img src="{{ asset($pesanan->armada->gambar) }}" class="img-fluid" alt="">
-                            </div>
-                            <div class="col-lg-3">
-                                <h4 class="text-start mb-1">{{ $pesanan->armada->nama_armada }}</h4>
-                                <h6>{{ $pesanan->paket->nama_paket }}</h6>
-                                <div class="line-dec">
-                                    <h5 class="text-primary">Rp
-                                        {{ number_format($pesanan->paket->harga + $pesanan->armada->harga, 0, 0, '.') }}
-                                    </h5>
+                            <div class="col-lg-12">
+                                <div class="px-4">
+                                    <h4 class="text-start mb-1">{{ $pesanan->armada->nama_armada }}</h4>
+                                    <h6>{{ $pesanan->paket->nama_paket }}</h6>
+                                    <div class="line-dec">
+                                        <h5 class="text-primary">Rp
+                                            {{ number_format($pesanan->paket->harga + $pesanan->armada->harga, 0, 0, '.') }}
+                                        </h5>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4">
-                                <ul>
+                            <div class="col-lg-12">
+                                <ul class="p-4">
                                     @foreach ($pesanan->paket->detail_pakets as $detail)
                                         <li>{{ $detail->nama }}</li>
                                     @endforeach
                                 </ul>
+                            </div>
+                        </div>
                     </form>
                 </div>
+                 <div class="mt-4">
+                        <h5 class="mb-2">Catatan:</h5>
+                        <ul>
+                            <li>Wilayah penggunaan (Pulau Jawa)</li>
+                            <li>Syarat & Ketentuan dapat berubah sewaktu-waktu apabila diperlukan</li>
+                            <li>Mobil yang disewa diharuskan diambil di kantor kami serta memberikan syarat-syarat yang sudah ditentukan</li>
+                        </ul>
+                    </div>
             </div>
         </div>
     </div>

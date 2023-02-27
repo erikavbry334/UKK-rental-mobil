@@ -50,8 +50,11 @@ class PesananController extends Controller
             'lama_sewa' => 'required|numeric',
             'catatan' => 'nullable',
             'check' => 'required',
-
         ]);
+
+        if (Carbon::parse($data['tgl_pesan'])->endOfDay()->isPast()) {
+            return back()->with('error', 'Minimal tanggal pemesanan adalah hari ini');
+        }
 
         $data['tgl_akhir'] = Carbon::parse($data['tgl_pesan'])->addDays($data['lama_sewa']);
         
@@ -115,7 +118,7 @@ class PesananController extends Controller
         }
         $pesanan->update($data);
 
-        if ($data['status'] == 4 || $data['status'] == 6) {
+        if ($data['status'] == 4 || $data['status'] == 5 || $data['status'] == 6) {
             Armada::where('id', $pesanan->armada_id)->update(['status' => 'Tersedia']);
         }
 

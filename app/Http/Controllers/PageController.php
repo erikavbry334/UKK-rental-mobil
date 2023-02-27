@@ -13,7 +13,7 @@ use Illuminate\Support\Carbon;
 class PageController extends Controller
 {
     public function __construct() {
-        $armadas = Armada::get();
+        $armadas = Armada::where('status','Tersedia')->get();
         $pakets = Paket::with(['detail_pakets'])->get();
         View::share('armadas', $armadas);
         View::share('pakets', $pakets);
@@ -88,6 +88,10 @@ class PageController extends Controller
             'catatan' => 'nullable',
             'check' => 'required'
         ]);
+
+        if (Carbon::parse($data['tgl_pesan'])->endOfDay()->isPast()) {
+            return back()->with('error', 'Minimal tanggal pemesanan adalah hari ini');
+        }
 
         $armada = Armada::find($request->id);
         $paket = Paket::with(['detail_pakets'])->find(request()->paket_id);

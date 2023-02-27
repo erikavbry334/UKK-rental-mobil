@@ -7,7 +7,7 @@
             margin-bottom: 1rem;
         }
         
-        ul, li {
+        .card ul, .card li {
             list-style-type: disc !important;
             margin-left: 1.5rem
         }

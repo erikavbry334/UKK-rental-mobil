@@ -61,14 +61,14 @@
                                     <thead>
                                         <tr role="row">
                                             <th>No</th>
-                                            <th>nama pemesan</th>
-                                            <th>tanggal</th>
-                                            <th>tanggal kembali</th>
-                                            <th>armada</th>
-                                            <th>paket</th>
-                                            <th>total harga</th>
+                                            <th>Nama pemesan</th>
+                                            <th>Tanggal</th>
+                                            <th>Tanggal kembali</th>
+                                            <th>Armada</th>
+                                            <th>Paket</th>
+                                            <th>Total harga</th>
                                             <th>Status</th>
-                                            <th>aksi</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>

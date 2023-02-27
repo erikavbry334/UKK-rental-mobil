@@ -96,10 +96,10 @@
                             <thead>
                                 <tr role="row">
                                     <th>No</th>
-                                    <th>nama pemesan</th>
-                                    <th>tanggal</th>
-                                    <th>armada</th>
-                                    <th style="white-space: nowrap">total harga</th>
+                                    <th>Nama pemesan</th>
+                                    <th>Tanggal</th>
+                                    <th>Armada</th>
+                                    <th style="white-space: nowrap">Total harga</th>
                                     <th>Status</th>
                                 </tr>
                             </thead>

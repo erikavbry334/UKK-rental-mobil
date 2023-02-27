@@ -46,6 +46,9 @@
                         @csrf
                         <input type="hidden" name="id" value="{{ $armada->id }}">
                         <input type="hidden" name="paket_id" value="{{ $paket->id }}">
+                        @if ($message = Session::get('error'))
+                            <h6 class="text-danger fw-normal mb-4">*) {{ $message }}</h6>
+                        @endif
                         <div class="row">
                             <div class="col-lg-12">
                                 <fieldset>
@@ -102,7 +105,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <img src="{{ asset($armada->gambar) }}"
-                                    style="width: 100%; height: 250px; object-fit: cover">
+                                    style="width: 100%; height: 250px; object-fit: contain">
                             </div>
                             <div class="col-lg-12">
                                 <h4 class="text-start mb-2">{{ $armada->nama_armada }}</h4>

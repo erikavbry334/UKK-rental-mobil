@@ -45,9 +45,9 @@
                                     <thead>
                                         <tr role="row">
                                             <th>No</th>
-                                            <th>Name</th>
+                                            <th>Nama</th>
                                             <th>Harga</th>
-                                            <th>gambar</th>
+                                            <th>Gambar</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>

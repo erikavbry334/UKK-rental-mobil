@@ -45,8 +45,8 @@
                                     <thead>
                                         <tr role="row">
                                             <th>No</th>
-                                            <th>Name</th>
-                                            <th>no plat</th>
+                                            <th>Nama</th>
+                                            <th>No plat</th>
                                             <th>Harga</th>
                                             <th>Gambar</th>
                                             <th>Status</th>

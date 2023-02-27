@@ -29,7 +29,7 @@ class PaymentCallbackController extends Controller
                 Pembayaran::where('pesanan_id', $order->id)->update([
                     'status' => 3,
                 ]);
-                Pesanan::where('id', $order->id)->update(['status' => '5']);
+                Pesanan::where('id', $order->id)->update(['status' => '6']);
                 Armada::where('id', $order->pesanan_id)->update(['status', 'Tersedia']);
             }
 
@@ -37,7 +37,7 @@ class PaymentCallbackController extends Controller
                 Pembayaran::where('pesanan_id', $order->id)->update([
                     'status' => 3,
                 ]);
-                Pesanan::where('id', $order->id)->update(['status' => '5']);
+                Pesanan::where('id', $order->id)->update(['status' => '6']);
                 Armada::where('id', $order->pesanan_id)->update(['status', 'Tersedia']);
             }
 

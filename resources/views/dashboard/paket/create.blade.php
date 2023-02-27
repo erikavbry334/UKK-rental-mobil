@@ -29,7 +29,7 @@
 
             </div>
             <div class="card-footer">
-                <button type="submit" class="btn btn-primary ml-auto">submit</button>
+                <button type="submit" class="btn btn-primary ml-auto">Simpan</button>
             </div>
         </form>
     @endsection

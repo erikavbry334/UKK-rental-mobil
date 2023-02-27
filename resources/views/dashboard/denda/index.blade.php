@@ -45,9 +45,9 @@
                                     <thead>
                                         <tr role="row">
                                             <th>No</th>
-                                            <th>nama pemesan</th>
+                                            <th>Nama pemesan</th>
                                             <th>Telat berapa hari</th>
-                                            <th>total denda</th>
+                                            <th>Total denda</th>
                                             <th>Status</th>
                                             <th>Aksi</th>
                                         </tr>

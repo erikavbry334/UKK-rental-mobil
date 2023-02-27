@@ -50,7 +50,7 @@
             </div>
         </div>
         <div class="slider position-relative" style="z-index: 10">
-            <div class="container bg-white p-0 shadow" style="margin-top: -5rem; transform: translateY(30%)">
+            <div class="container bg-white p-0  shadow" style="margin-top: -5rem; transform: translateY(30%)">
                 <form action="/catalog" method="GET" class="row w-100 m-0">
                     <div class="col-lg-4 col-sm-6 col-12 p-0 d-flex align-items-center pt-4"
                         style="box-shadow: 1px 0 0 0 #acacb3">
