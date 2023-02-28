@@ -71,7 +71,7 @@
                                 </div>
                                 <label for="" class="col-sm-3 form-label">telat berapa hari</label>
                                 <div class="col-lg-9">
-                                    <input  type="text_area" readonly value="{{$pesanan->denda->telat_berapa_hari}} hari">
+                                    <input  type="text_area" readonly value="{{$pesanan->telat_berapa_hari}} hari">
                                 </div>
                             @endif
                         </div>
