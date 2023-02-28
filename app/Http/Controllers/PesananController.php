@@ -52,8 +52,12 @@ class PesananController extends Controller
             'check' => 'required',
         ]);
 
-        if (Carbon::parse($data['tgl_pesan'])->endOfDay()->isPast()) {
-            return back()->with('error', 'Minimal tanggal pemesanan adalah hari ini');
+        $pesanans = Pesanan::where('status', '!=', '6')->where('status', '!=', '5')->where('status', '!=', '4')->where('armada_id', $request->id)->whereDate('tgl_pesan', '<=', $data['tgl_pesan'])->whereDate('tgl_akhir', '>=', $data['tgl_pesan'])->get();
+        if (count($pesanans)) {
+            return back()->with('error', 'Pemesanan untuk tanggal ' . $data['tgl_pesan'] . ' sudah ada');
+        }
+        if (Carbon::parse($data['tgl_pesan'])->subDay()->endOfDay()->isPast()) {
+            return back()->with('error', 'Minimal tanggal pemesanan adalah besok');
         }
 
         $data['tgl_akhir'] = Carbon::parse($data['tgl_pesan'])->addDays($data['lama_sewa']);

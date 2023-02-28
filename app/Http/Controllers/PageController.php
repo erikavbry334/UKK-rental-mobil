@@ -30,22 +30,18 @@ class PageController extends Controller
 
         $armadas = Armada::when(isset(request()->armada_id) ?? false, function ($q) {
             $q->where('id', request()->armada_id);
-        })->where('status', 'Tersedia')->get();
+        })->get();
 
-        // $armadas = $armadas->filter(function ($armada) {
-        //     $is_available = true;
-        //     $pesanans = Pesanan::where('armada_id', $armada->id)->get();
-        //     foreach ($pesanans as $pesanan) {
-        //         $tgl_kembali = Carbon::parse($pesanan->tgl_kembali);
-        //         $tgl_pesan_cari = Carbon::parse(request()->tgl_pesan);
+        $armadas = $armadas->filter(function ($armada) {
+            $is_available = true;
+            $pesanans = Pesanan::where('armada_id', $armada->id)->get();
+            foreach ($pesanans as $pesanan) {
+                $pesanan = Pesanan::where('status', '!=', '6')->where('status', '!=', '5')->where('status', '!=', '4')->where('armada_id', $armada->id)->whereDate('tgl_pesan', '<=', request()->tgl_pesan)->get();
+                if ($pesanan->count()) $is_available = false;
+            }
 
-        //         if (!isset($pesanan->tgl_kembali)) $is_available = false;
-
-        //         if ($tgl_pesan_cari < $tgl_kembali) $is_available = false;
-        //     }
-
-        //     return $is_available;
-        // });
+            return $is_available;
+        });
 
         $pakets = Paket::when(isset(request()->paket_id) ?? false, function ($q) {
             $q->where('id', request()->paket_id);
@@ -89,7 +85,11 @@ class PageController extends Controller
             'check' => 'required'
         ]);
 
-        if (Carbon::parse($data['tgl_pesan'])->endOfDay()->isPast()) {
+        $pesanans = Pesanan::where('status', '!=', '6')->where('status', '!=', '5')->where('status', '!=', '4')->where('armada_id', $request->id)->whereDate('tgl_pesan', '<=', $data['tgl_pesan'])->whereDate('tgl_akhir', '>=', $data['tgl_pesan'])->get();
+        if (count($pesanans)) {
+            return back()->with('error', 'Pemesanan untuk tanggal ' . $data['tgl_pesan'] . ' sudah ada');
+        }
+        if (Carbon::parse($data['tgl_pesan'])->subDay()->endOfDay()->isPast()) {
             return back()->with('error', 'Minimal tanggal pemesanan adalah hari ini');
         }
 

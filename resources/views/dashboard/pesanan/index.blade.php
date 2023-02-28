@@ -144,7 +144,7 @@
                                                             method="POST">
                                                             @csrf
                                                             <button type="submit" class="btn btn-danger">
-                                                                <input type="hidden" name="status" value="3">
+                                                                <input type="hidden" name="status" value="6">
                                                                 Batal <i class="fas fa-times"></i>
                                                             </button>
                                                         </form>

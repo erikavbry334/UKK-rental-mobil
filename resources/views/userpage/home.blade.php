@@ -154,8 +154,18 @@
                 pagination: false
             }).mount();
 
+            let date = new Date().getDate() + 1;
+            if (date < 10) {
+                date = `0${date}`;
+            }
+            let month = new Date().getMonth() + 1;
+            if (month < 10) {
+                month = `0${month}`;
+            }
+            let year = new Date().getFullYear();
             $('.tgl_pesan').flatpickr({
-                minDate: 'today'
+                minDate: `${year}-${month}-${date}`,
+                defaultDate: `${year}-${month}-${date}`
             })
         });
     </script>
