@@ -26,7 +26,7 @@ class PesananController extends Controller
         })->paginate($per);
         $pesanans->map(function ($p) {
             $is_denda = false;
-            if (Carbon::parse($p->tgl_akhir)->isPast() && ($p->status == 3 || $p->status == 4)) {
+           if (Carbon::parse($p->tgl_akhir)->endOfDay()->isPast() && $p->status == 3) {
                 $is_denda = true;
             }
             $p->is_denda = $is_denda;
