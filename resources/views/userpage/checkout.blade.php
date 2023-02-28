@@ -1,8 +1,9 @@
 @extends('userpage.layouts.main', ['title' => 'Catalog'])
 
 @section('style')
- <style>
-        ul, li {
+    <style>
+        ul,
+        li {
             list-style-type: disc !important;
             margin-left: 1rem
         }
@@ -68,7 +69,7 @@
                                 <div class="col-lg-9">
                                     <input type="text_area" readonly value="{{ $data['catatan'] }}" name="catatan">
                                 </div>
-    
+
                                 <input type="hidden" name="armada_id" value="{{ $armada->id }}">
                                 <input type="hidden" name="paket_id" value="{{ $paket->id }}">
                                 <input type="hidden" name="check" value="{{ $data['check'] }}">
@@ -88,32 +89,33 @@
                                     <img src="{{ asset($armada->gambar) }}"
                                         style="width: 100%; height: 250px; object-fit: contain">
                                 </div>
-                                <div class="col-lg-12 mt-4">
+                                <div class="col-lg-12">
                                     <h4 class="text-start mb-2">{{ $armada->nama_armada }}</h4>
                                     <div>{{ $paket->nama_paket }}</div>
-                                    <h6>Rp
-                                        {{ number_format($paket->harga + $armada->harga * $data['lama_sewa'], 0, 0, '.') }}
-                                    </h6>
+                                    <h6>Rp {{ number_format($paket->harga + $armada->harga, 0, 0, '.') }}</h6>
                                     <div class="line-dec m-3"></div>
-                                    <ul>
-                                        <li>Detail Paket:</li>
-                                        @foreach ($paket->detail_pakets as $detail)
-                                            <li>{{ $detail->nama }}</li>
-                                        @endforeach
-                                    </ul>
+                                    <div>
+                                        <h6>Detail Paket:</h6>
+                                        <ul style="list-style: disc;">
+                                            @foreach ($paket->detail_pakets as $detail)
+                                                <li style="list-style: disc; margin-left: 1rem">{{ $detail->nama }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
-                            <button id="bayar" class="mt-4" type="submit">Bayar Sekarang</button>
+                            <button id="bayar" class="mt-3" type="submit">Bayar Sekarang</button>
                         </div>
                     </div>
-                    <div class="mt-4">
-                    <h5 class="mb-2">Catatan:</h5>
+                </div>
+                <div>
+                    <h5>Catatan:</h5>
                     <ul>
                         <li>Wilayah penggunaan (Pulau Jawa)</li>
                         <li>Syarat & Ketentuan dapat berubah sewaktu-waktu apabila diperlukan</li>
-                        <li>Mobil yang disewa diharuskan diambil di kantor kami serta memberikan syarat-syarat yang sudah ditentukan</li>
+                        <li>Mobil yang disewa diharuskan diambil di kantor kami, serta memberikan syarat-syarat yang
+                            sudah ditentukan</li>
                     </ul>
-                </div>
                 </div>
             </div>
         </form>

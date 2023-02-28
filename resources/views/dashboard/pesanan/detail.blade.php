@@ -62,6 +62,16 @@
                                         </td>
                                     @endif
                                 </div>
+                                @if (isset($pesanan->denda))
+                                    <label for="" class="col-sm-3 form-label">Telat berapa hari</label>
+                                    <div class="col-sm-9">
+                                        : {{ $pesanan->denda->telat_berapa_hari }}
+                                    </div>
+                                    <label for="" class="col-sm-3 form-label">Nominal Denda</label>
+                                    <div class="col-sm-9">
+                                        : {{ $pesanan->denda->total_denda }}
+                                    </div>
+                                @endif
                             </div>
                             </form>
                         </div>
@@ -90,7 +100,7 @@
                                         @endforeach
                                     </ul>
 
-                                    <button class="btn btn-danger cetak">cetak</button>
+                                    <button class="btn btn-danger cetak">cetak PDF</button>
                                 </div>
                             </div>
                         </div>

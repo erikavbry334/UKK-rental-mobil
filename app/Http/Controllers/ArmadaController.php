@@ -14,7 +14,7 @@ class ArmadaController extends Controller
      */
     public function index(Request $request)
     {
-        $per = $request->per ? $request->per : 10;
+        $per = $request->per ? $request->per : 5;
 
         $armadas = Armada::where(function ($q) use ($request) {
             $q->where('nama_armada', 'LIKE', '%' . $request->search . '%');

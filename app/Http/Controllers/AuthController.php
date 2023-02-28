@@ -12,6 +12,11 @@ class AuthController extends Controller
         return view('auth.login', ['title' => 'Login']);
     }
 
+    public function indexDashboard()
+    {
+        return view('auth.DashboardLogin', ['title' => 'Login']);
+    }
+
     public function store(Request $request)
     {
             $credentials = $request->validate([
@@ -35,12 +40,14 @@ class AuthController extends Controller
 
     public function logout(Request $request)
 {
+    // $level = auth()->user()->level;
     Auth::logout();
  
     $request->session()->invalidate();
  
     $request->session()->regenerateToken();
  
+    // return $level == 'admin' ? redirect('/dashboard/login') : redirect('/');
     return redirect('/');
 }
 }

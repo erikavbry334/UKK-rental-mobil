@@ -59,8 +59,9 @@ Route::get('/pesanan/{id}/batal', [PesananController::class, 'batal'])->middlewa
 Route::post('/user', [UserController::class, 'update'])->middleware('auth');
  
 Route::group(['middleware' => ['guest']], function () {
-    Route::get('/login', [AuthController::class, 'index'])->name('login');
+Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::post('/login', [AuthController::class, 'store']);
+// Route::get('/dashboard/login', [AuthController::class, 'indexDashboard'])->name('dashboard.login');
 
 
 

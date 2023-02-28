@@ -80,13 +80,20 @@ class PesananController extends Controller
         $pesanan = Pesanan::where('uuid', $uuid)->first();
         $is_denda = false;
         $total_denda = 0;
-        if (Carbon::parse($pesanan->tgl_akhir)->isPast() && $pesanan->status == 3) {
+        if (Carbon::parse($pesanan->tgl_akhir)->endOfDay()->isPast() && $pesanan->status == 3) {
             $is_denda = true;
             $telat_berapa_hari = Carbon::parse($pesanan->tgl_akhir)->diff(now())->format('%a');
             $total_denda = $telat_berapa_hari * 50000;
+            $pesanan->telat_berapa_hari = $telat_berapa_hari;
         }
         $pesanan->is_denda = $is_denda;
         $pesanan->total_denda = $total_denda;
+
+        if (isset($pesanan->denda)) {
+            $pesanan->is_denda = true;
+            $pesanan->total_denda = $pesanan->denda->total_denda;
+            $pesanan->telat_berapa_hari = $pesanan->denda->telat_berapa_hari;
+        }
         return view('userpage.detailpesanan', compact('pesanan'));
     }
 

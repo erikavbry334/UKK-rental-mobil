@@ -111,6 +111,10 @@ class PageController extends Controller
                 $is_denda = true;
             }
             $p->is_denda = $is_denda;
+
+            if (isset($p->denda)) {
+                $p->is_denda = true;
+            }
             return $p;
         });
         return view('userpage.profile', compact('pesanans'));

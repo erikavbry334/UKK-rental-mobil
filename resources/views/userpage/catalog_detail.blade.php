@@ -126,7 +126,7 @@
                         <ul>
                             <li>Wilayah penggunaan (Pulau Jawa)</li>
                             <li>Syarat & Ketentuan dapat berubah sewaktu-waktu apabila diperlukan</li>
-                            <li>Mobil yang disewa diharuskan diambil di kantor kami serta memberikan syarat-syarat yang sudah ditentukan</li>
+                            <li>Mobil yang disewa diharuskan diambil di kantor kami, serta memberikan syarat-syarat yang sudah ditentukan</li>
                         </ul>
                     </div>
                 </div>

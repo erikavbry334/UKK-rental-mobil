@@ -52,18 +52,26 @@
                                     </td>
                                 @elseif ($pesanan->status == 4)
                                     <td>
-                                        <span class="badge bg-success">{{ $pesanan->status_text }}</span>
+                                        <span class="badge bg-primary">{{ $pesanan->status_text }}</span>
                                     </td>
                                 @elseif ($pesanan->status == 5)
+                                    <td>
+                                        <span class="badge bg-success">{{ $pesanan->status_text }}</span>
+                                    </td>
+                                @elseif ($pesanan->status == 6)
                                     <td>
                                         <span class="badge bg-danger">{{ $pesanan->status_text }}</span>
                                     </td>
                                 @endif
                             </div>
                             @if ($pesanan->is_denda)
-                                <label for="" class="col-sm-3 form-label">Denda</label>
+                                <label for="" class="col-sm-3 form-label mt-4">Denda</label>
+                                <div class="col-lg-9 mt-4">
+                                    <input class="text-danger" type="text_area" readonly value=" Rp. {{ number_format($pesanan ['total_denda'] ) , 0, 0, '.' }}">
+                                </div>
+                                <label for="" class="col-sm-3 form-label">telat berapa hari</label>
                                 <div class="col-lg-9">
-                                    <input type="text_area" readonly value="{{ $pesanan['total_denda'] }}">
+                                    <input  type="text_area" readonly value="{{$pesanan->denda->telat_berapa_hari}} hari">
                                 </div>
                             @endif
                         </div>
@@ -81,19 +89,18 @@
                                 <div class="px-4">
                                     <h4 class="text-start mb-1">{{ $pesanan->armada->nama_armada }}</h4>
                                     <h6>{{ $pesanan->paket->nama_paket }}</h6>
-                                    <div class="line-dec">
-                                        <h5 class="text-primary">Rp
-                                            {{ number_format($pesanan->paket->harga + $pesanan->armada->harga, 0, 0, '.') }}
-                                        </h5>
+                                    <h5 class="text-primary">Rp
+                                        {{ number_format($pesanan->paket->harga + $pesanan->armada->harga, 0, 0, '.') }}
+                                    </h5>
+                                    <div class="line-dec m-3"></div>
+                                        <h6 >Detail Paket:</h6>
+                                        <ul style="list-style: disc;">
+                                            @foreach ($pesanan->paket->detail_pakets as $detail)
+                                                <li style="list-style: disc; margin-left: 1rem">{{ $detail->nama }}</li>
+                                            @endforeach
+                                        </ul>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <ul class="p-4">
-                                    @foreach ($pesanan->paket->detail_pakets as $detail)
-                                        <li>{{ $detail->nama }}</li>
-                                    @endforeach
-                                </ul>
                             </div>
                         </div>
                     </form>
@@ -103,7 +110,7 @@
                         <ul>
                             <li>Wilayah penggunaan (Pulau Jawa)</li>
                             <li>Syarat & Ketentuan dapat berubah sewaktu-waktu apabila diperlukan</li>
-                            <li>Mobil yang disewa diharuskan diambil di kantor kami serta memberikan syarat-syarat yang sudah ditentukan</li>
+                            <li>Mobil yang disewa diharuskan diambil di kantor kami, serta memberikan syarat-syarat yang sudah ditentukan</li>
                         </ul>
                     </div>
             </div>
