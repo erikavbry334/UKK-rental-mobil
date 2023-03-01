@@ -87,7 +87,7 @@
                             </div>
                             <div class="col-lg-12">
                                 <div class="px-4">
-                                    <h4 class="text-start mb-1">{{ $pesanan->armada->nama_armada }}</h4>
+                                    <h4 class="text-start mb-1">{{ $pesanan->armada->nama_armada }} <span style="font-weight: 400 !important">({{ $pesanan->armada->no_plat }})</span></h4>
                                     <h6>{{ $pesanan->paket->nama_paket }}</h6>
                                     <h5 class="text-primary">Rp
                                         {{ number_format($pesanan->paket->harga + $pesanan->armada->harga, 0, 0, '.') }}
