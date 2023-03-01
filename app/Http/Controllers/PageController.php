@@ -103,6 +103,7 @@ class PageController extends Controller
 
         $armada = Armada::find($request->id);
         $paket = Paket::with(['detail_pakets'])->find(request()->paket_id);
+        $data['total_harga'] = ($armada->harga * $data['lama_sewa']) + $paket->harga;
 
         return view('userpage.checkout', [
             'armada' => $armada,
