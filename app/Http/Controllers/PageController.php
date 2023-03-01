@@ -13,7 +13,7 @@ use Illuminate\Support\Carbon;
 class PageController extends Controller
 {
     public function __construct() {
-        $armadas = Armada::where('status','Tersedia')->get();
+        $armadas = Armada::get();
         $pakets = Paket::with(['detail_pakets'])->get();
         View::share('armadas', $armadas);
         View::share('pakets', $pakets);
@@ -85,7 +85,15 @@ class PageController extends Controller
             'check' => 'required'
         ]);
 
-        $pesanans = Pesanan::where('status', '!=', '6')->where('status', '!=', '5')->where('status', '!=', '4')->where('armada_id', $request->id)->whereDate('tgl_pesan', '<=', $data['tgl_pesan'])->whereDate('tgl_akhir', '>=', $data['tgl_pesan'])->get();
+        $data['tgl_akhir'] = Carbon::parse($data['tgl_pesan'])->addDays($data['lama_sewa'])->format('Y-m-d');
+
+        $pesanans = Pesanan::where('status', '!=', '6')->where('status', '!=', '5')->where('status', '!=', '4')->where('armada_id', $request->id)->where(function ($q) use ($data) {
+            // tgl pesan <= tgl pesan cari <= tgl akhir
+            $q->whereDate('tgl_pesan', '<=', $data['tgl_pesan'])->whereDate('tgl_akhir', '>=', $data['tgl_pesan']);
+            // tgl pesan <= tgl akhir cari
+            $q->orWhereDate('tgl_pesan', '<=', $data['tgl_akhir']);
+        })->get();
+
         if (count($pesanans)) {
             return back()->with('error', 'Pemesanan untuk tanggal ' . $data['tgl_pesan'] . ' sudah ada');
         }
