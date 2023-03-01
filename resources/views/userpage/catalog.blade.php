@@ -111,7 +111,7 @@
                                     </div>
                                     <div class="content px-4 py-2">
                                         <h4 class="border-0 mb-0 pb-1 text-center" style="font-size: 30px ">
-                                            {{ $armada->nama_armada }}</h4>
+                                            {{ $armada->nama_armada }} <span style="font-weight: 400 !important">({{ $armada->no_plat }})</span></h4>
                                         <h4 class="border-0 mb-0 text-center text-brand" style="font-size: 22px">Rp
                                             {{ number_format($armada->harga, 0, 0, '.') }}</h4>
                                         <h6 class="mt-0" style="font-weight: 400">{{ $armada->paket->nama_paket }}</h6>
