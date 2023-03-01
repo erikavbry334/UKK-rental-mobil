@@ -18,7 +18,7 @@ class ArmadaController extends Controller
 
         $armadas = Armada::where(function ($q) use ($request) {
             $q->where('nama_armada', 'LIKE', '%' . $request->search . '%');
-        })->OrWhere('status', 'LIKE', '%' . $request->search . '%')->paginate($per);
+        })->OrWhere('status', 'LIKE', '%' . $request->search . '%')->orderBy('nama_armada', 'ASC')->paginate($per);
         return view('dashboard.armada.index', [
             'armadas' => $armadas,
             'request' => $request
