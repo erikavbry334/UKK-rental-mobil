@@ -65,6 +65,10 @@
                                 <div class="col-lg-9">
                                     <input type="text" readonly value="{{ $data['lama_sewa'] }}" name="lama_sewa">
                                 </div>
+                                <label for="" class="col-sm-3 form-label">Total harga</label>
+                                <div class="col-lg-9">
+                                    <input type="text" readonly value="{{ $data['total_harga'] }}" name="total_harga">
+                                </div>
                                 <label for="" class="col-sm-3 form-label">catatan tambahan</label>
                                 <div class="col-lg-9">
                                     <input type="text_area" readonly value="{{ $data['catatan'] }}" name="catatan">
