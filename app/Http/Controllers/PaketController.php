@@ -15,6 +15,7 @@ class PaketController extends Controller
     public function index(Request $request)
     {
         $per = $request->per ? $request->per : 10;
+        
         $pakets = Paket::where(function ($q) use ($request) {
             $q->where('nama_paket', 'LIKE', '%' . $request->search . '%');
         })->paginate($per);

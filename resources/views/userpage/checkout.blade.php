@@ -65,13 +65,13 @@
                                 <div class="col-lg-9">
                                     <input type="text" readonly value="{{ $data['lama_sewa'] }}" name="lama_sewa">
                                 </div>
-                                <label for="" class="col-sm-3 form-label">Total harga</label>
-                                <div class="col-lg-9">
-                                    <input type="text" readonly value="{{ $data['total_harga'] }}" name="total_harga">
-                                </div>
                                 <label for="" class="col-sm-3 form-label">catatan tambahan</label>
                                 <div class="col-lg-9">
                                     <input type="text_area" readonly value="{{ $data['catatan'] }}" name="catatan">
+                                </div>
+                                <label for="" class="col-sm-3 form-label">Total harga</label>
+                                <div class="col-lg-9">
+                                    <input type="text" readonly value="{{ $data['total_harga'] }}" name="total_harga">
                                 </div>
 
                                 <input type="hidden" name="armada_id" value="{{ $armada->id }}">
@@ -94,7 +94,7 @@
                                         style="width: 100%; height: 250px; object-fit: contain">
                                 </div>
                                 <div class="col-lg-12">
-                                    <h4 class="text-start mb-2">{{ $armada->nama_armada }}</h4>
+                                    <h4 class="text-start mb-2">{{ $armada->nama_armada }}<span style="font-weight: 400 !important">({{ $armada->no_plat }})</span></h4>
                                     <div>{{ $paket->nama_paket }}</div>
                                     <h6>Rp {{ number_format($paket->harga + $armada->harga, 0, 0, '.') }}</h6>
                                     <div class="line-dec m-3"></div>

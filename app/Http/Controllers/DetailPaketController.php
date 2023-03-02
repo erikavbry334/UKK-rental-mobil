@@ -16,6 +16,7 @@ class DetailPaketController extends Controller
     public function index(Request $request, $paket_id)
     {
         $per = $request->per ? $request->per : 10;
+        
         $detail_pakets = DetailPaket::with(['paket'])->where(function ($q) use ($request) {
             $q->where('nama', 'LIKE', '%' . $request->search . '%');
         })->where('paket_id', $paket_id)->paginate($per);

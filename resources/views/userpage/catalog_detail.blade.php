@@ -108,7 +108,7 @@
                                     style="width: 100%; height: 250px; object-fit: contain">
                             </div>
                             <div class="col-lg-12">
-                                <h4 class="text-start mb-2">{{ $armada->nama_armada }}</h4>
+                                <h4 class="text-start mb-2">{{ $armada->nama_armada }}<span style="font-weight: 400 !important">({{ $armada->no_plat }})</span></h4>
                                 <div>{{ $paket->nama_paket }}</div>
                                 <h6>Rp {{ number_format($paket->harga + $armada->harga, 0, 0, '.') }}</h6>
                                 <div class="line-dec m-3"></div>
